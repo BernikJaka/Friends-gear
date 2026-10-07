@@ -15,10 +15,12 @@ private KalOnline server (https://www.eclipsekal.com).
 - `docs/catalog.json` lists the tracked items per class (G50-G70 armor, weapons, Knight shields):
   col (unique item id, originally the sheet column), group, label, slot, grade, in-game name,
   `itemIndex` (the item's Index in Bango's inititem.dat), optional `altItemIndex` (other Indexes
-  with the same name/grade) and icon URL.
+  that count as owning that slot+grade) and icon URL.
 - Item data and icons come from https://github.com/stribidi/kal-atlas (`bango_data/ITEMS.csv`,
   icons at https://stribidi.github.io/kal-atlas/assets/icons/<image lowercase>.png). Use the normal
-  weapon versions, not Imperial or Soo-Ra.
+  weapon versions for display, not Imperial or Soo-Ra.
+- Any weapon of the same type and grade counts as having that grade (Imperial, Soo-Ra, special
+  Mage sticks, Guardian, Darkness...): list their Indexes in that weapon's `altItemIndex`.
 
 ## Rules that must not change
 - Players always need HIGHER grades, never lower. If a player has a slot at grade X,

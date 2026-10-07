@@ -1,6 +1,6 @@
 {
  "guild": "Friends",
- "updated": "2026-10-07T22:14+00:00",
+ "updated": "2026-10-07T22:16+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
@@ -355,6 +355,11 @@
      "name": "Steel Bow",
      "itemIndex": 245,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea061.png",
+     "altItemIndex": [
+      246,
+      247,
+      780
+     ],
      "needers": []
     },
     {
@@ -366,6 +371,17 @@
      "name": "Diamond Bow",
      "itemIndex": 808,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea076.png",
+     "altItemIndex": [
+      463,
+      464,
+      465,
+      697,
+      698,
+      699,
+      784,
+      809,
+      810
+     ],
      "needers": []
     },
     {
@@ -377,6 +393,20 @@
      "name": "Ancient Tribal Mac's Bow",
      "itemIndex": 1236,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea097.png",
+     "altItemIndex": [
+      566,
+      567,
+      568,
+      709,
+      710,
+      711,
+      788,
+      820,
+      821,
+      822,
+      1237,
+      1238
+     ],
      "needers": []
     },
     {
@@ -388,6 +418,20 @@
      "name": "Bow of Doggebi",
      "itemIndex": 1224,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea085.png",
+     "altItemIndex": [
+      590,
+      591,
+      592,
+      751,
+      752,
+      753,
+      792,
+      862,
+      863,
+      864,
+      1225,
+      1226
+     ],
      "needers": []
     },
     {
@@ -399,6 +443,15 @@
      "name": "Golden Bow",
      "itemIndex": 1259,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea120.png",
+     "altItemIndex": [
+      667,
+      796,
+      1216,
+      1450,
+      1453,
+      2616,
+      2621
+     ],
      "needers": []
     },
     {
@@ -410,6 +463,10 @@
      "name": "Dragon Bow of Sky",
      "itemIndex": 671,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea124.png",
+     "altItemIndex": [
+      800,
+      1808
+     ],
      "needers": []
     },
     {
@@ -421,6 +478,10 @@
      "name": "Blood Dragon's Bow",
      "itemIndex": 1697,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea211.png",
+     "altItemIndex": [
+      1702,
+      1803
+     ],
      "needers": []
     }
    ]
@@ -849,6 +910,11 @@
      "name": "Stick with Black Crow's Feather",
      "itemIndex": 248,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea064.png",
+     "altItemIndex": [
+      249,
+      250,
+      781
+     ],
      "needers": []
     },
     {
@@ -860,6 +926,17 @@
      "name": "Diamond Stick",
      "itemIndex": 811,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea079.png",
+     "altItemIndex": [
+      466,
+      467,
+      468,
+      700,
+      701,
+      702,
+      785,
+      812,
+      813
+     ],
      "needers": []
     },
     {
@@ -871,6 +948,20 @@
      "name": "Ancient Stick",
      "itemIndex": 1239,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea100.png",
+     "altItemIndex": [
+      569,
+      570,
+      571,
+      712,
+      713,
+      714,
+      789,
+      823,
+      824,
+      825,
+      1240,
+      1241
+     ],
      "needers": []
     },
     {
@@ -882,6 +973,22 @@
      "name": "Stick of Doggebi",
      "itemIndex": 1227,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea088.png",
+     "altItemIndex": [
+      593,
+      594,
+      595,
+      754,
+      755,
+      756,
+      793,
+      865,
+      866,
+      867,
+      1228,
+      1229,
+      1442,
+      1443
+     ],
      "needers": []
     },
     {
@@ -893,6 +1000,17 @@
      "name": "Golden Stick",
      "itemIndex": 1260,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea121.png",
+     "altItemIndex": [
+      668,
+      797,
+      1217,
+      1444,
+      1445,
+      1675,
+      1676,
+      2617,
+      2622
+     ],
      "needers": []
     },
     {
@@ -904,6 +1022,16 @@
      "name": "Dragon Stick of Sky",
      "itemIndex": 672,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea125.png",
+     "altItemIndex": [
+      801,
+      1677,
+      1678,
+      1709,
+      1810,
+      1821,
+      1822,
+      1852
+     ],
      "needers": []
     },
     {
@@ -915,6 +1043,16 @@
      "name": "Blood Dragon's Stick",
      "itemIndex": 1698,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea212.png",
+     "altItemIndex": [
+      1703,
+      1705,
+      1706,
+      1710,
+      1805,
+      1823,
+      1824,
+      1853
+     ],
      "needers": []
     }
    ]
@@ -1334,6 +1472,11 @@
      "name": "Golden Treasure Sword",
      "itemIndex": 242,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea058.png",
+     "altItemIndex": [
+      243,
+      244,
+      778
+     ],
      "needers": []
     },
     {
@@ -1345,6 +1488,17 @@
      "name": "Diamond Treasure Sword",
      "itemIndex": 802,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea070.png",
+     "altItemIndex": [
+      457,
+      458,
+      459,
+      691,
+      692,
+      693,
+      782,
+      803,
+      804
+     ],
      "needers": []
     },
     {
@@ -1356,6 +1510,20 @@
      "name": "Ancient Treasure Sword",
      "itemIndex": 1230,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea094.png",
+     "altItemIndex": [
+      560,
+      561,
+      562,
+      703,
+      704,
+      705,
+      786,
+      814,
+      815,
+      816,
+      1231,
+      1232
+     ],
      "needers": []
     },
     {
@@ -1367,6 +1535,20 @@
      "name": "Treasure Sword of Doggebi",
      "itemIndex": 1218,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea082.png",
+     "altItemIndex": [
+      584,
+      585,
+      586,
+      745,
+      746,
+      747,
+      790,
+      856,
+      857,
+      858,
+      1219,
+      1220
+     ],
      "needers": []
     },
     {
@@ -1378,6 +1560,15 @@
      "name": "Golden Sword",
      "itemIndex": 1257,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea118.png",
+     "altItemIndex": [
+      665,
+      794,
+      1214,
+      1448,
+      1451,
+      2614,
+      2619
+     ],
      "needers": []
     },
     {
@@ -1389,6 +1580,10 @@
      "name": "Dragon Sword of Sky",
      "itemIndex": 669,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea122.png",
+     "altItemIndex": [
+      798,
+      1806
+     ],
      "needers": []
     },
     {
@@ -1400,6 +1595,10 @@
      "name": "Blood Dragon's Sword",
      "itemIndex": 1695,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea209.png",
+     "altItemIndex": [
+      1700,
+      1801
+     ],
      "needers": []
     },
     {
@@ -1411,6 +1610,11 @@
      "name": "Giant Sword",
      "itemIndex": 440,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea067.png",
+     "altItemIndex": [
+      441,
+      442,
+      779
+     ],
      "needers": []
     },
     {
@@ -1422,6 +1626,17 @@
      "name": "Diamond Giant Sword",
      "itemIndex": 805,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea073.png",
+     "altItemIndex": [
+      460,
+      461,
+      462,
+      694,
+      695,
+      696,
+      783,
+      806,
+      807
+     ],
      "needers": []
     },
     {
@@ -1433,6 +1648,20 @@
      "name": "Ancient Giant Sword",
      "itemIndex": 817,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea103.png",
+     "altItemIndex": [
+      563,
+      564,
+      565,
+      706,
+      707,
+      708,
+      787,
+      818,
+      819,
+      1233,
+      1234,
+      1235
+     ],
      "needers": []
     },
     {
@@ -1444,6 +1673,20 @@
      "name": "Giant Sword of Doggebi",
      "itemIndex": 1221,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea091.png",
+     "altItemIndex": [
+      587,
+      588,
+      589,
+      748,
+      749,
+      750,
+      791,
+      859,
+      860,
+      861,
+      1222,
+      1223
+     ],
      "needers": []
     },
     {
@@ -1455,6 +1698,15 @@
      "name": "Golden Giant Sword",
      "itemIndex": 666,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea119.png",
+     "altItemIndex": [
+      795,
+      1215,
+      1258,
+      1449,
+      1452,
+      2615,
+      2620
+     ],
      "needers": []
     },
     {
@@ -1466,6 +1718,10 @@
      "name": "Dragon Giant Sword of Sky",
      "itemIndex": 670,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea123.png",
+     "altItemIndex": [
+      799,
+      1807
+     ],
      "needers": []
     },
     {
@@ -1477,6 +1733,10 @@
      "name": "Blood Dragon's Giant sword",
      "itemIndex": 1696,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea210.png",
+     "altItemIndex": [
+      1701,
+      1802
+     ],
      "needers": []
     }
    ]
@@ -1841,6 +2101,11 @@
      "name": "Golden Treasure dagger",
      "itemIndex": 1420,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea185.png",
+     "altItemIndex": [
+      1421,
+      1422,
+      1436
+     ],
      "needers": []
     },
     {
@@ -1852,6 +2117,11 @@
      "name": "Diamond dagger",
      "itemIndex": 1423,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea188.png",
+     "altItemIndex": [
+      1424,
+      1425,
+      1437
+     ],
      "needers": []
     },
     {
@@ -1863,6 +2133,11 @@
      "name": "Ancient dagger",
      "itemIndex": 1426,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea191.png",
+     "altItemIndex": [
+      1427,
+      1428,
+      1438
+     ],
      "needers": []
     },
     {
@@ -1874,6 +2149,10 @@
      "name": "dagger of Doggebi",
      "itemIndex": 1429,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea194.png",
+     "altItemIndex": [
+      1430,
+      1439
+     ],
      "needers": []
     },
     {
@@ -1885,6 +2164,13 @@
      "name": "Golden dagger",
      "itemIndex": 1431,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea196.png",
+     "altItemIndex": [
+      1440,
+      1668,
+      1669,
+      2618,
+      2623
+     ],
      "needers": []
     },
     {
@@ -1896,6 +2182,10 @@
      "name": "Dragon dagger of Sky",
      "itemIndex": 1432,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea197.png",
+     "altItemIndex": [
+      1441,
+      1809
+     ],
      "needers": []
     },
     {
@@ -1907,6 +2197,10 @@
      "name": "Blood Dragon's Dagger",
      "itemIndex": 1699,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea213.png",
+     "altItemIndex": [
+      1704,
+      1804
+     ],
      "needers": []
     }
    ]

@@ -25,7 +25,7 @@ SPECIALTY = {
 HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(HERE, "docs")
 CATALOG = json.load(open(os.path.join(DOCS, "catalog.json")))
-# some items exist under several Indexes in inititem.dat (same name/grade), see altItemIndex
+# some items exist under several Indexes in inititem.dat (variants of the same grade), see altItemIndex
 BY_INDEX = {i: (cls, e) for cls, items in CATALOG.items() for e in items
             for i in [e["itemIndex"], *e.get("altItemIndex", [])]}
 
