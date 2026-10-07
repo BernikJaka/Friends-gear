@@ -36,6 +36,12 @@
   .src.game{color:var(--ok)} .src.sheet{color:var(--accent)}
   .note{color:var(--muted);font-size:12px;margin-top:14px}
   .toggle{margin-left:auto}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:4px}
+  .filters input{flex:1 1 200px;min-width:0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:inherit}
+  .filters input:focus{outline:none;border-color:var(--accent)}
+  .classbtns{display:flex;flex-wrap:wrap;gap:6px}
+  .classbtns button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font:inherit;cursor:pointer}
+  .classbtns button.on{border-color:var(--accent);color:var(--accent)}
 </style>
 </head>
 <body>
@@ -48,6 +54,7 @@
 <script>
 const ORDER=["Archer","Mage","Knight","Thief"];
 let DATA=null, view=localStorageGet("view")||"Archer";
+let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All";
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -67,6 +74,7 @@ function render(){
     return `<button class="${k===view?"on":""}" data-k="${k}">${l}${n}</button>`}).join("");
   document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.k;localStorageSet("view",view);render()});
   document.getElementById("main").innerHTML=view==="Roster"?roster():needs(view);
+  if(view==="Roster") wireRoster();
 }
 
 function needs(cls){
@@ -85,11 +93,34 @@ function needs(cls){
 }
 
 function roster(){
+  const btns=["All",...ORDER].map(c=>`<button class="${c===rosterClass?"on":""}" data-c="${c}">${c}</button>`).join("");
+  return `<div class="filters"><input id="q" type="search" placeholder="Search name…" value="${esc(rosterQuery)}">
+    <div class="classbtns">${btns}</div></div>
+    <table><thead><tr><th>Player</th><th>Class</th><th>Specialty</th><th>Lv</th><th>Missing</th><th>Gear data</th></tr></thead>
+    <tbody id="rows">${rosterRows()}</tbody></table>`;
+}
+
+function rosterRows(){
+  const q=rosterQuery.trim().toLowerCase();
   let rows="";
-  for(const c of ORDER) for(const p of DATA.classes[c].players)
-    rows+=`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
-      <td>${p.needs.length}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":p.source==="sheet"?"from sheet":"not filled in"}</span></td></tr>`;
-  return `<table><tr><th>Player</th><th>Class</th><th>Specialty</th><th>Lv</th><th>Missing</th><th>Gear data</th></tr>${rows}</table>`;
+  for(const c of ORDER){
+    if(rosterClass!=="All"&&c!==rosterClass) continue;
+    for(const p of DATA.classes[c].players){
+      if(q&&!p.name.toLowerCase().includes(q)) continue;
+      rows+=`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
+        <td>${p.needs.length}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":p.source==="sheet"?"from sheet":"not filled in"}</span></td></tr>`;
+    }
+  }
+  return rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`;
+}
+
+function wireRoster(){
+  document.getElementById("q").oninput=e=>{rosterQuery=e.target.value;document.getElementById("rows").innerHTML=rosterRows()};
+  document.querySelectorAll(".classbtns button").forEach(b=>b.onclick=()=>{
+    rosterClass=b.dataset.c;localStorageSet("rosterClass",rosterClass);
+    document.querySelectorAll(".classbtns button").forEach(x=>x.classList.toggle("on",x===b));
+    document.getElementById("rows").innerHTML=rosterRows();
+  });
 }
 </script>
 </body>
