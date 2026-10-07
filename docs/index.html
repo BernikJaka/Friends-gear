@@ -42,6 +42,8 @@
   .classbtns{display:flex;flex-wrap:wrap;gap:6px}
   .classbtns button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font:inherit;cursor:pointer}
   .classbtns button.on{border-color:var(--accent);color:var(--accent)}
+  .filters select{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit;cursor:pointer}
+  .count{color:var(--muted);font-size:12px;margin-top:10px}
   .gradebtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
   .gradebtns button{background:var(--panel);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
   .gradebtns button.off{color:var(--muted);border-color:var(--line);opacity:.5}
@@ -57,7 +59,7 @@
 <script>
 const ORDER=["Archer","Mage","Knight","Thief"];
 let DATA=null, view=localStorageGet("view")||"Archer";
-let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All";
+let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSort=localStorageGet("rosterSort")||"class";
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -105,34 +107,49 @@ function needs(cls){
 
 function roster(){
   const btns=["All",...ORDER].map(c=>`<button class="${c===rosterClass?"on":""}" data-c="${c}">${c}</button>`).join("");
+  const sorts=[["class","By class"],["desc","Level: high → low"],["asc","Level: low → high"]]
+    .map(([k,l])=>`<option value="${k}" ${k===rosterSort?"selected":""}>${l}</option>`).join("");
   return `<div class="filters"><input id="q" type="search" placeholder="Search name…" value="${esc(rosterQuery)}">
-    <div class="classbtns">${btns}</div></div>
+    <div class="classbtns">${btns}</div><select id="sort" aria-label="Sort">${sorts}</select></div>
+    <div class="count" id="count"></div>
     <table><thead><tr><th>Player</th><th>Class</th><th>Specialty</th><th>Lv</th><th>Missing</th><th>Gear data</th></tr></thead>
-    <tbody id="rows">${rosterRows()}</tbody></table>`;
+    <tbody id="rows"></tbody></table>`;
 }
 
 function rosterRows(){
   const q=rosterQuery.trim().toLowerCase();
-  let rows="";
+  const list=[];
   for(const c of ORDER){
     if(rosterClass!=="All"&&c!==rosterClass) continue;
     const grade=Object.fromEntries(DATA.classes[c].items.map(it=>[it.col,it.grade]));
-    for(const p of DATA.classes[c].players){
-      if(q&&!p.name.toLowerCase().includes(q)) continue;
-      rows+=`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
-        <td>${p.needs.filter(col=>!HIDDEN.has(grade[col])).length}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`;
-    }
+    for(const p of DATA.classes[c].players)
+      if(!q||p.name.toLowerCase().includes(q)) list.push({p,c,missing:p.needs.filter(col=>!HIDDEN.has(grade[col])).length});
   }
-  return rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`;
+  if(rosterSort!=="class"){   // unknown level always last
+    const dir=rosterSort==="asc"?1:-1;
+    list.sort((a,b)=>(a.p.level==null)-(b.p.level==null)||dir*((a.p.level??0)-(b.p.level??0))||a.p.name.localeCompare(b.p.name));
+  }
+  const rows=list.map(({p,c,missing})=>`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
+        <td>${missing}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`).join("");
+  return {html:rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`,shown:list.length};
+}
+
+function refreshRoster(){
+  const total=ORDER.reduce((n,c)=>n+DATA.classes[c].players.length,0);
+  const {html,shown}=rosterRows();
+  document.getElementById("rows").innerHTML=html;
+  document.getElementById("count").textContent=shown===total?`${total} members`:`Showing ${shown} of ${total} members`;
 }
 
 function wireRoster(){
-  document.getElementById("q").oninput=e=>{rosterQuery=e.target.value;document.getElementById("rows").innerHTML=rosterRows()};
+  document.getElementById("q").oninput=e=>{rosterQuery=e.target.value;refreshRoster()};
+  document.getElementById("sort").onchange=e=>{rosterSort=e.target.value;localStorageSet("rosterSort",rosterSort);refreshRoster()};
   document.querySelectorAll(".classbtns button").forEach(b=>b.onclick=()=>{
     rosterClass=b.dataset.c;localStorageSet("rosterClass",rosterClass);
     document.querySelectorAll(".classbtns button").forEach(x=>x.classList.toggle("on",x===b));
-    document.getElementById("rows").innerHTML=rosterRows();
+    refreshRoster();
   });
+  refreshRoster();
 }
 </script>
 </body>
