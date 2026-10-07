@@ -10,6 +10,8 @@ private KalOnline server (https://www.eclipsekal.com).
   - https://www.eclipsekal.com/api/rankings        -> `{"players":[{name,class,specialty,level,guildName,...}]}` (top 200 by level)
   - https://www.eclipsekal.com/api/rankings/honor  -> same shape plus honor/kills/deaths (top 200 by honor)
   - `class`: 0 Knight, 1 Mage, 2 Archer, 3 Thief. Specialty 7/11 names are in `SPECIALTY` in update.py.
+    For Thieves the rankings have Hitman and I.Swordsman reversed, so `SPECIALTY` deliberately maps
+    7 = Hitman, 11 = I.Swordsman (the opposite of the rankings site). Keep it that way.
 - Gear comes only from the rankings API (the guild Google Sheet is no longer used). Until the
   API shows gear, every player has `source: "waiting"` ("waiting for game data" on the site).
 - `docs/catalog.json` lists the tracked items per class (G50-G70 armor, weapons, Knight shields):

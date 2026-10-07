@@ -1,6 +1,6 @@
 {
  "guild": "Friends",
- "updated": "2026-10-07T22:16+00:00",
+ "updated": "2026-10-07T22:28+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
@@ -17,7 +17,7 @@
      "name": "SohX",
      "level": 63,
      "specialty": "Imperial Commander",
-     "honor": 6300,
+     "honor": 6450,
      "needs": [],
      "source": "waiting"
     },
@@ -561,18 +561,18 @@
      "source": "waiting"
     },
     {
-     "name": "HolyCjb",
-     "level": 59,
-     "specialty": "C.J.B",
-     "honor": 5300,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
      "name": "ITAU",
      "level": 59,
      "specialty": "C.J.B",
      "honor": 4050,
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "HolyCjb",
+     "level": 59,
+     "specialty": "C.J.B",
+     "honor": 5300,
      "needs": [],
      "source": "waiting"
     },
@@ -1077,7 +1077,7 @@
     },
     {
      "name": "gerwa",
-     "level": 60,
+     "level": 61,
      "specialty": "Vagabond",
      "honor": 5450,
      "needs": [],
@@ -1746,7 +1746,7 @@
     {
      "name": "Twisted",
      "level": 64,
-     "specialty": "Hitman",
+     "specialty": "I.Swordsman",
      "honor": 7700,
      "needs": [],
      "source": "waiting"
@@ -1754,7 +1754,7 @@
     {
      "name": "KurvaYebana",
      "level": 63,
-     "specialty": "Hitman",
+     "specialty": "I.Swordsman",
      "honor": 8000,
      "needs": [],
      "source": "waiting"
@@ -1762,7 +1762,7 @@
     {
      "name": "Olivia",
      "level": 63,
-     "specialty": "I.Swordsman",
+     "specialty": "Hitman",
      "honor": 7400,
      "needs": [],
      "source": "waiting"
@@ -1770,7 +1770,7 @@
     {
      "name": "Hardcore",
      "level": 61,
-     "specialty": "I.Swordsman",
+     "specialty": "Hitman",
      "honor": 6500,
      "needs": [],
      "source": "waiting"
@@ -1778,7 +1778,7 @@
     {
      "name": "ExoticAlpha",
      "level": 60,
-     "specialty": "Hitman",
+     "specialty": "I.Swordsman",
      "honor": null,
      "needs": [],
      "source": "waiting"
@@ -1786,7 +1786,7 @@
     {
      "name": "codename",
      "level": 59,
-     "specialty": "Hitman",
+     "specialty": "I.Swordsman",
      "honor": 7900,
      "needs": [],
      "source": "waiting"
@@ -1794,7 +1794,7 @@
     {
      "name": "Schnitzel",
      "level": 57,
-     "specialty": "Hitman",
+     "specialty": "I.Swordsman",
      "honor": 3500,
      "needs": [],
      "source": "waiting"

@@ -20,7 +20,8 @@ SPECIALTY = {
     0: {1: "Wandering Knight", 3: "Apprentice Knight", 7: "Vagabond", 11: "Commander", 15: "Two Job Knight"},
     1: {1: "Scholar", 3: "Literary Person", 7: "Hermit", 11: "C.J.B", 15: "Two Job Mage"},
     2: {1: "Wandering Archer", 3: "Apprentice Archer", 7: "Expert Archer", 11: "Imperial Commander", 15: "Two Job Archer"},
-    3: {1: "Wandering Thief", 3: "Thief Guild member", 7: "I.Swordsman", 11: "Hitman", 15: "Two Job Thief"},
+    # Thief 7/11 are deliberately swapped: the Eclipse Kal rankings mix up Hitman and I.Swordsman
+    3: {1: "Wandering Thief", 3: "Thief Guild member", 7: "Hitman", 11: "I.Swordsman", 15: "Two Job Thief"},
 }
 HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(HERE, "docs")
