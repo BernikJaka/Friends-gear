@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Friends · Gear Needs</title>
+<style>
+  :root{--bg:#0f1115;--panel:#171a21;--line:#262b36;--text:#e7e9ee;--muted:#8b93a7;--accent:#e0b04a;--need:#e5484d;--ok:#3fb950}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  header{padding:20px 16px 8px;max-width:1200px;margin:auto}
+  h1{margin:0;font-size:22px;letter-spacing:.3px}
+  h1 span{color:var(--accent)}
+  .meta{color:var(--muted);font-size:12px;margin-top:4px}
+  nav{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line)}
+  .tabs{max-width:1200px;margin:auto;display:flex;gap:6px;padding:8px 16px;overflow-x:auto}
+  .tabs button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer;white-space:nowrap}
+  .tabs button.on{border-color:var(--accent);color:var(--accent)}
+  .tabs .n{color:var(--muted);font-size:12px;margin-left:4px}
+  main{max-width:1200px;margin:auto;padding:12px 16px 40px}
+  .group{margin:18px 0 6px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px;min-height:0}
+  .card.empty{opacity:.45}
+  .top{display:flex;align-items:center;gap:8px}
+  .top img{width:36px;height:36px;image-rendering:pixelated;background:#0b0d11;border-radius:6px}
+  .lbl{font-weight:600}
+  .full{color:var(--muted);font-size:11px}
+  .cnt{margin-left:auto;background:var(--need);color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:1px 8px}
+  .names{display:flex;flex-wrap:wrap;gap:4px}
+  .names span{background:#222734;border-radius:6px;padding:1px 7px;font-size:12px}
+  table{width:100%;border-collapse:collapse;margin-top:8px}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:500;font-size:12px}
+  .src{font-size:11px;padding:1px 6px;border-radius:6px;background:#222734;color:var(--muted)}
+  .src.game{color:var(--ok)} .src.sheet{color:var(--accent)}
+  .note{color:var(--muted);font-size:12px;margin-top:14px}
+  .toggle{margin-left:auto}
+</style>
+</head>
+<body>
+<header>
+  <h1><span id="guild">Friends</span> · Who still needs what</h1>
+  <div class="meta" id="meta">Loading…</div>
+</header>
+<nav><div class="tabs" id="tabs"></div></nav>
+<main id="main"></main>
+<script>
+const ORDER=["Archer","Mage","Knight","Thief"];
+let DATA=null, view=localStorageGet("view")||"Archer";
+function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+fetch("data.json?"+Date.now()).then(r=>r.json()).then(d=>{DATA=d;render()}).catch(()=>{
+  document.getElementById("meta").textContent="Could not load data.json yet - the first update run may not have finished.";
+});
+
+function render(){
+  document.getElementById("guild").textContent=DATA.guild;
+  const t=new Date(DATA.updated);
+  document.getElementById("meta").textContent="Updated "+t.toLocaleString()+
+    (DATA.rankingsOnline?"":" · rankings were offline, showing last known roster");
+  const tabs=[...ORDER.map(c=>[c,c]),["Roster","Roster"]];
+  document.getElementById("tabs").innerHTML=tabs.map(([k,l])=>{
+    const n=k==="Roster"?"":`<span class="n">${DATA.classes[k].players.length}</span>`;
+    return `<button class="${k===view?"on":""}" data-k="${k}">${l}${n}</button>`}).join("");
+  document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.k;localStorageSet("view",view);render()});
+  document.getElementById("main").innerHTML=view==="Roster"?roster():needs(view);
+}
+
+function needs(cls){
+  const items=DATA.classes[cls].items;
+  let html="",group=null;
+  for(const it of items){
+    if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
+    const n=it.needers.length;
+    html+=`<div class="card ${n?"":"empty"}">
+      <div class="top" title="${esc(it.name)}"><img src="${esc(it.icon)}" alt="${esc(it.name)}" loading="lazy">
+        <div class="lbl">${esc(it.label)}</div>
+        ${n?`<span class="cnt">${n}</span>`:""}</div>
+      <div class="names">${it.needers.map(x=>`<span>${esc(x)}</span>`).join("")}</div></div>`;
+  }
+  return html+"</div><p class='note'>A player is only listed for grades higher than what they already have in that slot.</p>";
+}
+
+function roster(){
+  let rows="";
+  for(const c of ORDER) for(const p of DATA.classes[c].players)
+    rows+=`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
+      <td>${p.needs.length}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":p.source==="sheet"?"from sheet":"not filled in"}</span></td></tr>`;
+  return `<table><tr><th>Player</th><th>Class</th><th>Specialty</th><th>Lv</th><th>Missing</th><th>Gear data</th></tr>${rows}</table>`;
+}
+</script>
+</body>
+</html>

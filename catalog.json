@@ -1,0 +1,900 @@
+{
+ "Archer": [
+  {
+   "col": "B",
+   "group": "G50 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 50,
+   "name": "Diamond Helmet",
+   "itemIndex": 832,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def122.png"
+  },
+  {
+   "col": "C",
+   "group": "G50 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 50,
+   "name": "Diamond Armor",
+   "itemIndex": 831,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def121.png"
+  },
+  {
+   "col": "D",
+   "group": "G50 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 50,
+   "name": "Diamond Gloves",
+   "itemIndex": 833,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def123.png"
+  },
+  {
+   "col": "E",
+   "group": "G50 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 50,
+   "name": "Diamond Shorts",
+   "itemIndex": 835,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def125.png"
+  },
+  {
+   "col": "F",
+   "group": "G50 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 50,
+   "name": "Diamond Shoes",
+   "itemIndex": 834,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def124.png"
+  },
+  {
+   "col": "G",
+   "group": "G55 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 55,
+   "name": "Helmet of Doggebi",
+   "itemIndex": 1510,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def140.png"
+  },
+  {
+   "col": "H",
+   "group": "G55 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 55,
+   "name": "Armor of Doggebi",
+   "itemIndex": 1509,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def139.png"
+  },
+  {
+   "col": "I",
+   "group": "G55 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 55,
+   "name": "Gloves of Doggebi",
+   "itemIndex": 1511,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def141.png"
+  },
+  {
+   "col": "J",
+   "group": "G55 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 55,
+   "name": "Shorts of Doggebi",
+   "itemIndex": 1513,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def143.png"
+  },
+  {
+   "col": "K",
+   "group": "G55 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 55,
+   "name": "Shoes of Doggebi",
+   "itemIndex": 1512,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def142.png"
+  },
+  {
+   "col": "L",
+   "group": "G60 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 60,
+   "name": "Golden Armor Helmet",
+   "itemIndex": 1525,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def175.png"
+  },
+  {
+   "col": "M",
+   "group": "G60 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 60,
+   "name": "Golden Armor",
+   "itemIndex": 1524,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def174.png"
+  },
+  {
+   "col": "N",
+   "group": "G60 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 60,
+   "name": "Golden Armor Gloves",
+   "itemIndex": 1526,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def176.png"
+  },
+  {
+   "col": "O",
+   "group": "G60 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 60,
+   "name": "Golden Armor Skirts",
+   "itemIndex": 1528,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def178.png"
+  },
+  {
+   "col": "P",
+   "group": "G60 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 60,
+   "name": "Golden Armor Shoes",
+   "itemIndex": 1527,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def177.png"
+  },
+  {
+   "col": "Q",
+   "group": "Bow",
+   "label": "G50",
+   "slot": "weapon_bow",
+   "grade": 50,
+   "name": "Steel Bow",
+   "itemIndex": 245,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea061.png"
+  },
+  {
+   "col": "R",
+   "group": "Bow",
+   "label": "G53",
+   "slot": "weapon_bow",
+   "grade": 53,
+   "name": "Diamond Bow",
+   "itemIndex": 808,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea076.png"
+  },
+  {
+   "col": "S",
+   "group": "Bow",
+   "label": "G56",
+   "slot": "weapon_bow",
+   "grade": 56,
+   "name": "Ancient Tribal Mac's Bow",
+   "itemIndex": 1236,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea097.png"
+  },
+  {
+   "col": "T",
+   "group": "Bow",
+   "label": "G59",
+   "slot": "weapon_bow",
+   "grade": 59,
+   "name": "Bow of Doggebi",
+   "itemIndex": 1224,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea085.png"
+  },
+  {
+   "col": "U",
+   "group": "Bow",
+   "label": "G62",
+   "slot": "weapon_bow",
+   "grade": 62,
+   "name": "Golden Bow",
+   "itemIndex": 1259,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea120.png"
+  }
+ ],
+ "Mage": [
+  {
+   "col": "B",
+   "group": "G50 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 50,
+   "name": "White DaeChangEau Hair Decoration",
+   "itemIndex": 837,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def127.png"
+  },
+  {
+   "col": "C",
+   "group": "G50 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 50,
+   "name": "White DaeChangEau",
+   "itemIndex": 836,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def126.png"
+  },
+  {
+   "col": "D",
+   "group": "G50 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 50,
+   "name": "White DaeChangEau Gloves",
+   "itemIndex": 838,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def128.png"
+  },
+  {
+   "col": "E",
+   "group": "G50 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 50,
+   "name": "White DaeChangEau Shorts",
+   "itemIndex": 840,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def130.png"
+  },
+  {
+   "col": "F",
+   "group": "G50 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 50,
+   "name": "White DaeChangEau Shoes",
+   "itemIndex": 839,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def129.png"
+  },
+  {
+   "col": "G",
+   "group": "G55 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 55,
+   "name": "Hair Decoration of Doggebi",
+   "itemIndex": 1515,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def145.png"
+  },
+  {
+   "col": "H",
+   "group": "G55 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 55,
+   "name": "DaeChangEau of Doggebi",
+   "itemIndex": 1514,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def144.png"
+  },
+  {
+   "col": "I",
+   "group": "G55 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 55,
+   "name": "DaeChangEau Gloves of Doggebi",
+   "itemIndex": 1516,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def146.png"
+  },
+  {
+   "col": "J",
+   "group": "G55 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 55,
+   "name": "DaeChangEau Shorts of Doggebi",
+   "itemIndex": 1518,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def148.png"
+  },
+  {
+   "col": "K",
+   "group": "G55 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 55,
+   "name": "DaeChangEau Shoes of Doggebi",
+   "itemIndex": 1517,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def147.png"
+  },
+  {
+   "col": "L",
+   "group": "G60 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 60,
+   "name": "Golden DaeChangEau Hair Decoration",
+   "itemIndex": 1530,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def180.png"
+  },
+  {
+   "col": "M",
+   "group": "G60 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 60,
+   "name": "Golden DaeChangEau",
+   "itemIndex": 1529,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def179.png"
+  },
+  {
+   "col": "N",
+   "group": "G60 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 60,
+   "name": "Golden DaeChangEau Gloves",
+   "itemIndex": 1531,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def181.png"
+  },
+  {
+   "col": "O",
+   "group": "G60 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 60,
+   "name": "Golden DaeChangEau Shorts",
+   "itemIndex": 1533,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def183.png"
+  },
+  {
+   "col": "P",
+   "group": "G60 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 60,
+   "name": "Golden DaeChangEau Shoes",
+   "itemIndex": 1532,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def182.png"
+  },
+  {
+   "col": "Q",
+   "group": "Stick",
+   "label": "G50",
+   "slot": "weapon_stick",
+   "grade": 50,
+   "name": "Stick with Black Crow's Feather",
+   "itemIndex": 248,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea064.png"
+  },
+  {
+   "col": "R",
+   "group": "Stick",
+   "label": "G53",
+   "slot": "weapon_stick",
+   "grade": 53,
+   "name": "Diamond Stick",
+   "itemIndex": 811,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea079.png"
+  },
+  {
+   "col": "S",
+   "group": "Stick",
+   "label": "G56",
+   "slot": "weapon_stick",
+   "grade": 56,
+   "name": "Ancient Stick",
+   "itemIndex": 1239,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea100.png"
+  },
+  {
+   "col": "T",
+   "group": "Stick",
+   "label": "G59",
+   "slot": "weapon_stick",
+   "grade": 59,
+   "name": "Stick of Doggebi",
+   "itemIndex": 1227,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea088.png"
+  },
+  {
+   "col": "U",
+   "group": "Stick",
+   "label": "G62",
+   "slot": "weapon_stick",
+   "grade": 62,
+   "name": "Golden Stick",
+   "itemIndex": 1260,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea121.png"
+  }
+ ],
+ "Knight": [
+  {
+   "col": "B",
+   "group": "G50 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 50,
+   "name": "Diamond Scaled Helmet",
+   "itemIndex": 827,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def117.png"
+  },
+  {
+   "col": "C",
+   "group": "G50 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 50,
+   "name": "Diamond Scaled Armor",
+   "itemIndex": 826,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def116.png"
+  },
+  {
+   "col": "D",
+   "group": "G50 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 50,
+   "name": "Diamond Scaled Gloves",
+   "itemIndex": 828,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def118.png"
+  },
+  {
+   "col": "E",
+   "group": "G50 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 50,
+   "name": "Diamond Scaled Shorts",
+   "itemIndex": 830,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def120.png"
+  },
+  {
+   "col": "F",
+   "group": "G50 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 50,
+   "name": "Diamond Scaled Shoes",
+   "itemIndex": 829,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def119.png"
+  },
+  {
+   "col": "G",
+   "group": "G55 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 55,
+   "name": "Scaled Helmet of Doggebi",
+   "itemIndex": 1505,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def135.png"
+  },
+  {
+   "col": "H",
+   "group": "G55 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 55,
+   "name": "Scaled Armor of Doggebi",
+   "itemIndex": 1504,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def134.png"
+  },
+  {
+   "col": "I",
+   "group": "G55 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 55,
+   "name": "Scaled Gloves of Doggebi",
+   "itemIndex": 1506,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def136.png"
+  },
+  {
+   "col": "J",
+   "group": "G55 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 55,
+   "name": "Scaled Shorts of Doggebi",
+   "itemIndex": 1508,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def138.png"
+  },
+  {
+   "col": "K",
+   "group": "G55 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 55,
+   "name": "Scaled Shoes of Doggebi",
+   "itemIndex": 1507,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def137.png"
+  },
+  {
+   "col": "L",
+   "group": "G60 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 60,
+   "name": "Golden Scaled Armor Helmet",
+   "itemIndex": 1520,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def170.png"
+  },
+  {
+   "col": "M",
+   "group": "G60 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 60,
+   "name": "Golden Scaled Armor",
+   "itemIndex": 1519,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def169.png"
+  },
+  {
+   "col": "N",
+   "group": "G60 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 60,
+   "name": "Golden Scaled Armor Gloves",
+   "itemIndex": 1521,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def171.png"
+  },
+  {
+   "col": "O",
+   "group": "G60 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 60,
+   "name": "Golden Scaled Armor Shorts",
+   "itemIndex": 1523,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def173.png"
+  },
+  {
+   "col": "P",
+   "group": "G60 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 60,
+   "name": "Golden Scaled Armor Shoes",
+   "itemIndex": 1522,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def172.png"
+  },
+  {
+   "col": "Q",
+   "group": "Shields",
+   "label": "G50",
+   "slot": "shield",
+   "grade": 50,
+   "name": "Iron Shield With Gong",
+   "itemIndex": 431,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def133.png"
+  },
+  {
+   "col": "R",
+   "group": "Shields",
+   "label": "G55",
+   "slot": "shield",
+   "grade": 55,
+   "name": "Ghost Shaped Steel Shield",
+   "itemIndex": 1088,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def168.png"
+  },
+  {
+   "col": "S",
+   "group": "Shields",
+   "label": "G60",
+   "slot": "shield",
+   "grade": 60,
+   "name": "Golden Shield",
+   "itemIndex": 1320,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def184.png"
+  },
+  {
+   "col": "T",
+   "group": "Shields",
+   "label": "G65",
+   "slot": "shield",
+   "grade": 65,
+   "name": "Blood Dragon shield",
+   "itemIndex": 1609,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def245.png"
+  },
+  {
+   "col": "U",
+   "group": "1H Sword",
+   "label": "G50",
+   "slot": "weapon_1hsword",
+   "grade": 50,
+   "name": "Golden Treasure Sword",
+   "itemIndex": 242,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea058.png"
+  },
+  {
+   "col": "V",
+   "group": "1H Sword",
+   "label": "G53",
+   "slot": "weapon_1hsword",
+   "grade": 53,
+   "name": "Diamond Treasure Sword",
+   "itemIndex": 802,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea070.png"
+  },
+  {
+   "col": "W",
+   "group": "1H Sword",
+   "label": "G56",
+   "slot": "weapon_1hsword",
+   "grade": 56,
+   "name": "Ancient Treasure Sword",
+   "itemIndex": 1230,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea094.png"
+  },
+  {
+   "col": "X",
+   "group": "1H Sword",
+   "label": "G59",
+   "slot": "weapon_1hsword",
+   "grade": 59,
+   "name": "Treasure Sword of Doggebi",
+   "itemIndex": 1218,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea082.png"
+  },
+  {
+   "col": "Y",
+   "group": "1H Sword",
+   "label": "G62",
+   "slot": "weapon_1hsword",
+   "grade": 62,
+   "name": "Golden Sword",
+   "itemIndex": 1257,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea118.png"
+  },
+  {
+   "col": "Z",
+   "group": "2H Sword",
+   "label": "G50",
+   "slot": "weapon_2hsword",
+   "grade": 50,
+   "name": "Giant Sword",
+   "itemIndex": 440,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea067.png"
+  },
+  {
+   "col": "AA",
+   "group": "2H Sword",
+   "label": "G53",
+   "slot": "weapon_2hsword",
+   "grade": 53,
+   "name": "Diamond Giant Sword",
+   "itemIndex": 805,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea073.png"
+  },
+  {
+   "col": "AB",
+   "group": "2H Sword",
+   "label": "G56",
+   "slot": "weapon_2hsword",
+   "grade": 56,
+   "name": "Ancient Giant Sword",
+   "itemIndex": 817,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea103.png"
+  },
+  {
+   "col": "AC",
+   "group": "2H Sword",
+   "label": "G59",
+   "slot": "weapon_2hsword",
+   "grade": 59,
+   "name": "Giant Sword of Doggebi",
+   "itemIndex": 1221,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea091.png"
+  },
+  {
+   "col": "AD",
+   "group": "2H Sword",
+   "label": "G62",
+   "slot": "weapon_2hsword",
+   "grade": 62,
+   "name": "Golden Giant Sword",
+   "itemIndex": 666,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea119.png"
+  }
+ ],
+ "Thief": [
+  {
+   "col": "B",
+   "group": "G50 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 50,
+   "name": "Diamond Hood of thief",
+   "itemIndex": 1581,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def231.png"
+  },
+  {
+   "col": "C",
+   "group": "G50 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 50,
+   "name": "Diamond suit of thief",
+   "itemIndex": 1580,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def230.png"
+  },
+  {
+   "col": "D",
+   "group": "G50 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 50,
+   "name": "Diamond Gloves of thief",
+   "itemIndex": 1582,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def232.png"
+  },
+  {
+   "col": "E",
+   "group": "G50 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 50,
+   "name": "Diamond suit Shorts of thief",
+   "itemIndex": 1584,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def234.png"
+  },
+  {
+   "col": "F",
+   "group": "G50 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 50,
+   "name": "Diamond Boots of thief",
+   "itemIndex": 1583,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def233.png"
+  },
+  {
+   "col": "G",
+   "group": "G55 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 55,
+   "name": "Doggebi Hood of thief",
+   "itemIndex": 1586,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def236.png"
+  },
+  {
+   "col": "H",
+   "group": "G55 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 55,
+   "name": "Doggebi suit of thief",
+   "itemIndex": 1585,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def235.png"
+  },
+  {
+   "col": "I",
+   "group": "G55 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 55,
+   "name": "Doggebi Gloves of thief",
+   "itemIndex": 1587,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def237.png"
+  },
+  {
+   "col": "J",
+   "group": "G55 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 55,
+   "name": "Doggebi suit Shorts of thief",
+   "itemIndex": 1589,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def239.png"
+  },
+  {
+   "col": "K",
+   "group": "G55 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 55,
+   "name": "Doggebi Boots of thief",
+   "itemIndex": 1588,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def238.png"
+  },
+  {
+   "col": "L",
+   "group": "G60 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 60,
+   "name": "Golden Hood of thief",
+   "itemIndex": 1591,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def241.png"
+  },
+  {
+   "col": "M",
+   "group": "G60 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 60,
+   "name": "Golden suit of thief",
+   "itemIndex": 1590,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def240.png"
+  },
+  {
+   "col": "N",
+   "group": "G60 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 60,
+   "name": "Golden Gloves of thief",
+   "itemIndex": 1592,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def242.png"
+  },
+  {
+   "col": "O",
+   "group": "G60 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 60,
+   "name": "Golden suit Shorts of thief",
+   "itemIndex": 1594,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def244.png"
+  },
+  {
+   "col": "P",
+   "group": "G60 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 60,
+   "name": "Golden Boots of thief",
+   "itemIndex": 1593,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def243.png"
+  },
+  {
+   "col": "Q",
+   "group": "Dagger",
+   "label": "G50",
+   "slot": "weapon_dagger",
+   "grade": 50,
+   "name": "Golden Treasure dagger",
+   "itemIndex": 1420,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea185.png"
+  },
+  {
+   "col": "R",
+   "group": "Dagger",
+   "label": "G53",
+   "slot": "weapon_dagger",
+   "grade": 53,
+   "name": "Diamond dagger",
+   "itemIndex": 1423,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea188.png"
+  },
+  {
+   "col": "S",
+   "group": "Dagger",
+   "label": "G56",
+   "slot": "weapon_dagger",
+   "grade": 56,
+   "name": "Ancient dagger",
+   "itemIndex": 1426,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea191.png"
+  },
+  {
+   "col": "T",
+   "group": "Dagger",
+   "label": "G59",
+   "slot": "weapon_dagger",
+   "grade": 59,
+   "name": "dagger of Doggebi",
+   "itemIndex": 1429,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea194.png"
+  },
+  {
+   "col": "U",
+   "group": "Dagger",
+   "label": "G62",
+   "slot": "weapon_dagger",
+   "grade": 62,
+   "name": "Golden dagger",
+   "itemIndex": 1431,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea196.png"
+  }
+ ]
+}
