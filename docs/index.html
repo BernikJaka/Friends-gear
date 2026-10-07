@@ -42,6 +42,9 @@
   .classbtns{display:flex;flex-wrap:wrap;gap:6px}
   .classbtns button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font:inherit;cursor:pointer}
   .classbtns button.on{border-color:var(--accent);color:var(--accent)}
+  .gradebtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .gradebtns button{background:var(--panel);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
+  .gradebtns button.off{color:var(--muted);border-color:var(--line);opacity:.5}
 </style>
 </head>
 <body>
@@ -55,11 +58,15 @@
 const ORDER=["Archer","Mage","Knight","Thief"];
 let DATA=null, view=localStorageGet("view")||"Archer";
 let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All";
+let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
+let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-fetch("data.json?"+Date.now()).then(r=>r.json()).then(d=>{DATA=d;render()}).catch(()=>{
+const settings=fetch("settings.json?"+Date.now()).then(r=>r.json()).catch(()=>({}));
+Promise.all([fetch("data.json?"+Date.now()).then(r=>r.json()),settings]).then(([d,s])=>{
+  HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;render()}).catch(()=>{
   document.getElementById("meta").textContent="Could not load data.json yet - the first update run may not have finished.";
 });
 
@@ -75,12 +82,16 @@ function render(){
   document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.k;localStorageSet("view",view);render()});
   document.getElementById("main").innerHTML=view==="Roster"?roster():needs(view);
   if(view==="Roster") wireRoster();
+  document.querySelectorAll(".gradebtns button").forEach(b=>b.onclick=()=>{
+    const g=+b.dataset.g;OFF.has(g)?OFF.delete(g):OFF.add(g);
+    localStorageSet("offGrades",JSON.stringify([...OFF]));render()});
 }
 
 function needs(cls){
-  const items=DATA.classes[cls].items;
-  let html="",group=null;
-  for(const it of items){
+  const items=DATA.classes[cls].items.filter(it=>!HIDDEN.has(it.grade));
+  const grades=[...new Set(items.map(it=>it.grade))].sort((a,b)=>a-b);
+  let html=`<div class="gradebtns">${grades.map(g=>`<button class="${OFF.has(g)?"off":""}" data-g="${g}">G${g}</button>`).join("")}</div>`,group=null;
+  for(const it of items.filter(it=>!OFF.has(it.grade))){
     if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
     const n=it.needers.length;
     html+=`<div class="card ${n?"":"empty"}">
@@ -89,7 +100,7 @@ function needs(cls){
         ${n?`<span class="cnt">${n}</span>`:""}</div>
       <div class="names">${it.needers.map(x=>`<span>${esc(x)}</span>`).join("")}</div></div>`;
   }
-  return html+"</div><p class='note'>A player is only listed for grades higher than what they already have in that slot.</p>";
+  return html+(group!==null?"</div>":"")+"<p class='note'>A player is only listed for grades higher than what they already have in that slot.</p>";
 }
 
 function roster(){
@@ -105,10 +116,11 @@ function rosterRows(){
   let rows="";
   for(const c of ORDER){
     if(rosterClass!=="All"&&c!==rosterClass) continue;
+    const grade=Object.fromEntries(DATA.classes[c].items.map(it=>[it.col,it.grade]));
     for(const p of DATA.classes[c].players){
       if(q&&!p.name.toLowerCase().includes(q)) continue;
       rows+=`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
-        <td>${p.needs.length}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`;
+        <td>${p.needs.filter(col=>!HIDDEN.has(grade[col])).length}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`;
     }
   }
   return rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`;

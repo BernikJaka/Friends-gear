@@ -36,6 +36,36 @@ Open the failed run in the Actions tab and read the red step. Most likely causes
 
 ---
 
+## Hiding or showing grades
+
+`docs/settings.json` decides which grades the website shows to everyone:
+
+```json
+{"hiddenGrades": [60, 62, 65, 70]}
+```
+
+Grades in this list are hidden for every visitor: no item cards, no toggle button, and
+they don't count in **Missing** on the Roster tab. The script still tracks all grades,
+so nothing is lost while a grade is hidden.
+
+To **unhide a grade** (for example when the guild starts farming G60), open
+`docs/settings.json` on GitHub, click the pencil icon, remove the number from the list
+and click **Commit changes**:
+
+```json
+{"hiddenGrades": [62, 65, 70]}
+```
+
+To show every grade, use an empty list: `{"hiddenGrades": []}`. The site updates within
+a minute or two (refresh the page). Keep the format exactly as above - numbers only,
+separated by commas.
+
+Every visitor can also turn grades off just for themselves with the G50 / G53 / ...
+buttons above the item cards. That choice is saved in their own browser and doesn't
+affect anyone else.
+
+---
+
 ## When the rankings start showing gear (using Claude Code)
 
 The script already looks for gear on the rankings, but nobody knows the exact format
