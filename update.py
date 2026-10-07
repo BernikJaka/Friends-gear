@@ -130,7 +130,7 @@ def main():
     for cls in CATALOG:
         answers = sheet_answers(cls)
         known = {p["name"].lower() for p in roster[cls]}
-        # players only on the sheet (not in the top-100 rankings) still count
+        # players only on the sheet (not in the top-200 rankings) still count
         for name in answers:
             if name.lower() not in known:
                 roster[cls].append({"name": name, "level": None, "specialty": None, "gear": None})

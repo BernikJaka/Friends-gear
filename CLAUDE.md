@@ -7,8 +7,8 @@ private KalOnline server (https://www.eclipsekal.com).
 - `update.py` runs every hour in GitHub Actions (`.github/workflows/update.yml`) and writes
   `docs/data.json`. GitHub Pages serves `docs/` as the website (`docs/index.html`).
 - Roster (guild members, class, level, specialty) comes from the public rankings API:
-  - https://www.eclipsekal.com/api/rankings        -> `{"players":[{name,class,specialty,level,guildName,...}]}` (top 100 by level)
-  - https://www.eclipsekal.com/api/rankings/honor  -> same shape plus honor/kills/deaths (top 100 by honor)
+  - https://www.eclipsekal.com/api/rankings        -> `{"players":[{name,class,specialty,level,guildName,...}]}` (top 200 by level)
+  - https://www.eclipsekal.com/api/rankings/honor  -> same shape plus honor/kills/deaths (top 200 by honor)
   - `class`: 0 Knight, 1 Mage, 2 Archer, 3 Thief. Specialty 7/11 names are in `SPECIALTY` in update.py.
 - Gear answers currently come from the guild Google Sheet (Yes/No per item, `SHEET_ID` in update.py,
   rows 6-45, column A = name, columns match `docs/catalog.json` "col").
