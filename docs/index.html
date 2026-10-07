@@ -42,7 +42,8 @@
   .classbtns{display:flex;flex-wrap:wrap;gap:6px}
   .classbtns button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font:inherit;cursor:pointer}
   .classbtns button.on{border-color:var(--accent);color:var(--accent)}
-  .filters select{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit;cursor:pointer}
+  .sortbtn{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;white-space:nowrap}
+  .sortbtn:hover,.sortbtn.on{color:var(--accent)}
   .count{color:var(--muted);font-size:12px;margin-top:10px}
   .gradebtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
   .gradebtns button{background:var(--panel);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
@@ -59,7 +60,7 @@
 <script>
 const ORDER=["Archer","Mage","Knight","Thief"];
 let DATA=null, view=localStorageGet("view")||"Archer";
-let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSort=localStorageGet("rosterSort")||"class";
+let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSort=localStorageGet("rosterSort")||"class:1";
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -107,12 +108,10 @@ function needs(cls){
 
 function roster(){
   const btns=["All",...ORDER].map(c=>`<button class="${c===rosterClass?"on":""}" data-c="${c}">${c}</button>`).join("");
-  const sorts=[["class","By class"],["desc","Level: high → low"],["asc","Level: low → high"]]
-    .map(([k,l])=>`<option value="${k}" ${k===rosterSort?"selected":""}>${l}</option>`).join("");
   return `<div class="filters"><input id="q" type="search" placeholder="Search name…" value="${esc(rosterQuery)}">
-    <div class="classbtns">${btns}</div><select id="sort" aria-label="Sort">${sorts}</select></div>
+    <div class="classbtns">${btns}</div></div>
     <div class="count" id="count"></div>
-    <table><thead><tr><th>Player</th><th>Class</th><th>Specialty</th><th>Lv</th><th>Missing</th><th>Gear data</th></tr></thead>
+    <table><thead id="head"></thead>
     <tbody id="rows"></tbody></table>`;
 }
 
@@ -125,16 +124,32 @@ function rosterRows(){
     for(const p of DATA.classes[c].players)
       if(!q||p.name.toLowerCase().includes(q)) list.push({p,c,missing:p.needs.filter(col=>!HIDDEN.has(grade[col])).length});
   }
-  if(rosterSort!=="class"){   // unknown level always last
-    const dir=rosterSort==="asc"?1:-1;
-    list.sort((a,b)=>(a.p.level==null)-(b.p.level==null)||dir*((a.p.level??0)-(b.p.level??0))||a.p.name.localeCompare(b.p.name));
-  }
+  const [key,d]=sortState(), dir=+d;
+  const byLevel=(a,b)=>(a.p.level==null)-(b.p.level==null)||(b.p.level??0)-(a.p.level??0);   // unknown level always last
+  const cmp={class:(a,b)=>ORDER.indexOf(a.c)-ORDER.indexOf(b.c),
+             specialty:(a,b)=>(!a.p.specialty)-(!b.p.specialty)||String(a.p.specialty||"").localeCompare(String(b.p.specialty||"")),
+             level:(a,b)=>(a.p.level==null)-(b.p.level==null)||(a.p.level??0)-(b.p.level??0),
+             missing:(a,b)=>a.missing-b.missing}[key];
+  const empty={specialty:a=>!a.p.specialty,level:a=>a.p.level==null}[key];
+  list.sort((a,b)=>(empty?empty(a)-empty(b):0)||dir*cmp(a,b)||byLevel(a,b)||a.p.name.localeCompare(b.p.name));
   const rows=list.map(({p,c,missing})=>`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
         <td>${missing}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`).join("");
   return {html:rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`,shown:list.length};
 }
 
+const SORTS=[["class","Class",1],["specialty","Specialty",1],["level","Lv",-1],["missing","Missing items",-1]];   // [key,label,first-click direction]
+function sortState(){
+  const [k,d]=rosterSort.split(":");
+  return SORTS.some(s=>s[0]===k)&&(d==="1"||d==="-1")?[k,d]:["class","1"];
+}
+
 function refreshRoster(){
+  const [key,dir]=sortState();
+  const th=([k,l])=>`<th><button class="sortbtn ${k===key?"on":""}" data-s="${k}">${l}${k===key?(dir==="1"?" ▲":" ▼"):""}</button></th>`;
+  document.getElementById("head").innerHTML=`<tr><th>Player</th>${SORTS.map(th).join("")}<th>Gear data</th></tr>`;
+  document.querySelectorAll(".sortbtn").forEach(b=>b.onclick=()=>{
+    const k=b.dataset.s, first=SORTS.find(s=>s[0]===k)[2];
+    rosterSort=k+":"+(k===key?-dir:first);localStorageSet("rosterSort",rosterSort);refreshRoster()});
   const total=ORDER.reduce((n,c)=>n+DATA.classes[c].players.length,0);
   const {html,shown}=rosterRows();
   document.getElementById("rows").innerHTML=html;
@@ -143,7 +158,6 @@ function refreshRoster(){
 
 function wireRoster(){
   document.getElementById("q").oninput=e=>{rosterQuery=e.target.value;refreshRoster()};
-  document.getElementById("sort").onchange=e=>{rosterSort=e.target.value;localStorageSet("rosterSort",rosterSort);refreshRoster()};
   document.querySelectorAll(".classbtns button").forEach(b=>b.onclick=()=>{
     rosterClass=b.dataset.c;localStorageSet("rosterClass",rosterClass);
     document.querySelectorAll(".classbtns button").forEach(x=>x.classList.toggle("on",x===b));
