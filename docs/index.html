@@ -33,7 +33,7 @@
   th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
   th{color:var(--muted);font-weight:500;font-size:12px}
   .src{font-size:11px;padding:1px 6px;border-radius:6px;background:#222734;color:var(--muted)}
-  .src.game{color:var(--ok)} .src.sheet{color:var(--accent)}
+  .src.game{color:var(--ok)}
   .note{color:var(--muted);font-size:12px;margin-top:14px}
   .toggle{margin-left:auto}
   .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:4px}
@@ -108,7 +108,7 @@ function rosterRows(){
     for(const p of DATA.classes[c].players){
       if(q&&!p.name.toLowerCase().includes(q)) continue;
       rows+=`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
-        <td>${p.needs.length}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":p.source==="sheet"?"from sheet":"not filled in"}</span></td></tr>`;
+        <td>${p.needs.length}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`;
     }
   }
   return rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`;

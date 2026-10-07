@@ -151,6 +151,122 @@
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def177.png"
   },
   {
+   "col": "V",
+   "group": "G65 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 65,
+   "name": "Blood Dragon's Armor Helmet",
+   "itemIndex": 1484,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def191.png"
+  },
+  {
+   "col": "W",
+   "group": "G65 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 65,
+   "name": "Blood Dragon's Armor",
+   "itemIndex": 1483,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def190.png",
+   "altItemIndex": [
+    1635,
+    1636
+   ]
+  },
+  {
+   "col": "X",
+   "group": "G65 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 65,
+   "name": "Blood Dragon's Armor Gloves",
+   "itemIndex": 1485,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def192.png"
+  },
+  {
+   "col": "Y",
+   "group": "G65 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 65,
+   "name": "Blood Dragon's Armor Skirts",
+   "itemIndex": 1487,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def194.png",
+   "altItemIndex": [
+    1637,
+    1638
+   ]
+  },
+  {
+   "col": "Z",
+   "group": "G65 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 65,
+   "name": "Blood Dragon's Armor Shoes",
+   "itemIndex": 1486,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def193.png"
+  },
+  {
+   "col": "AA",
+   "group": "G70 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 70,
+   "name": "Heavenly Executioner Armor Helmet",
+   "itemIndex": 1890,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def319.png"
+  },
+  {
+   "col": "AB",
+   "group": "G70 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 70,
+   "name": "Heavenly Executioner Armor",
+   "itemIndex": 1887,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def318.png",
+   "altItemIndex": [
+    1888,
+    1889
+   ]
+  },
+  {
+   "col": "AC",
+   "group": "G70 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 70,
+   "name": "Heavenly Executioner Armor Gloves",
+   "itemIndex": 1891,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def320.png"
+  },
+  {
+   "col": "AD",
+   "group": "G70 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 70,
+   "name": "Heavenly Executioner Armor Skirts",
+   "itemIndex": 1893,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def322.png",
+   "altItemIndex": [
+    1894,
+    1895
+   ]
+  },
+  {
+   "col": "AE",
+   "group": "G70 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 70,
+   "name": "Heavenly Executioner Armor Shoes",
+   "itemIndex": 1892,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def321.png"
+  },
+  {
    "col": "Q",
    "group": "Bow",
    "label": "G50",
@@ -199,6 +315,26 @@
    "name": "Golden Bow",
    "itemIndex": 1259,
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea120.png"
+  },
+  {
+   "col": "AF",
+   "group": "Bow",
+   "label": "G65",
+   "slot": "weapon_bow",
+   "grade": 65,
+   "name": "Dragon Bow of Sky",
+   "itemIndex": 671,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea124.png"
+  },
+  {
+   "col": "AG",
+   "group": "Bow",
+   "label": "G70",
+   "slot": "weapon_bow",
+   "grade": 70,
+   "name": "Blood Dragon's Bow",
+   "itemIndex": 1697,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea211.png"
   }
  ],
  "Mage": [
@@ -353,6 +489,122 @@
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def182.png"
   },
   {
+   "col": "V",
+   "group": "G65 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 65,
+   "name": "Blood Dragon's DaeChangEau Hair Decoration",
+   "itemIndex": 1489,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def196.png"
+  },
+  {
+   "col": "W",
+   "group": "G65 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 65,
+   "name": "Blood Dragon's DaeChangEau",
+   "itemIndex": 1488,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def195.png",
+   "altItemIndex": [
+    1639,
+    1640
+   ]
+  },
+  {
+   "col": "X",
+   "group": "G65 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 65,
+   "name": "Blood Dragon's DaeChangEau Gloves",
+   "itemIndex": 1490,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def197.png"
+  },
+  {
+   "col": "Y",
+   "group": "G65 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 65,
+   "name": "Blood Dragon's DaeChangEau Shorts",
+   "itemIndex": 1492,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def199.png",
+   "altItemIndex": [
+    1641,
+    1642
+   ]
+  },
+  {
+   "col": "Z",
+   "group": "G65 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 65,
+   "name": "Blood Dragon's DaeChangEau Shoes",
+   "itemIndex": 1491,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def198.png"
+  },
+  {
+   "col": "AA",
+   "group": "G70 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 70,
+   "name": "Heavenly Executioner DaeChangEau Hair Decoration",
+   "itemIndex": 1899,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def324.png"
+  },
+  {
+   "col": "AB",
+   "group": "G70 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 70,
+   "name": "Heavenly Executioner DaeChangEau",
+   "itemIndex": 1896,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def323.png",
+   "altItemIndex": [
+    1897,
+    1898
+   ]
+  },
+  {
+   "col": "AC",
+   "group": "G70 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 70,
+   "name": "Heavenly Executioner DaeChangEau Gloves",
+   "itemIndex": 1900,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def325.png"
+  },
+  {
+   "col": "AD",
+   "group": "G70 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 70,
+   "name": "Heavenly Executioner DaeChangEau Shorts",
+   "itemIndex": 1902,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def327.png",
+   "altItemIndex": [
+    1903,
+    1904
+   ]
+  },
+  {
+   "col": "AE",
+   "group": "G70 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 70,
+   "name": "Heavenly Executioner DaeChangEau Shoes",
+   "itemIndex": 1901,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def326.png"
+  },
+  {
    "col": "Q",
    "group": "Stick",
    "label": "G50",
@@ -401,6 +653,26 @@
    "name": "Golden Stick",
    "itemIndex": 1260,
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea121.png"
+  },
+  {
+   "col": "AF",
+   "group": "Stick",
+   "label": "G65",
+   "slot": "weapon_stick",
+   "grade": 65,
+   "name": "Dragon Stick of Sky",
+   "itemIndex": 672,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea125.png"
+  },
+  {
+   "col": "AG",
+   "group": "Stick",
+   "label": "G70",
+   "slot": "weapon_stick",
+   "grade": 70,
+   "name": "Blood Dragon's Stick",
+   "itemIndex": 1698,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea212.png"
   }
  ],
  "Knight": [
@@ -555,6 +827,122 @@
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def172.png"
   },
   {
+   "col": "AE",
+   "group": "G65 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 65,
+   "name": "Blood Dragon's Scaled Armor Helmet",
+   "itemIndex": 1479,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def186.png"
+  },
+  {
+   "col": "AF",
+   "group": "G65 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 65,
+   "name": "Blood Dragon's Scaled Armor",
+   "itemIndex": 1478,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def185.png",
+   "altItemIndex": [
+    1631,
+    1632
+   ]
+  },
+  {
+   "col": "AG",
+   "group": "G65 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 65,
+   "name": "Blood Dragon's Scaled Armor Gloves",
+   "itemIndex": 1480,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def187.png"
+  },
+  {
+   "col": "AH",
+   "group": "G65 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 65,
+   "name": "Blood Dragon's Scaled Armor Shorts",
+   "itemIndex": 1482,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def189.png",
+   "altItemIndex": [
+    1633,
+    1634
+   ]
+  },
+  {
+   "col": "AI",
+   "group": "G65 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 65,
+   "name": "Blood Dragon's Scaled Armor Shoes",
+   "itemIndex": 1481,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def188.png"
+  },
+  {
+   "col": "AJ",
+   "group": "G70 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 70,
+   "name": "Heavenly Executioner Scaled Armor Helmet",
+   "itemIndex": 1881,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def314.png"
+  },
+  {
+   "col": "AK",
+   "group": "G70 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 70,
+   "name": "Heavenly Executioner Scaled Armor",
+   "itemIndex": 1878,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def313.png",
+   "altItemIndex": [
+    1879,
+    1880
+   ]
+  },
+  {
+   "col": "AL",
+   "group": "G70 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 70,
+   "name": "Heavenly Executioner Scaled Armor Gloves",
+   "itemIndex": 1882,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def315.png"
+  },
+  {
+   "col": "AM",
+   "group": "G70 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 70,
+   "name": "Heavenly Executioner Scaled Armor Shorts",
+   "itemIndex": 1884,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def317.png",
+   "altItemIndex": [
+    1885,
+    1886
+   ]
+  },
+  {
+   "col": "AN",
+   "group": "G70 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 70,
+   "name": "Heavenly Executioner Scaled Armor Shoes",
+   "itemIndex": 1883,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def316.png"
+  },
+  {
    "col": "Q",
    "group": "Shields",
    "label": "G50",
@@ -593,6 +981,16 @@
    "name": "Blood Dragon shield",
    "itemIndex": 1609,
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def245.png"
+  },
+  {
+   "col": "AO",
+   "group": "Shields",
+   "label": "G70",
+   "slot": "shield",
+   "grade": 70,
+   "name": "Heavenly Executioner shield",
+   "itemIndex": 1928,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def292.png"
   },
   {
    "col": "U",
@@ -645,6 +1043,26 @@
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea118.png"
   },
   {
+   "col": "AP",
+   "group": "1H Sword",
+   "label": "G65",
+   "slot": "weapon_1hsword",
+   "grade": 65,
+   "name": "Dragon Sword of Sky",
+   "itemIndex": 669,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea122.png"
+  },
+  {
+   "col": "AQ",
+   "group": "1H Sword",
+   "label": "G70",
+   "slot": "weapon_1hsword",
+   "grade": 70,
+   "name": "Blood Dragon's Sword",
+   "itemIndex": 1695,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea209.png"
+  },
+  {
    "col": "Z",
    "group": "2H Sword",
    "label": "G50",
@@ -693,6 +1111,26 @@
    "name": "Golden Giant Sword",
    "itemIndex": 666,
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea119.png"
+  },
+  {
+   "col": "AR",
+   "group": "2H Sword",
+   "label": "G65",
+   "slot": "weapon_2hsword",
+   "grade": 65,
+   "name": "Dragon Giant Sword of Sky",
+   "itemIndex": 670,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea123.png"
+  },
+  {
+   "col": "AS",
+   "group": "2H Sword",
+   "label": "G70",
+   "slot": "weapon_2hsword",
+   "grade": 70,
+   "name": "Blood Dragon's Giant sword",
+   "itemIndex": 1696,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea210.png"
   }
  ],
  "Thief": [
@@ -847,6 +1285,122 @@
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def243.png"
   },
   {
+   "col": "V",
+   "group": "G65 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 65,
+   "name": "Blood Dragon's Hood of thief",
+   "itemIndex": 1766,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def247.png"
+  },
+  {
+   "col": "W",
+   "group": "G65 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 65,
+   "name": "Blood Dragon's Suit of thief",
+   "itemIndex": 1763,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def246.png",
+   "altItemIndex": [
+    1764,
+    1765
+   ]
+  },
+  {
+   "col": "X",
+   "group": "G65 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 65,
+   "name": "Blood Dragon's Gloves of thief",
+   "itemIndex": 1767,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def248.png"
+  },
+  {
+   "col": "Y",
+   "group": "G65 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 65,
+   "name": "Blood Dragon's Suit Shorts of thief",
+   "itemIndex": 1769,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def251.png",
+   "altItemIndex": [
+    1770,
+    1771
+   ]
+  },
+  {
+   "col": "Z",
+   "group": "G65 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 65,
+   "name": "Blood Dragon's Boots of thief",
+   "itemIndex": 1768,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def249.png"
+  },
+  {
+   "col": "AA",
+   "group": "G70 Armor",
+   "label": "Helmet",
+   "slot": "helmet",
+   "grade": 70,
+   "name": "Heavenly Executioner Hood of thief",
+   "itemIndex": 1908,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def329.png"
+  },
+  {
+   "col": "AB",
+   "group": "G70 Armor",
+   "label": "Chest",
+   "slot": "chest",
+   "grade": 70,
+   "name": "Heavenly Executioner Suit of thief",
+   "itemIndex": 1905,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def328.png",
+   "altItemIndex": [
+    1906,
+    1907
+   ]
+  },
+  {
+   "col": "AC",
+   "group": "G70 Armor",
+   "label": "Gloves",
+   "slot": "gloves",
+   "grade": 70,
+   "name": "Heavenly Executioner Gloves of thief",
+   "itemIndex": 1909,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def330.png"
+  },
+  {
+   "col": "AD",
+   "group": "G70 Armor",
+   "label": "Shorts",
+   "slot": "shorts",
+   "grade": 70,
+   "name": "Heavenly Executioner Suit Shorts of thief",
+   "itemIndex": 1911,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def332.png",
+   "altItemIndex": [
+    1912,
+    1913
+   ]
+  },
+  {
+   "col": "AE",
+   "group": "G70 Armor",
+   "label": "Boots",
+   "slot": "boots",
+   "grade": 70,
+   "name": "Heavenly Executioner Boots of thief",
+   "itemIndex": 1910,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def331.png"
+  },
+  {
    "col": "Q",
    "group": "Dagger",
    "label": "G50",
@@ -895,6 +1449,26 @@
    "name": "Golden dagger",
    "itemIndex": 1431,
    "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea196.png"
+  },
+  {
+   "col": "AF",
+   "group": "Dagger",
+   "label": "G65",
+   "slot": "weapon_dagger",
+   "grade": 65,
+   "name": "Dragon dagger of Sky",
+   "itemIndex": 1432,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea197.png"
+  },
+  {
+   "col": "AG",
+   "group": "Dagger",
+   "label": "G70",
+   "slot": "weapon_dagger",
+   "grade": 70,
+   "name": "Blood Dragon's Dagger",
+   "itemIndex": 1699,
+   "icon": "https://stribidi.github.io/kal-atlas/assets/icons/wea213.png"
   }
  ]
 }

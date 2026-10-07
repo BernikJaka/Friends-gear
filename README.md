@@ -4,8 +4,8 @@ A small website that shows, for every item, which **Friends** guild members stil
 It updates itself every hour: no PC needs to be on.
 
 - Guild members, class and level come from the Eclipse Kal rankings.
-- Gear comes from the guild Google Sheet for now (Yes/No dropdowns), and from the
-  rankings once the admins add gear there.
+- Gear comes from the rankings too, once the admins add it there. Until then every
+  player shows as "waiting for game data".
 - A player is only listed for grades **higher** than what they already have.
 
 ---
@@ -26,13 +26,12 @@ It updates itself every hour: no PC needs to be on.
 5. **Run the first update:** Actions tab → *Update gear site* → **Run workflow**.
    From then on it runs every hour by itself.
 
-That's it. Post the website link in Discord. Guildies keep filling in the Google Sheet;
-the site picks it up within the hour.
+That's it. Post the website link in Discord. Nobody has to fill anything in: the site
+picks up guild members (and later their gear) from the rankings within the hour.
 
 ### If the update fails
 Open the failed run in the Actions tab and read the red step. Most likely causes:
 - *Rankings offline* (server update): the site keeps the last known roster, nothing to do.
-- *Sheet not readable*: the sheet must stay shared as "Anyone with the link".
 - GitHub pauses scheduled runs after 60 days with no repo activity; click **Run workflow** once to restart.
 
 ---
