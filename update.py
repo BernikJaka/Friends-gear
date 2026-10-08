@@ -14,8 +14,8 @@ from datetime import datetime, timezone
 
 GUILD = os.environ.get("GUILD", "Friends")
 MAIN_JS = "https://www.eclipsekal.com/static/js/main.js"   # has EXP_TABLE (index = level)
-RANKINGS = ["https://www.eclipsekal.com/api/rankings",
-            "https://www.eclipsekal.com/api/rankings/honor"]
+LEVEL_RANKING = "https://www.eclipsekal.com/api/rankings"        # decides onRanking
+HONOR_RANKING = "https://www.eclipsekal.com/api/rankings/honor"
 CLASSES = {0: "Knight", 1: "Mage", 2: "Archer", 3: "Thief"}
 SPECIALTY = {
     0: {1: "Wandering Knight", 3: "Apprentice Knight", 7: "Vagabond", 11: "Commander", 15: "Two Job Knight"},
@@ -38,21 +38,17 @@ def get(url, timeout=30):
         return r.read().decode("utf-8")
 
 
-def fetch_rankings():
-    """{lowercase name: player} merged from all rankings pages, and whether every page loaded."""
-    players, complete = {}, True
-    for url in RANKINGS:
-        try:
-            page = json.loads(get(url)).get("players") or []
-            if not page:
-                complete = False
-            for p in page:
-                key = str(p.get("name", "")).lower()
-                players[key] = {**players.get(key, {}), **p}
-        except Exception as e:  # site down / updating
-            print(f"! {url}: {e}", file=sys.stderr)
-            complete = False
-    return players, complete
+def fetch_ranking(url):
+    """{lowercase name: player} from one rankings page, or None if it failed or came back empty."""
+    try:
+        page = json.loads(get(url)).get("players") or []
+    except Exception as e:  # site down / updating
+        print(f"! {url}: {e}", file=sys.stderr)
+        return None
+    if not page:
+        print(f"! {url}: no players", file=sys.stderr)
+        return None
+    return {str(p.get("name", "")).lower(): p for p in page}
 
 
 def fetch_exp_table():
@@ -105,42 +101,62 @@ def main():
     out_path = os.path.join(DOCS, "data.json")
     previous = json.load(open(out_path)) if os.path.exists(out_path) else {}
     now = datetime.now(timezone.utc).isoformat(timespec="minutes")
-    ranked, complete = fetch_rankings()
+    level_rank, honor_rank = fetch_ranking(LEVEL_RANKING), fetch_ranking(HONOR_RANKING)
+    ranked = {k: {**(honor_rank or {}).get(k, {}), **(level_rank or {}).get(k, {})}
+              for k in {*(level_rank or {}), *(honor_rank or {})}}
     exp_table = fetch_exp_table()
+    prev = {pl["name"].lower(): (c, pl) for c, block in previous.get("classes", {}).items()
+            for pl in block.get("players", [])}
+
+    def last_seen(pl):
+        """When this player was last on the level ranking, from the previous data.json."""
+        if "onHonorRanking" not in pl and pl.get("onRanking", True) and pl.get("exp") is None:
+            return None   # saved before this rule while only on the honor ranking (no exp): never seen on level
+        return pl.get("lastSeen", previous.get("updated"))
+
+    # onRanking = on the LEVEL ranking. If a page failed to load, keep what we knew before.
+    def on_level(key, old):
+        return key in level_rank if level_rank is not None else old.get("onRanking", True)
+    def on_honor(key, old):
+        return key in honor_rank if honor_rank is not None else old.get("onHonorRanking", False)
 
     roster = {c: [] for c in CATALOG}
     seen = set()
     for key, p in ranked.items():
         c = int(p.get("class", -1))
-        if p.get("guildName") == GUILD and c in CLASSES:
-            roster[CLASSES[c]].append({
-                "name": p["name"], "level": p.get("level"), "exp": p.get("exp"),
-                "specialty": SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0), CLASSES[c]),
-                "honor": p.get("honor"), "gear": gear_from_api(p),
-                "onRanking": True, "lastSeen": now})
-            seen.add(key)
+        if p.get("guildName") != GUILD or c not in CLASSES:
+            continue
+        old = prev.get(key, (None, {}))[1]
+        lvl, in_level = p.get("level"), on_level(key, old)
+        if key in (level_rank or {}):
+            exp = p.get("exp")
+        else:  # only the level ranking has exp; the old value is only valid for the same level
+            exp = old.get("exp") if old.get("level") == lvl else None
+        roster[CLASSES[c]].append({
+            "name": p["name"], "level": lvl, "exp": exp,
+            "specialty": SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0), CLASSES[c]),
+            "honor": p["honor"] if "honor" in p else old.get("honor"),
+            "gear": gear_from_api(p) or old.get("gear"),
+            "onRanking": in_level, "onHonorRanking": on_honor(key, old),
+            "lastSeen": now if key in (level_rank or {}) else last_seen(old) if old else None})
+        seen.add(key)
 
-    if not complete:
-        print("! rankings incomplete, keeping players who are missing as they were", file=sys.stderr)
-    # Carry over everyone from the last run who isn't on the rankings now, with their last known
+    # Carry over everyone from the last run who isn't on either ranking now, with their last known
     # level/specialty/exp/gear. Only drop a player when the rankings show them in another guild.
-    for c, block in previous.get("classes", {}).items():
-        for pl in block.get("players", []) if c in roster else []:
-            key = pl["name"].lower()
-            if key in seen:
-                continue
-            other = (ranked.get(key) or {}).get("guildName")
-            if other and other != GUILD:
-                print(f"- {pl['name']} is now in guild {other}, removed")
-                continue
-            old = {k: v for k, v in pl.items() if k not in ("needs", "source")}
-            old.setdefault("lastSeen", previous.get("updated"))  # data.json from before lastSeen existed
-            if complete:
-                old["onRanking"] = False
-            else:  # a rankings page failed to load: don't mark anyone as dropped off
-                old.setdefault("onRanking", True)
-            roster[c].append(old)
-            seen.add(key)
+    for key, (c, pl) in prev.items():
+        if key in seen or c not in roster:
+            continue
+        other = (ranked.get(key) or {}).get("guildName")
+        if other and other != GUILD:
+            print(f"- {pl['name']} is now in guild {other}, removed")
+            continue
+        old = {k: v for k, v in pl.items() if k not in ("needs", "source")}
+        # not on either ranking as a guild member; if a page failed to load, keep what we knew before
+        old.update(lastSeen=last_seen(pl),
+                   onRanking=False if level_rank is not None else pl.get("onRanking", True),
+                   onHonorRanking=False if honor_rank is not None else pl.get("onHonorRanking", False))
+        roster[c].append(old)
+        seen.add(key)
 
     old_progress = {pl["name"].lower(): pl.get("progress")
                     for block in previous.get("classes", {}).values() for pl in block.get("players", [])}

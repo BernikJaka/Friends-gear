@@ -7,8 +7,9 @@ It updates itself every hour: no PC needs to be on.
 - Gear comes from the rankings too, once the admins add it there. Until then every
   player shows as "waiting for game data".
 - A player is only listed for grades **higher** than what they already have.
-- Members who drop out of the rankings stay on the site, greyed out with the time they were
-  last seen on the rankings. They are only removed when the rankings show them in another guild.
+- Members who aren't on the level ranking (only on the honor ranking, or on neither) stay on the
+  site, greyed out with the time they were last seen on the level ranking. They are only removed
+  when the rankings show them in another guild.
 
 ---
 

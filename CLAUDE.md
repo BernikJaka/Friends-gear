@@ -32,12 +32,16 @@ private KalOnline server (https://www.eclipsekal.com).
   they need every tracked item in that slot with grade > X and nothing at or below X.
 - Knights (Commander specialty) are the only class with shields.
 - If the rankings API is down or empty, keep the previous roster - never wipe the site.
-- Guild members who drop off the rankings are kept (carried over from the previous docs/data.json)
-  with their last known level, specialty, exp and gear, `onRanking: false` and their `lastSeen`
-  (UTC ISO, updated every run they ARE on the rankings). A player is only removed when the
-  rankings show them in a different guild (a ranked player with no guild is kept). If a rankings
-  page fails to load, nobody is marked as dropped off. The site shows them greyed out with
-  "last seen on ranking: <local time>", below the ranked players.
+- `onRanking` means on the LEVEL ranking (/api/rankings) as a guild member. `lastSeen` (UTC ISO) is
+  the last run they were on it. Members only on the honor ranking are still kept and updated
+  (level, honor, guild) with `onRanking: false, onHonorRanking: true`; the site shows them grey
+  with "not on level ranking · last seen: <local time>". Exp is only on the level ranking, so it
+  is kept only while the level is unchanged.
+- Guild members who drop off both rankings are kept (carried over from the previous docs/data.json)
+  with their last known level, specialty, exp and gear and `onRanking: false`; the site shows
+  "last seen on ranking: <local time>". Grey players sort below the others.
+- A player is only removed when the rankings show them in a different guild (a ranked player with
+  no guild is kept). If a rankings page fails to load, nobody's flags or lastSeen change.
 - No third-party Python packages (plain urllib) so the Action stays simple.
 
 ## Planned change: gear on the rankings
