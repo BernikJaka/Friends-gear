@@ -1,6 +1,6 @@
 {
  "guild": "Friends",
- "updated": "2026-10-08T01:21+00:00",
+ "updated": "2026-10-08T07:40+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
@@ -513,6 +513,14 @@
      "source": "waiting"
     },
     {
+     "name": "ITAU",
+     "level": 62,
+     "specialty": "C.J.B",
+     "honor": 4650,
+     "needs": [],
+     "source": "waiting"
+    },
+    {
      "name": "cosmac",
      "level": 62,
      "specialty": "Hermit",
@@ -553,10 +561,10 @@
      "source": "waiting"
     },
     {
-     "name": "ITAU",
-     "level": 61,
-     "specialty": "C.J.B",
-     "honor": 4050,
+     "name": "Attractive",
+     "level": 60,
+     "specialty": "Hermit",
+     "honor": null,
      "needs": [],
      "source": "waiting"
     },
@@ -1077,7 +1085,7 @@
     },
     {
      "name": "SakuOnIce",
-     "level": 60,
+     "level": 61,
      "specialty": "Commander",
      "honor": 7000,
      "needs": [],
@@ -1737,7 +1745,7 @@
    "players": [
     {
      "name": "Twisted",
-     "level": 64,
+     "level": 65,
      "specialty": "I.Swordsman",
      "honor": 8000,
      "needs": [],
