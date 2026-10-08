@@ -1,6 +1,6 @@
 {
  "guild": "Friends",
- "updated": "2026-10-08T10:58+00:00",
+ "updated": "2026-10-08T11:00+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
@@ -12,7 +12,7 @@
      "specialty": "Imperial Commander",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 0.0,
      "needs": [],
      "source": "waiting"
@@ -24,7 +24,7 @@
      "specialty": "Imperial Commander",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 39.62,
      "needs": [],
      "source": "waiting"
@@ -36,7 +36,7 @@
      "specialty": "Imperial Commander",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 32.79,
      "needs": [],
      "source": "waiting"
@@ -44,12 +44,12 @@
     {
      "name": "Tyr",
      "level": 61,
-     "exp": 69002769,
+     "exp": 69673565,
      "specialty": "Expert Archer",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
-     "progress": 89.96,
+     "lastSeen": "2026-10-08T11:00+00:00",
+     "progress": 90.84,
      "needs": [],
      "source": "waiting"
     },
@@ -519,7 +519,7 @@
      "specialty": "Hermit",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 33.27,
      "needs": [],
      "source": "waiting"
@@ -527,11 +527,11 @@
     {
      "name": "Karen",
      "level": 63,
-     "exp": 162667294,
+     "exp": 163731060,
      "specialty": "C.J.B",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 0.0,
      "needs": [],
      "source": "waiting"
@@ -543,7 +543,7 @@
      "specialty": "Hermit",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 34.93,
      "needs": [],
      "source": "waiting"
@@ -551,36 +551,36 @@
     {
      "name": "Q",
      "level": 63,
-     "exp": 13463301,
+     "exp": 14144859,
      "specialty": "C.J.B",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
-     "progress": 12.18,
+     "lastSeen": "2026-10-08T11:00+00:00",
+     "progress": 12.8,
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "cosmac",
      "level": 62,
-     "exp": 43905537,
+     "exp": 44786379,
      "specialty": "Hermit",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
-     "progress": 47.69,
+     "lastSeen": "2026-10-08T11:00+00:00",
+     "progress": 48.65,
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Jilxxx",
      "level": 62,
-     "exp": 21058489,
+     "exp": 21760459,
      "specialty": "C.J.B",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
-     "progress": 22.87,
+     "lastSeen": "2026-10-08T11:00+00:00",
+     "progress": 23.64,
      "needs": [],
      "source": "waiting"
     },
@@ -591,7 +591,7 @@
      "specialty": "C.J.B",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 0.45,
      "needs": [],
      "source": "waiting"
@@ -603,7 +603,7 @@
      "specialty": "Hermit",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 64.4,
      "needs": [],
      "source": "waiting"
@@ -611,12 +611,12 @@
     {
      "name": "Katia",
      "level": 60,
-     "exp": 52351062,
+     "exp": 53669958,
      "specialty": "C.J.B",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
-     "progress": 81.92,
+     "lastSeen": "2026-10-08T11:00+00:00",
+     "progress": 83.99,
      "needs": [],
      "source": "waiting"
     },
@@ -627,7 +627,7 @@
      "specialty": "Hermit",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 71.19,
      "needs": [],
      "source": "waiting"
@@ -639,7 +639,7 @@
      "specialty": "Hermit",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 2.58,
      "needs": [],
      "source": "waiting"
@@ -651,7 +651,7 @@
      "specialty": "C.J.B",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 56.18,
      "needs": [],
      "source": "waiting"
@@ -1134,12 +1134,12 @@
     {
      "name": "General",
      "level": 63,
-     "exp": 88028473,
+     "exp": 89478509,
      "specialty": "Commander",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
-     "progress": 79.66,
+     "lastSeen": "2026-10-08T11:00+00:00",
+     "progress": 80.98,
      "needs": [],
      "source": "waiting"
     },
@@ -1150,7 +1150,7 @@
      "specialty": "Commander",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 47.57,
      "needs": [],
      "source": "waiting"
@@ -1158,12 +1158,12 @@
     {
      "name": "SakuOnIce",
      "level": 61,
-     "exp": 37080355,
+     "exp": 38811135,
      "specialty": "Commander",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
-     "progress": 48.34,
+     "lastSeen": "2026-10-08T11:00+00:00",
+     "progress": 50.6,
      "needs": [],
      "source": "waiting"
     },
@@ -1174,7 +1174,7 @@
      "specialty": "Vagabond",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 18.76,
      "needs": [],
      "source": "waiting"
@@ -1186,7 +1186,7 @@
      "specialty": "Vagabond",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 44.07,
      "needs": [],
      "source": "waiting"
@@ -1198,7 +1198,7 @@
      "specialty": "Vagabond",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 4.81,
      "needs": [],
      "source": "waiting"
@@ -1850,7 +1850,7 @@
      "specialty": "I.Swordsman",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 1.51,
      "needs": [],
      "source": "waiting"
@@ -1862,7 +1862,7 @@
      "specialty": "I.Swordsman",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 0.0,
      "needs": [],
      "source": "waiting"
@@ -1874,7 +1874,7 @@
      "specialty": "Hitman",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 32.78,
      "needs": [],
      "source": "waiting"
@@ -1886,7 +1886,7 @@
      "specialty": "Hitman",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 65.05,
      "needs": [],
      "source": "waiting"
@@ -1898,7 +1898,7 @@
      "specialty": "I.Swordsman",
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:58+00:00",
+     "lastSeen": "2026-10-08T11:00+00:00",
      "progress": 0.38,
      "needs": [],
      "source": "waiting"
