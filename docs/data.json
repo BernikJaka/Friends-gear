@@ -1,6 +1,6 @@
 {
  "guild": "Friends",
- "updated": "2026-10-08T10:38+00:00",
+ "updated": "2026-10-08T10:43+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
@@ -13,7 +13,7 @@
      "honor": 6250,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -25,7 +25,7 @@
      "honor": 6450,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -37,7 +37,7 @@
      "honor": 6850,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -49,19 +49,19 @@
      "honor": 7000,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "J3ackOnTrack",
      "level": 59,
-     "exp": 29133094,
+     "exp": null,
      "specialty": "Expert Archer",
      "honor": 6150,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -73,7 +73,7 @@
      "honor": 5300,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     }
@@ -520,19 +520,19 @@
      "honor": 9500,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Karen",
      "level": 63,
-     "exp": 153345450,
+     "exp": 155698778,
      "specialty": "C.J.B",
      "honor": 7700,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -544,43 +544,43 @@
      "honor": 6350,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Q",
      "level": 63,
-     "exp": 5858287,
+     "exp": 7719241,
      "specialty": "C.J.B",
      "honor": 6700,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "cosmac",
      "level": 62,
-     "exp": 35825543,
+     "exp": 38011559,
      "specialty": "Hermit",
      "honor": 7150,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Jilxxx",
      "level": 62,
-     "exp": 13017755,
+     "exp": 14958975,
      "specialty": "C.J.B",
      "honor": 5300,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -592,7 +592,7 @@
      "honor": 5450,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -604,7 +604,7 @@
      "honor": 7950,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -616,19 +616,19 @@
      "honor": null,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Katia",
      "level": 60,
-     "exp": 41233626,
+     "exp": 44337444,
      "specialty": "C.J.B",
      "honor": 4750,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -640,7 +640,7 @@
      "honor": 4600,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -652,7 +652,19 @@
      "honor": 5300,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "Aes",
+     "level": 58,
+     "exp": null,
+     "specialty": "Hermit",
+     "honor": 6750,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -664,19 +676,7 @@
      "honor": 5700,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Aes",
-     "level": 57,
-     "exp": null,
-     "specialty": "Hermit",
-     "honor": 6750,
-     "gear": null,
-     "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1144,12 +1144,12 @@
     {
      "name": "General",
      "level": 63,
-     "exp": 77153337,
+     "exp": 79862464,
      "specialty": "Commander",
      "honor": 6800,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1161,19 +1161,19 @@
      "honor": 8700,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "SakuOnIce",
      "level": 61,
-     "exp": 28168053,
+     "exp": 30077183,
      "specialty": "Commander",
      "honor": 7450,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1185,7 +1185,7 @@
      "honor": 5750,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1197,7 +1197,7 @@
      "honor": 6150,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1209,7 +1209,7 @@
      "honor": 5200,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1221,7 +1221,7 @@
      "honor": 6800,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     }
@@ -1861,7 +1861,7 @@
      "honor": 8000,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1873,7 +1873,7 @@
      "honor": 8000,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1885,7 +1885,7 @@
      "honor": 7400,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1897,7 +1897,7 @@
      "honor": 6800,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1909,7 +1909,7 @@
      "honor": null,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1921,7 +1921,7 @@
      "honor": 7900,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -1933,7 +1933,7 @@
      "honor": 3500,
      "gear": null,
      "onRanking": true,
-     "lastSeen": "2026-10-08T10:38+00:00",
+     "lastSeen": "2026-10-08T10:43+00:00",
      "needs": [],
      "source": "waiting"
     }
