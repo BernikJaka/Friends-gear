@@ -33,6 +33,8 @@
   .names span.off small{display:block;font-size:10px;color:var(--muted)}
   tr.off td{opacity:.45}
   .seen{font-size:11px;color:var(--muted)}
+  td .xp{height:3px;background:var(--line);border-radius:2px;margin-top:3px;min-width:70px;overflow:hidden}
+  td .xp i{display:block;height:100%;background:var(--accent)}
   table{width:100%;border-collapse:collapse;margin-top:8px}
   th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
   th{color:var(--muted);font-weight:500;font-size:12px}
@@ -133,14 +135,15 @@ function rosterRows(){
       if(!q||p.name.toLowerCase().includes(q)) list.push({p,c,missing:p.needs.filter(col=>!HIDDEN.has(grade[col])).length});
   }
   const [key,d]=sortState(), dir=+d;
-  const byLevel=(a,b)=>(a.p.level==null)-(b.p.level==null)||(b.p.level??0)-(a.p.level??0);   // unknown level always last
+  const prog=x=>x.p.progress??-1;
+  const byLevel=(a,b)=>(a.p.level==null)-(b.p.level==null)||(b.p.level??0)-(a.p.level??0)||prog(b)-prog(a);   // unknown level always last
   const cmp={class:(a,b)=>ORDER.indexOf(a.c)-ORDER.indexOf(b.c),
              specialty:(a,b)=>(!a.p.specialty)-(!b.p.specialty)||String(a.p.specialty||"").localeCompare(String(b.p.specialty||"")),
-             level:(a,b)=>(a.p.level==null)-(b.p.level==null)||(a.p.level??0)-(b.p.level??0),
+             level:(a,b)=>(a.p.level==null)-(b.p.level==null)||(a.p.level??0)-(b.p.level??0)||prog(a)-prog(b),
              missing:(a,b)=>a.missing-b.missing}[key];
   const empty={specialty:a=>!a.p.specialty,level:a=>a.p.level==null}[key];
   list.sort((a,b)=>isOff(a.p)-isOff(b.p)||(empty?empty(a)-empty(b):0)||dir*cmp(a,b)||byLevel(a,b)||a.p.name.localeCompare(b.p.name));
-  const rows=list.map(({p,c,missing})=>`<tr class="${isOff(p)?"off":""}"><td>${esc(p.name)}${isOff(p)?`<div class="seen">${esc(seenText(p))}</div>`:""}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
+  const rows=list.map(({p,c,missing})=>`<tr class="${isOff(p)?"off":""}"><td>${esc(p.name)}${isOff(p)?`<div class="seen">${esc(seenText(p))}</div>`:""}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${lvCell(p)}</td>
         <td>${missing}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`).join("");
   return {html:rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`,shown:list.length};
 }
@@ -149,6 +152,14 @@ const SORTS=[["class","Class",1],["specialty","Specialty",1],["level","Lv",-1],[
 function sortState(){
   const [k,d]=rosterSort.split(":");
   return SORTS.some(s=>s[0]===k)&&(d==="1"||d==="-1")?[k,d]:["class","1"];
+}
+
+// "Lv 64 · 37.2%" with a thin EXP bar under it
+function lvCell(p){
+  if(p.level==null) return "";
+  if(p.progress==null) return `Lv ${p.level}`;
+  const pct=Math.max(0,Math.min(100,+p.progress));
+  return `Lv ${p.level} · ${pct.toFixed(1)}%<div class="xp" title="EXP ${pct.toFixed(1)}% of level ${p.level}"><i style="width:${pct}%"></i></div>`;
 }
 
 function refreshRoster(){

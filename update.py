@@ -9,10 +9,11 @@ same or a higher grade. Players always need higher grades, never lower.
 
 No third-party packages needed - runs on plain Python 3.
 """
-import json, os, sys, urllib.request
+import json, os, re, sys, urllib.request
 from datetime import datetime, timezone
 
 GUILD = os.environ.get("GUILD", "Friends")
+MAIN_JS = "https://www.eclipsekal.com/static/js/main.js"   # has EXP_TABLE (index = level)
 RANKINGS = ["https://www.eclipsekal.com/api/rankings",
             "https://www.eclipsekal.com/api/rankings/honor"]
 CLASSES = {0: "Knight", 1: "Mage", 2: "Archer", 3: "Thief"}
@@ -54,6 +55,26 @@ def fetch_rankings():
     return players, complete
 
 
+def fetch_exp_table():
+    """EXP needed for each level (index = level) from the rankings site's main.js, or None."""
+    try:
+        m = re.search(r"EXP_TABLE\s*=\s*\[([^\]]*)\]", get(MAIN_JS))
+        table = [int(x) for x in re.findall(r"\d+", m.group(1))] if m else []
+        if table:
+            return table
+        print("! EXP_TABLE not found in main.js", file=sys.stderr)
+    except Exception as e:
+        print(f"! {MAIN_JS}: {e}", file=sys.stderr)
+    return None
+
+
+def exp_progress(table, level, exp):
+    """Percent of the current level done: exp / EXP_TABLE[level] * 100, capped 0-100."""
+    if not table or level is None or exp is None or not 0 <= level < len(table) or table[level] <= 0:
+        return None
+    return round(max(0.0, min(100.0, exp / table[level] * 100)), 1)
+
+
 def gear_from_api(p):
     """Return {slot: highest grade owned} from the rankings API, or None if the API
     has no gear for this player yet. When the admins add gear, adjust this to the
@@ -85,6 +106,7 @@ def main():
     previous = json.load(open(out_path)) if os.path.exists(out_path) else {}
     now = datetime.now(timezone.utc).isoformat(timespec="minutes")
     ranked, complete = fetch_rankings()
+    exp_table = fetch_exp_table()
 
     roster = {c: [] for c in CATALOG}
     seen = set()
@@ -120,6 +142,8 @@ def main():
             roster[c].append(old)
             seen.add(key)
 
+    old_progress = {pl["name"].lower(): pl.get("progress")
+                    for block in previous.get("classes", {}).values() for pl in block.get("players", [])}
     classes = {}
     for cls in CATALOG:
         players = []
@@ -129,6 +153,8 @@ def main():
                 needs, source = needs_from_gear(cls, p["gear"]), "game"
             else:
                 needs, source = [], "waiting"
+            p = {**p, "progress": exp_progress(exp_table, p.get("level"), p.get("exp")) if exp_table
+                 else p.get("progress", old_progress.get(p["name"].lower()))}   # main.js down: keep last known
             players.append({**p, "needs": needs, "source": source})
         items = [{**e, "needers": [p["name"] for p in players if e["col"] in p["needs"]]}
                  for e in CATALOG[cls]]

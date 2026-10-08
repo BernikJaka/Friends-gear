@@ -14,6 +14,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 100.0,
      "needs": [],
      "source": "waiting"
     },
@@ -26,6 +27,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 39.6,
      "needs": [],
      "source": "waiting"
     },
@@ -38,6 +40,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 32.8,
      "needs": [],
      "source": "waiting"
     },
@@ -50,6 +53,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 87.6,
      "needs": [],
      "source": "waiting"
     },
@@ -62,6 +66,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": null,
      "needs": [],
      "source": "waiting"
     },
@@ -74,6 +79,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": null,
      "needs": [],
      "source": "waiting"
     }
@@ -521,18 +527,20 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 33.3,
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Karen",
      "level": 63,
-     "exp": 159148428,
+     "exp": 159289532,
      "specialty": "C.J.B",
      "honor": 7700,
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 100.0,
      "needs": [],
      "source": "waiting"
     },
@@ -545,42 +553,46 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 34.9,
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Q",
      "level": 63,
-     "exp": 10269755,
+     "exp": 10446357,
      "specialty": "C.J.B",
      "honor": 6700,
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 9.5,
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "cosmac",
      "level": 62,
-     "exp": 40925899,
+     "exp": 41049385,
      "specialty": "Hermit",
      "honor": 7150,
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 44.6,
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Jilxxx",
      "level": 62,
-     "exp": 17698849,
+     "exp": 17842873,
      "specialty": "C.J.B",
      "honor": 5300,
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 19.4,
      "needs": [],
      "source": "waiting"
     },
@@ -593,6 +605,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 0.5,
      "needs": [],
      "source": "waiting"
     },
@@ -605,18 +618,20 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 64.4,
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Katia",
      "level": 60,
-     "exp": 48316246,
+     "exp": 48491854,
      "specialty": "C.J.B",
      "honor": 4750,
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 75.9,
      "needs": [],
      "source": "waiting"
     },
@@ -629,6 +644,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 71.2,
      "needs": [],
      "source": "waiting"
     },
@@ -641,6 +657,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 2.6,
      "needs": [],
      "source": "waiting"
     },
@@ -653,6 +670,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 56.2,
      "needs": [],
      "source": "waiting"
     },
@@ -665,6 +683,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": null,
      "needs": [],
      "source": "waiting"
     },
@@ -677,6 +696,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": null,
      "needs": [],
      "source": "waiting"
     },
@@ -687,6 +707,7 @@
      "honor": 4650,
      "lastSeen": "2026-10-08T07:40+00:00",
      "onRanking": false,
+     "progress": null,
      "needs": [],
      "source": "waiting"
     }
@@ -1144,12 +1165,13 @@
     {
      "name": "General",
      "level": 63,
-     "exp": 83463214,
+     "exp": 83848204,
      "specialty": "Commander",
      "honor": 6800,
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 75.9,
      "needs": [],
      "source": "waiting"
     },
@@ -1162,6 +1184,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 47.6,
      "needs": [],
      "source": "waiting"
     },
@@ -1174,6 +1197,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 43.8,
      "needs": [],
      "source": "waiting"
     },
@@ -1186,6 +1210,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 18.8,
      "needs": [],
      "source": "waiting"
     },
@@ -1198,6 +1223,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 44.1,
      "needs": [],
      "source": "waiting"
     },
@@ -1210,6 +1236,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 4.8,
      "needs": [],
      "source": "waiting"
     },
@@ -1222,6 +1249,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": null,
      "needs": [],
      "source": "waiting"
     }
@@ -1862,6 +1890,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 1.5,
      "needs": [],
      "source": "waiting"
     },
@@ -1874,6 +1903,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 100.0,
      "needs": [],
      "source": "waiting"
     },
@@ -1886,6 +1916,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 32.8,
      "needs": [],
      "source": "waiting"
     },
@@ -1898,6 +1929,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 65.0,
      "needs": [],
      "source": "waiting"
     },
@@ -1910,6 +1942,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": 0.4,
      "needs": [],
      "source": "waiting"
     },
@@ -1922,6 +1955,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": null,
      "needs": [],
      "source": "waiting"
     },
@@ -1934,6 +1968,7 @@
      "gear": null,
      "onRanking": true,
      "lastSeen": "2026-10-08T10:50+00:00",
+     "progress": null,
      "needs": [],
      "source": "waiting"
     }

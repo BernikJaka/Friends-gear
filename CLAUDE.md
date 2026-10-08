@@ -9,6 +9,9 @@ private KalOnline server (https://www.eclipsekal.com).
 - Roster (guild members, class, level, specialty) comes from the public rankings API:
   - https://www.eclipsekal.com/api/rankings        -> `{"players":[{name,class,specialty,level,guildName,...}]}` (top 200 by level)
   - https://www.eclipsekal.com/api/rankings/honor  -> same shape plus honor/kills/deaths (top 200 by honor)
+  - EXP progress: `EXP_TABLE` (index = level) is parsed from https://www.eclipsekal.com/static/js/main.js;
+    `progress` = exp / EXP_TABLE[level] * 100, capped 0-100 (exp is per level). Only `/api/rankings`
+    has `exp`, so players only on the honor ranking have no progress. If main.js fails, keep the last value.
   - `class`: 0 Knight, 1 Mage, 2 Archer, 3 Thief. Specialty 7/11 names are in `SPECIALTY` in update.py.
     For Thieves the rankings have Hitman and I.Swordsman reversed, so `SPECIALTY` deliberately maps
     7 = Hitman, 11 = I.Swordsman (the opposite of the rankings site). Keep it that way.
