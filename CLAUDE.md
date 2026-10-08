@@ -29,6 +29,12 @@ private KalOnline server (https://www.eclipsekal.com).
   they need every tracked item in that slot with grade > X and nothing at or below X.
 - Knights (Commander specialty) are the only class with shields.
 - If the rankings API is down or empty, keep the previous roster - never wipe the site.
+- Guild members who drop off the rankings are kept (carried over from the previous docs/data.json)
+  with their last known level, specialty, exp and gear, `onRanking: false` and their `lastSeen`
+  (UTC ISO, updated every run they ARE on the rankings). A player is only removed when the
+  rankings show them in a different guild (a ranked player with no guild is kept). If a rankings
+  page fails to load, nobody is marked as dropped off. The site shows them greyed out with
+  "last seen on ranking: <local time>", below the ranked players.
 - No third-party Python packages (plain urllib) so the Action stays simple.
 
 ## Planned change: gear on the rankings

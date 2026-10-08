@@ -38,15 +38,20 @@ def get(url, timeout=30):
 
 
 def fetch_rankings():
-    players = {}
+    """{lowercase name: player} merged from all rankings pages, and whether every page loaded."""
+    players, complete = {}, True
     for url in RANKINGS:
         try:
-            for p in json.loads(get(url)).get("players") or []:
+            page = json.loads(get(url)).get("players") or []
+            if not page:
+                complete = False
+            for p in page:
                 key = str(p.get("name", "")).lower()
                 players[key] = {**players.get(key, {}), **p}
         except Exception as e:  # site down / updating
             print(f"! {url}: {e}", file=sys.stderr)
-    return list(players.values())
+            complete = False
+    return players, complete
 
 
 def gear_from_api(p):
@@ -78,37 +83,58 @@ def needs_from_gear(cls, owned):
 def main():
     out_path = os.path.join(DOCS, "data.json")
     previous = json.load(open(out_path)) if os.path.exists(out_path) else {}
-    ranked = fetch_rankings()
-    members = [p for p in ranked if p.get("guildName") == GUILD]
+    now = datetime.now(timezone.utc).isoformat(timespec="minutes")
+    ranked, complete = fetch_rankings()
 
     roster = {c: [] for c in CATALOG}
-    if members:
-        for p in members:
-            c = int(p.get("class", -1))
-            if c in CLASSES:
-                roster[CLASSES[c]].append({
-                    "name": p["name"], "level": p.get("level"),
-                    "specialty": SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0), CLASSES[c]),
-                    "honor": p.get("honor"), "gear": gear_from_api(p)})
-    else:  # rankings offline - keep the last known roster instead of wiping the site
-        print("! no guild members from rankings, keeping previous roster", file=sys.stderr)
-        for c, block in previous.get("classes", {}).items():
-            roster[c] = [{k: v for k, v in pl.items() if k != "needs"} for pl in block.get("players", [])]
+    seen = set()
+    for key, p in ranked.items():
+        c = int(p.get("class", -1))
+        if p.get("guildName") == GUILD and c in CLASSES:
+            roster[CLASSES[c]].append({
+                "name": p["name"], "level": p.get("level"), "exp": p.get("exp"),
+                "specialty": SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0), CLASSES[c]),
+                "honor": p.get("honor"), "gear": gear_from_api(p),
+                "onRanking": True, "lastSeen": now})
+            seen.add(key)
+
+    if not complete:
+        print("! rankings incomplete, keeping players who are missing as they were", file=sys.stderr)
+    # Carry over everyone from the last run who isn't on the rankings now, with their last known
+    # level/specialty/exp/gear. Only drop a player when the rankings show them in another guild.
+    for c, block in previous.get("classes", {}).items():
+        for pl in block.get("players", []) if c in roster else []:
+            key = pl["name"].lower()
+            if key in seen:
+                continue
+            other = (ranked.get(key) or {}).get("guildName")
+            if other and other != GUILD:
+                print(f"- {pl['name']} is now in guild {other}, removed")
+                continue
+            old = {k: v for k, v in pl.items() if k not in ("needs", "source")}
+            old.setdefault("lastSeen", previous.get("updated"))  # data.json from before lastSeen existed
+            if complete:
+                old["onRanking"] = False
+            else:  # a rankings page failed to load: don't mark anyone as dropped off
+                old.setdefault("onRanking", True)
+            roster[c].append(old)
+            seen.add(key)
 
     classes = {}
     for cls in CATALOG:
         players = []
-        for p in sorted(roster[cls], key=lambda x: -(x.get("level") or 0)):
+        # players still on the rankings first, then those who dropped off; highest level first
+        for p in sorted(roster[cls], key=lambda x: (not x.get("onRanking", True), -(x.get("level") or 0))):
             if p.get("gear"):
                 needs, source = needs_from_gear(cls, p["gear"]), "game"
             else:
                 needs, source = [], "waiting"
-            players.append({**{k: v for k, v in p.items() if k != "gear"}, "needs": needs, "source": source})
+            players.append({**p, "needs": needs, "source": source})
         items = [{**e, "needers": [p["name"] for p in players if e["col"] in p["needs"]]}
                  for e in CATALOG[cls]]
         classes[cls] = {"players": players, "items": items}
 
-    data = {"guild": GUILD, "updated": datetime.now(timezone.utc).isoformat(timespec="minutes"),
+    data = {"guild": GUILD, "updated": now,
             "rankingsOnline": bool(ranked), "classes": classes}
     if previous.get("classes") == classes:
         print("No changes.")

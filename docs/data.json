@@ -1,6 +1,6 @@
 {
  "guild": "Friends",
- "updated": "2026-10-08T07:40+00:00",
+ "updated": "2026-10-08T10:38+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
@@ -8,48 +8,72 @@
     {
      "name": "Gusion",
      "level": 63,
+     "exp": 130341283,
      "specialty": "Imperial Commander",
      "honor": 6250,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "SohX",
      "level": 63,
+     "exp": 43776743,
      "specialty": "Imperial Commander",
      "honor": 6450,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "donDafko",
      "level": 62,
+     "exp": 30190051,
      "specialty": "Imperial Commander",
      "honor": 6850,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Tyr",
      "level": 61,
+     "exp": 67190747,
      "specialty": "Expert Archer",
      "honor": 7000,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "J3ackOnTrack",
      "level": 59,
+     "exp": 29133094,
      "specialty": "Expert Archer",
      "honor": 6150,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "MajorLazer",
      "level": 57,
+     "exp": null,
      "specialty": "Expert Archer",
      "honor": 5300,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     }
@@ -490,25 +514,169 @@
    "players": [
     {
      "name": "Ryhu",
-     "level": 63,
+     "level": 64,
+     "exp": 44119637,
      "specialty": "Hermit",
      "honor": 9500,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Karen",
      "level": 63,
+     "exp": 153345450,
      "specialty": "C.J.B",
      "honor": 7700,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Dimma",
      "level": 63,
+     "exp": 38597748,
      "specialty": "Hermit",
      "honor": 6350,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "Q",
+     "level": 63,
+     "exp": 5858287,
+     "specialty": "C.J.B",
+     "honor": 6700,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "cosmac",
+     "level": 62,
+     "exp": 35825543,
+     "specialty": "Hermit",
+     "honor": 7150,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "Jilxxx",
+     "level": 62,
+     "exp": 13017755,
+     "specialty": "C.J.B",
+     "honor": 5300,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "Luna",
+     "level": 62,
+     "exp": 414802,
+     "specialty": "C.J.B",
+     "honor": 5450,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "zolza",
+     "level": 61,
+     "exp": 49396410,
+     "specialty": "Hermit",
+     "honor": 7950,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "Attractive",
+     "level": 60,
+     "exp": 45491026,
+     "specialty": "Hermit",
+     "honor": null,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "Katia",
+     "level": 60,
+     "exp": 41233626,
+     "specialty": "C.J.B",
+     "honor": 4750,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "SleepingBeauty",
+     "level": 60,
+     "exp": 1646350,
+     "specialty": "Hermit",
+     "honor": 4600,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "HolyCjb",
+     "level": 59,
+     "exp": 29906813,
+     "specialty": "C.J.B",
+     "honor": 5300,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "Monkey",
+     "level": 58,
+     "exp": null,
+     "specialty": "C.J.B",
+     "honor": 5700,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "Aes",
+     "level": 57,
+     "exp": null,
+     "specialty": "Hermit",
+     "honor": 6750,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
@@ -517,94 +685,8 @@
      "level": 62,
      "specialty": "C.J.B",
      "honor": 4650,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "cosmac",
-     "level": 62,
-     "specialty": "Hermit",
-     "honor": 7150,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Q",
-     "level": 62,
-     "specialty": "C.J.B",
-     "honor": 6700,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Luna",
-     "level": 62,
-     "specialty": "C.J.B",
-     "honor": 5450,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "zolza",
-     "level": 61,
-     "specialty": "Hermit",
-     "honor": 7950,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Jilxxx",
-     "level": 61,
-     "specialty": "C.J.B",
-     "honor": 5300,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Attractive",
-     "level": 60,
-     "specialty": "Hermit",
-     "honor": null,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Katia",
-     "level": 60,
-     "specialty": "C.J.B",
-     "honor": 4750,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "SleepingBeauty",
-     "level": 60,
-     "specialty": "Hermit",
-     "honor": 4600,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "HolyCjb",
-     "level": 59,
-     "specialty": "C.J.B",
-     "honor": 5300,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Monkey",
-     "level": 58,
-     "specialty": "C.J.B",
-     "honor": 5700,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Aes",
-     "level": 57,
-     "specialty": "Hermit",
-     "honor": 6750,
+     "lastSeen": "2026-10-08T07:40+00:00",
+     "onRanking": false,
      "needs": [],
      "source": "waiting"
     }
@@ -1060,58 +1142,86 @@
   "Knight": {
    "players": [
     {
-     "name": "Hobo",
-     "level": 63,
-     "specialty": "Commander",
-     "honor": 8700,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
      "name": "General",
      "level": 63,
+     "exp": 77153337,
      "specialty": "Commander",
      "honor": 6800,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
-     "name": "gerwa",
-     "level": 61,
-     "specialty": "Vagabond",
-     "honor": 5750,
+     "name": "Hobo",
+     "level": 63,
+     "exp": 52565339,
+     "specialty": "Commander",
+     "honor": 8700,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "SakuOnIce",
      "level": 61,
+     "exp": 28168053,
      "specialty": "Commander",
-     "honor": 7000,
+     "honor": 7450,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
+     "needs": [],
+     "source": "waiting"
+    },
+    {
+     "name": "gerwa",
+     "level": 61,
+     "exp": 14385817,
+     "specialty": "Vagabond",
+     "honor": 5750,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "malloc",
      "level": 60,
+     "exp": 28162740,
      "specialty": "Vagabond",
      "honor": 6150,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "DarkSoul",
      "level": 60,
+     "exp": 3076408,
      "specialty": "Vagabond",
      "honor": 5200,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Pringles",
      "level": 58,
+     "exp": null,
      "specialty": "Commander",
      "honor": 6800,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     }
@@ -1746,56 +1856,84 @@
     {
      "name": "Twisted",
      "level": 65,
+     "exp": 2407280,
      "specialty": "I.Swordsman",
      "honor": 8000,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "KurvaYebana",
      "level": 63,
+     "exp": 148629738,
      "specialty": "I.Swordsman",
      "honor": 8000,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Olivia",
      "level": 63,
+     "exp": 36224954,
      "specialty": "Hitman",
      "honor": 7400,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Hardcore",
      "level": 61,
+     "exp": 49893321,
      "specialty": "Hitman",
      "honor": 6800,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "ExoticAlpha",
      "level": 60,
+     "exp": 241806,
      "specialty": "I.Swordsman",
      "honor": null,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "codename",
      "level": 59,
+     "exp": null,
      "specialty": "I.Swordsman",
      "honor": 7900,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "Schnitzel",
-     "level": 57,
+     "level": 58,
+     "exp": null,
      "specialty": "I.Swordsman",
      "honor": 3500,
+     "gear": null,
+     "onRanking": true,
+     "lastSeen": "2026-10-08T10:38+00:00",
      "needs": [],
      "source": "waiting"
     }

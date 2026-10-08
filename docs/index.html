@@ -29,6 +29,10 @@
   .cnt{margin-left:auto;background:var(--need);color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:1px 8px}
   .names{display:flex;flex-wrap:wrap;gap:4px}
   .names span{background:#222734;border-radius:6px;padding:1px 7px;font-size:12px}
+  .names span.off{opacity:.45}
+  .names span.off small{display:block;font-size:10px;color:var(--muted)}
+  tr.off td{opacity:.45}
+  .seen{font-size:11px;color:var(--muted)}
   table{width:100%;border-collapse:collapse;margin-top:8px}
   th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
   th{color:var(--muted);font-weight:500;font-size:12px}
@@ -65,6 +69,8 @@ let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+const isOff=p=>p&&p.onRanking===false;   // dropped off the rankings, kept with last known data
+const seenText=p=>"last seen on ranking: "+(p.lastSeen?new Date(p.lastSeen).toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"}):"unknown");
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 const settings=fetch("settings.json?"+Date.now()).then(r=>r.json()).catch(()=>({}));
@@ -93,6 +99,7 @@ function render(){
 function needs(cls){
   const items=DATA.classes[cls].items.filter(it=>!HIDDEN.has(it.grade));
   const grades=[...new Set(items.map(it=>it.grade))].sort((a,b)=>a-b);
+  const byName=Object.fromEntries(DATA.classes[cls].players.map(p=>[p.name,p]));
   let html=`<div class="gradebtns">${grades.map(g=>`<button class="${OFF.has(g)?"off":""}" data-g="${g}">G${g}</button>`).join("")}</div>`,group=null;
   for(const it of items.filter(it=>!OFF.has(it.grade))){
     if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
@@ -101,7 +108,8 @@ function needs(cls){
       <div class="top" title="${esc(it.name)}"><img src="${esc(it.icon)}" alt="${esc(it.name)}" loading="lazy">
         <div class="lbl">${esc(it.label)}</div>
         ${n?`<span class="cnt">${n}</span>`:""}</div>
-      <div class="names">${it.needers.map(x=>`<span>${esc(x)}</span>`).join("")}</div></div>`;
+      <div class="names">${it.needers.map(x=>{const p=byName[x];return isOff(p)
+        ?`<span class="off">${esc(x)}<small>${esc(seenText(p))}</small></span>`:`<span>${esc(x)}</span>`}).join("")}</div></div>`;
   }
   return html+(group!==null?"</div>":"")+"<p class='note'>A player is only listed for grades higher than what they already have in that slot.</p>";
 }
@@ -131,8 +139,8 @@ function rosterRows(){
              level:(a,b)=>(a.p.level==null)-(b.p.level==null)||(a.p.level??0)-(b.p.level??0),
              missing:(a,b)=>a.missing-b.missing}[key];
   const empty={specialty:a=>!a.p.specialty,level:a=>a.p.level==null}[key];
-  list.sort((a,b)=>(empty?empty(a)-empty(b):0)||dir*cmp(a,b)||byLevel(a,b)||a.p.name.localeCompare(b.p.name));
-  const rows=list.map(({p,c,missing})=>`<tr><td>${esc(p.name)}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
+  list.sort((a,b)=>isOff(a.p)-isOff(b.p)||(empty?empty(a)-empty(b):0)||dir*cmp(a,b)||byLevel(a,b)||a.p.name.localeCompare(b.p.name));
+  const rows=list.map(({p,c,missing})=>`<tr class="${isOff(p)?"off":""}"><td>${esc(p.name)}${isOff(p)?`<div class="seen">${esc(seenText(p))}</div>`:""}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${p.level??""}</td>
         <td>${missing}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`).join("");
   return {html:rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`,shown:list.length};
 }
@@ -153,7 +161,8 @@ function refreshRoster(){
   const total=ORDER.reduce((n,c)=>n+DATA.classes[c].players.length,0);
   const {html,shown}=rosterRows();
   document.getElementById("rows").innerHTML=html;
-  document.getElementById("count").textContent=shown===total?`${total} members`:`Showing ${shown} of ${total} members`;
+  const off=ORDER.reduce((n,c)=>n+DATA.classes[c].players.filter(isOff).length,0);
+  document.getElementById("count").textContent=(shown===total?`${total} members`:`Showing ${shown} of ${total} members`)+(off?` · ${off} not on the ranking`:"");
 }
 
 function wireRoster(){
