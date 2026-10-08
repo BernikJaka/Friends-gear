@@ -126,15 +126,15 @@ def main():
         seen.add(key)
 
     # Carry over everyone from the last run who isn't on the ranking now, with their last known
-    # level/specialty/exp/gear. Only drop a player when the ranking shows them in another guild.
+    # level/specialty/exp/gear. A player who IS on the ranking with any guildName other than GUILD
+    # (another guild, or no guild: empty, null, "-" or missing) has left and is removed.
     for key, (c, pl) in prev.items():
         if key in seen or c not in roster:
             continue
-        other = ((ranked or {}).get(key) or {}).get("guildName")
-        if other and other != GUILD:
-            print(f"- {pl['name']} is now in guild {other}, removed")
+        if ranked and key in ranked and ranked[key].get("guildName") != GUILD:
+            print(f"- {pl['name']} left the guild (now: {ranked[key].get('guildName') or 'no guild'}), removed")
             continue
-        old = {k: v for k, v in pl.items() if k not in ("needs", "source", "honor", "onHonorRanking")}
+        old = {k: v for k, v in pl.items() if k not in ("needs", "source")}
         old.setdefault("lastSeen", None)
         # ranking down: keep what we knew before instead of marking everyone as dropped off
         old["onRanking"] = False if ranked is not None else pl.get("onRanking", True)

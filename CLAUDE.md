@@ -8,7 +8,6 @@ private KalOnline server (https://www.eclipsekal.com).
   `docs/data.json`. GitHub Pages serves `docs/` as the website (`docs/index.html`).
 - Roster (guild members, class, level, specialty, exp) comes only from the level ranking:
   - https://www.eclipsekal.com/api/rankings -> `{"players":[{name,class,specialty,level,exp,guildName,...}]}` (top 200 by level)
-  - The honor ranking (/api/rankings/honor) is deliberately NOT used.
   - EXP progress: `EXP_TABLE` (index = level) is parsed from https://www.eclipsekal.com/static/js/main.js.
     `progress` copies the site's progressPct(): exp / EXP_TABLE[level] * 100, but exp above the level's
     requirement is treated as total exp (minus all previous levels); capped 0-100, 2 decimals - it
@@ -37,8 +36,9 @@ private KalOnline server (https://www.eclipsekal.com).
 - Guild members who drop off the ranking are kept (carried over from the previous docs/data.json)
   with their last known level, specialty, exp and gear and `onRanking: false`; the site shows them
   grey with "last seen on ranking: <local time>" (or "unknown") below the others.
-- A player is only removed when the ranking shows them in a different guild (a ranked player with
-  no guild is kept). If the ranking fails to load, nobody's flags or lastSeen change.
+- A player is removed when they ARE on the ranking with any guildName other than "Friends"
+  (another guild, or no guild: empty, null, "-" or missing). Players not on the ranking at all are
+  kept. If the ranking fails to load, nobody is removed and nobody's flags or lastSeen change.
 - No third-party Python packages (plain urllib) so the Action stays simple.
 
 ## Planned change: gear on the rankings

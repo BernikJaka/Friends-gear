@@ -8,7 +8,8 @@ It updates itself every hour: no PC needs to be on.
   player shows as "waiting for game data".
 - A player is only listed for grades **higher** than what they already have.
 - Members who drop off the level ranking stay on the site, greyed out with the time they were
-  last seen on it. They are only removed when the ranking shows them in another guild.
+  last seen on it. They are removed when the ranking shows them in another guild or without a
+  guild.
 
 ---
 
