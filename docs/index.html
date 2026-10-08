@@ -71,9 +71,9 @@ let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-const isOff=p=>p&&p.onRanking===false;   // not on the level ranking (only on honor, or dropped off): greyed out
+const isOff=p=>p&&p.onRanking===false;   // dropped off the ranking, kept with last known data: greyed out
 const seenTime=p=>p.lastSeen?new Date(p.lastSeen).toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"}):"unknown";
-const seenText=p=>p.onHonorRanking?`not on level ranking · last seen: ${seenTime(p)}`:`last seen on ranking: ${seenTime(p)}`;
+const seenText=p=>`last seen on ranking: ${seenTime(p)}`;
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 const settings=fetch("settings.json?"+Date.now()).then(r=>r.json()).catch(()=>({}));
@@ -160,7 +160,7 @@ function lvCell(p){
   if(p.level==null) return "";
   if(p.progress==null) return `Lv ${p.level}`;
   const pct=Math.max(0,Math.min(100,+p.progress));
-  return `Lv ${p.level} · ${pct.toFixed(1)}%<div class="xp" title="EXP ${pct.toFixed(1)}% of level ${p.level}"><i style="width:${pct}%"></i></div>`;
+  return `Lv ${p.level} · ${pct.toFixed(2)}%<div class="xp" title="EXP ${pct.toFixed(2)}% of level ${p.level}"><i style="width:${pct}%"></i></div>`;
 }
 
 function refreshRoster(){
@@ -174,7 +174,7 @@ function refreshRoster(){
   const {html,shown}=rosterRows();
   document.getElementById("rows").innerHTML=html;
   const off=ORDER.reduce((n,c)=>n+DATA.classes[c].players.filter(isOff).length,0);
-  document.getElementById("count").textContent=(shown===total?`${total} members`:`Showing ${shown} of ${total} members`)+(off?` · ${off} not on the level ranking`:"");
+  document.getElementById("count").textContent=(shown===total?`${total} members`:`Showing ${shown} of ${total} members`)+(off?` · ${off} not on the ranking`:"");
 }
 
 function wireRoster(){

@@ -6,12 +6,13 @@ private KalOnline server (https://www.eclipsekal.com).
 ## What this repo does
 - `update.py` runs every hour in GitHub Actions (`.github/workflows/update.yml`) and writes
   `docs/data.json`. GitHub Pages serves `docs/` as the website (`docs/index.html`).
-- Roster (guild members, class, level, specialty) comes from the public rankings API:
-  - https://www.eclipsekal.com/api/rankings        -> `{"players":[{name,class,specialty,level,guildName,...}]}` (top 200 by level)
-  - https://www.eclipsekal.com/api/rankings/honor  -> same shape plus honor/kills/deaths (top 200 by honor)
-  - EXP progress: `EXP_TABLE` (index = level) is parsed from https://www.eclipsekal.com/static/js/main.js;
-    `progress` = exp / EXP_TABLE[level] * 100, capped 0-100 (exp is per level). Only `/api/rankings`
-    has `exp`, so players only on the honor ranking have no progress. If main.js fails, keep the last value.
+- Roster (guild members, class, level, specialty, exp) comes only from the level ranking:
+  - https://www.eclipsekal.com/api/rankings -> `{"players":[{name,class,specialty,level,exp,guildName,...}]}` (top 200 by level)
+  - The honor ranking (/api/rankings/honor) is deliberately NOT used.
+  - EXP progress: `EXP_TABLE` (index = level) is parsed from https://www.eclipsekal.com/static/js/main.js.
+    `progress` copies the site's progressPct(): exp / EXP_TABLE[level] * 100, but exp above the level's
+    requirement is treated as total exp (minus all previous levels); capped 0-100, 2 decimals - it
+    must match what the rankings site shows. If main.js fails, keep the last value.
   - `class`: 0 Knight, 1 Mage, 2 Archer, 3 Thief. Specialty 7/11 names are in `SPECIALTY` in update.py.
     For Thieves the rankings have Hitman and I.Swordsman reversed, so `SPECIALTY` deliberately maps
     7 = Hitman, 11 = I.Swordsman (the opposite of the rankings site). Keep it that way.
@@ -32,16 +33,12 @@ private KalOnline server (https://www.eclipsekal.com).
   they need every tracked item in that slot with grade > X and nothing at or below X.
 - Knights (Commander specialty) are the only class with shields.
 - If the rankings API is down or empty, keep the previous roster - never wipe the site.
-- `onRanking` means on the LEVEL ranking (/api/rankings) as a guild member. `lastSeen` (UTC ISO) is
-  the last run they were on it. Members only on the honor ranking are still kept and updated
-  (level, honor, guild) with `onRanking: false, onHonorRanking: true`; the site shows them grey
-  with "not on level ranking · last seen: <local time>". Exp is only on the level ranking, so it
-  is kept only while the level is unchanged.
-- Guild members who drop off both rankings are kept (carried over from the previous docs/data.json)
-  with their last known level, specialty, exp and gear and `onRanking: false`; the site shows
-  "last seen on ranking: <local time>". Grey players sort below the others.
-- A player is only removed when the rankings show them in a different guild (a ranked player with
-  no guild is kept). If a rankings page fails to load, nobody's flags or lastSeen change.
+- `onRanking` means on /api/rankings as a guild member; `lastSeen` (UTC ISO) is the last run they were.
+- Guild members who drop off the ranking are kept (carried over from the previous docs/data.json)
+  with their last known level, specialty, exp and gear and `onRanking: false`; the site shows them
+  grey with "last seen on ranking: <local time>" (or "unknown") below the others.
+- A player is only removed when the ranking shows them in a different guild (a ranked player with
+  no guild is kept). If the ranking fails to load, nobody's flags or lastSeen change.
 - No third-party Python packages (plain urllib) so the Action stays simple.
 
 ## Planned change: gear on the rankings

@@ -14,8 +14,7 @@ from datetime import datetime, timezone
 
 GUILD = os.environ.get("GUILD", "Friends")
 MAIN_JS = "https://www.eclipsekal.com/static/js/main.js"   # has EXP_TABLE (index = level)
-LEVEL_RANKING = "https://www.eclipsekal.com/api/rankings"        # decides onRanking
-HONOR_RANKING = "https://www.eclipsekal.com/api/rankings/honor"
+RANKING = "https://www.eclipsekal.com/api/rankings"   # top 200 by level; the only roster source
 CLASSES = {0: "Knight", 1: "Mage", 2: "Archer", 3: "Thief"}
 SPECIALTY = {
     0: {1: "Wandering Knight", 3: "Apprentice Knight", 7: "Vagabond", 11: "Commander", 15: "Two Job Knight"},
@@ -65,10 +64,14 @@ def fetch_exp_table():
 
 
 def exp_progress(table, level, exp):
-    """Percent of the current level done: exp / EXP_TABLE[level] * 100, capped 0-100."""
+    """Percent of the current level done, the same way the rankings site's progressPct() does it:
+    exp / EXP_TABLE[level] * 100, but exp above the level's requirement is treated as total exp
+    (minus all previous levels), capped 0-100. Rounded to 2 decimals like the site."""
     if not table or level is None or exp is None or not 0 <= level < len(table) or table[level] <= 0:
         return None
-    return round(max(0.0, min(100.0, exp / table[level] * 100)), 1)
+    req = table[level]
+    per_level = max(0, exp - sum(table[:level])) if exp > req else exp
+    return round(max(0.0, min(100.0, per_level / req * 100)), 2)
 
 
 def gear_from_api(p):
@@ -101,60 +104,40 @@ def main():
     out_path = os.path.join(DOCS, "data.json")
     previous = json.load(open(out_path)) if os.path.exists(out_path) else {}
     now = datetime.now(timezone.utc).isoformat(timespec="minutes")
-    level_rank, honor_rank = fetch_ranking(LEVEL_RANKING), fetch_ranking(HONOR_RANKING)
-    ranked = {k: {**(honor_rank or {}).get(k, {}), **(level_rank or {}).get(k, {})}
-              for k in {*(level_rank or {}), *(honor_rank or {})}}
+    ranked = fetch_ranking(RANKING)
     exp_table = fetch_exp_table()
     prev = {pl["name"].lower(): (c, pl) for c, block in previous.get("classes", {}).items()
             for pl in block.get("players", [])}
-
-    def last_seen(pl):
-        """When this player was last on the level ranking, from the previous data.json."""
-        if "onHonorRanking" not in pl and pl.get("onRanking", True) and pl.get("exp") is None:
-            return None   # saved before this rule while only on the honor ranking (no exp): never seen on level
-        return pl.get("lastSeen", previous.get("updated"))
-
-    # onRanking = on the LEVEL ranking. If a page failed to load, keep what we knew before.
-    def on_level(key, old):
-        return key in level_rank if level_rank is not None else old.get("onRanking", True)
-    def on_honor(key, old):
-        return key in honor_rank if honor_rank is not None else old.get("onHonorRanking", False)
+    if ranked is None:
+        print("! rankings unavailable, keeping the previous roster as it was", file=sys.stderr)
 
     roster = {c: [] for c in CATALOG}
     seen = set()
-    for key, p in ranked.items():
+    for key, p in (ranked or {}).items():
         c = int(p.get("class", -1))
         if p.get("guildName") != GUILD or c not in CLASSES:
             continue
         old = prev.get(key, (None, {}))[1]
-        lvl, in_level = p.get("level"), on_level(key, old)
-        if key in (level_rank or {}):
-            exp = p.get("exp")
-        else:  # only the level ranking has exp; the old value is only valid for the same level
-            exp = old.get("exp") if old.get("level") == lvl else None
         roster[CLASSES[c]].append({
-            "name": p["name"], "level": lvl, "exp": exp,
+            "name": p["name"], "level": p.get("level"), "exp": p.get("exp"),
             "specialty": SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0), CLASSES[c]),
-            "honor": p["honor"] if "honor" in p else old.get("honor"),
             "gear": gear_from_api(p) or old.get("gear"),
-            "onRanking": in_level, "onHonorRanking": on_honor(key, old),
-            "lastSeen": now if key in (level_rank or {}) else last_seen(old) if old else None})
+            "onRanking": True, "lastSeen": now})
         seen.add(key)
 
-    # Carry over everyone from the last run who isn't on either ranking now, with their last known
-    # level/specialty/exp/gear. Only drop a player when the rankings show them in another guild.
+    # Carry over everyone from the last run who isn't on the ranking now, with their last known
+    # level/specialty/exp/gear. Only drop a player when the ranking shows them in another guild.
     for key, (c, pl) in prev.items():
         if key in seen or c not in roster:
             continue
-        other = (ranked.get(key) or {}).get("guildName")
+        other = ((ranked or {}).get(key) or {}).get("guildName")
         if other and other != GUILD:
             print(f"- {pl['name']} is now in guild {other}, removed")
             continue
-        old = {k: v for k, v in pl.items() if k not in ("needs", "source")}
-        # not on either ranking as a guild member; if a page failed to load, keep what we knew before
-        old.update(lastSeen=last_seen(pl),
-                   onRanking=False if level_rank is not None else pl.get("onRanking", True),
-                   onHonorRanking=False if honor_rank is not None else pl.get("onHonorRanking", False))
+        old = {k: v for k, v in pl.items() if k not in ("needs", "source", "honor", "onHonorRanking")}
+        old.setdefault("lastSeen", None)
+        # ranking down: keep what we knew before instead of marking everyone as dropped off
+        old["onRanking"] = False if ranked is not None else pl.get("onRanking", True)
         roster[c].append(old)
         seen.add(key)
 
@@ -177,7 +160,7 @@ def main():
         classes[cls] = {"players": players, "items": items}
 
     data = {"guild": GUILD, "updated": now,
-            "rankingsOnline": bool(ranked), "classes": classes}
+            "rankingsOnline": ranked is not None, "classes": classes}
     if previous.get("classes") == classes:
         print("No changes.")
         return
