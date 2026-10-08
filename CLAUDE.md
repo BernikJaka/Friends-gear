@@ -4,8 +4,14 @@ Context for Claude Code. Owner: Jaka, leader of the guild "Friends" on the Eclip
 private KalOnline server (https://www.eclipsekal.com).
 
 ## What this repo does
-- `update.py` runs every hour in GitHub Actions (`.github/workflows/update.yml`) and writes
-  `docs/data.json`. GitHub Pages serves `docs/` as the website (`docs/index.html`).
+- `update.py` runs in GitHub Actions (`.github/workflows/update.yml`) every 5 minutes, on
+  workflow_dispatch and on every push to main. It writes `docs/data.json`, then the workflow
+  uploads `docs/` with actions/upload-pages-artifact and deploys it with actions/deploy-pages
+  (Pages source = GitHub Actions). The workflow does NOT commit data.json.
+- Previous state (lastSeen, carried-over players) comes from the LIVE site's data.json
+  (`PUBLISHED` in update.py, https://bernikjaka.github.io/Friends-gear/data.json), falling back to
+  the repo's `docs/data.json`, which is only a stale seed. update.py must always write data.json
+  (never skip the write), or the deploy would publish the stale repo copy.
 - Roster (guild members, class, level, specialty, exp) comes only from the level ranking:
   - https://www.eclipsekal.com/api/rankings -> `{"players":[{name,class,specialty,level,exp,guildName,...}]}` (top 200 by level)
   - EXP progress: `EXP_TABLE` (index = level) is parsed from https://www.eclipsekal.com/static/js/main.js.
@@ -47,4 +53,4 @@ The server admins said the rankings will show player gear. When that happens:
 2. Update `gear_from_api()` in update.py so it returns `{slot: highest grade owned}`.
    Match items by `itemIndex` from catalog.json where possible.
 3. Players with game gear get `source: "game"`; everyone else stays `source: "waiting"`.
-4. Run `python update.py` locally, check docs/data.json, commit and push.
+4. Run `python update.py` locally, check docs/data.json, commit and push (the push deploys).

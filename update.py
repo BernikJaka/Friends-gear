@@ -13,6 +13,9 @@ import json, os, re, sys, urllib.request
 from datetime import datetime, timezone
 
 GUILD = os.environ.get("GUILD", "Friends")
+# The live site's data.json is the previous run's state (lastSeen, carried-over players): the Action
+# deploys to GitHub Pages and no longer commits docs/data.json, so the copy in the repo is only a fallback.
+PUBLISHED = os.environ.get("PUBLISHED_DATA", "https://bernikjaka.github.io/Friends-gear/data.json")
 MAIN_JS = "https://www.eclipsekal.com/static/js/main.js"   # has EXP_TABLE (index = level)
 RANKING = "https://www.eclipsekal.com/api/rankings"   # top 200 by level; the only roster source
 CLASSES = {0: "Knight", 1: "Mage", 2: "Archer", 3: "Thief"}
@@ -96,13 +99,29 @@ def gear_from_api(p):
     return owned
 
 
+def load_previous(out_path):
+    """The previous run's data: the published site's data.json, else the local docs/data.json."""
+    try:
+        data = json.loads(get(PUBLISHED))
+        if isinstance(data, dict) and isinstance(data.get("classes"), dict):
+            print("Previous data: published site")
+            return data
+        print(f"! {PUBLISHED}: no classes in it", file=sys.stderr)
+    except Exception as e:
+        print(f"! {PUBLISHED}: {e}", file=sys.stderr)
+    if os.path.exists(out_path):
+        print("Previous data: docs/data.json (fallback)")
+        return json.load(open(out_path, encoding="utf-8"))
+    return {}
+
+
 def needs_from_gear(cls, owned):
     return [e["col"] for e in CATALOG[cls] if e["grade"] > owned.get(e["slot"], 0)]
 
 
 def main():
     out_path = os.path.join(DOCS, "data.json")
-    previous = json.load(open(out_path)) if os.path.exists(out_path) else {}
+    previous = load_previous(out_path)
     now = datetime.now(timezone.utc).isoformat(timespec="minutes")
     ranked = fetch_ranking(RANKING)
     exp_table = fetch_exp_table()
@@ -161,11 +180,10 @@ def main():
 
     data = {"guild": GUILD, "updated": now,
             "rankingsOnline": ranked is not None, "classes": classes}
-    if previous.get("classes") == classes:
-        print("No changes.")
-        return
-    json.dump(data, open(out_path, "w"), indent=1, ensure_ascii=False)
-    print("Updated", out_path, {c: len(v["players"]) for c, v in classes.items()})
+    # always write: the Action deploys docs/ as it is, so a skipped write would publish the repo's stale copy
+    json.dump(data, open(out_path, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    print("No changes." if previous.get("classes") == classes else "Updated", out_path,
+          {c: len(v["players"]) for c, v in classes.items()})
 
 
 if __name__ == "__main__":

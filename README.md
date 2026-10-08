@@ -1,7 +1,7 @@
 # Friends – gear needs website
 
 A small website that shows, for every item, which **Friends** guild members still need it.
-It updates itself every hour: no PC needs to be on.
+It updates itself every 5 minutes (GitHub sometimes runs it a bit later): no PC needs to be on.
 
 - Guild members, class and level come from the Eclipse Kal rankings.
 - Gear comes from the rankings too, once the admins add it there. Until then every
@@ -23,19 +23,33 @@ It updates itself every hour: no PC needs to be on.
    - The `.github` folder is hidden on Windows/Mac. If you can't drag it, create the file
      on GitHub instead: **Add file → Create new file**, name it
      `.github/workflows/update.yml`, paste the contents, commit.
-4. **Turn on the website:** Settings → Pages → Source: *Deploy from a branch* →
-   Branch `main`, folder `/docs` → Save. After a minute the site is live at
-   `https://<your-username>.github.io/friends-gear/`.
+4. **Turn on the website:** Settings → Pages → Build and deployment → Source:
+   **GitHub Actions**. (Not "Deploy from a branch" - the workflow publishes the site itself.)
 5. **Run the first update:** Actions tab → *Update gear site* → **Run workflow**.
-   From then on it runs every hour by itself.
+   After a minute the site is live at `https://<your-username>.github.io/friends-gear/`.
+   From then on it runs every 5 minutes by itself, and every push to `main` publishes
+   website changes right away.
+6. If your username or repo name is different, change `PUBLISHED` near the top of
+   `update.py` to your site's `.../data.json` address (see "How the data is kept" below).
 
 That's it. Post the website link in Discord. Nobody has to fill anything in: the site
-picks up guild members (and later their gear) from the rankings within the hour.
+picks up guild members (and later their gear) from the rankings within minutes.
+
+### How the data is kept
+The workflow runs `update.py`, then uploads the `docs` folder to GitHub Pages and deploys it.
+It does **not** commit `docs/data.json` back to the repo any more. To remember things between
+runs (who dropped off the ranking and when they were last seen), `update.py` first downloads
+the live site's `data.json` and builds on it. If that fails it falls back to the
+`docs/data.json` in the repo, which is only an old starting copy.
 
 ### If the update fails
 Open the failed run in the Actions tab and read the red step. Most likely causes:
 - *Rankings offline* (server update): the site keeps the last known roster, nothing to do.
-- GitHub pauses scheduled runs after 60 days with no repo activity; click **Run workflow** once to restart.
+- *Deploy step fails* ("Get Pages site failed" / not configured): Settings → Pages → Source
+  must be **GitHub Actions**. Then click **Run workflow**.
+- GitHub pauses scheduled runs after 60 days with no repo activity. The workflow no longer
+  commits, so this can now happen if nobody pushes for 2 months: click **Run workflow** (or
+  re-enable the workflow in the Actions tab) to restart.
 
 ---
 
