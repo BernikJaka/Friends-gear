@@ -1,6 +1,6 @@
 {
  "guild": "Friends",
- "updated": "2026-10-07T22:28+00:00",
+ "updated": "2026-10-08T01:21+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
@@ -500,7 +500,7 @@
      "name": "Karen",
      "level": 63,
      "specialty": "C.J.B",
-     "honor": 7400,
+     "honor": 7700,
      "needs": [],
      "source": "waiting"
     },
@@ -530,7 +530,7 @@
     },
     {
      "name": "Luna",
-     "level": 61,
+     "level": 62,
      "specialty": "C.J.B",
      "honor": 5450,
      "needs": [],
@@ -553,6 +553,14 @@
      "source": "waiting"
     },
     {
+     "name": "ITAU",
+     "level": 61,
+     "specialty": "C.J.B",
+     "honor": 4050,
+     "needs": [],
+     "source": "waiting"
+    },
+    {
      "name": "Katia",
      "level": 60,
      "specialty": "C.J.B",
@@ -561,10 +569,10 @@
      "source": "waiting"
     },
     {
-     "name": "ITAU",
-     "level": 59,
-     "specialty": "C.J.B",
-     "honor": 4050,
+     "name": "SleepingBeauty",
+     "level": 60,
+     "specialty": "Hermit",
+     "honor": 4600,
      "needs": [],
      "source": "waiting"
     },
@@ -577,26 +585,10 @@
      "source": "waiting"
     },
     {
-     "name": "SleepingBeauty",
-     "level": 59,
-     "specialty": "Hermit",
-     "honor": 4600,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
      "name": "Monkey",
      "level": 58,
      "specialty": "C.J.B",
      "honor": 5700,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Attractive",
-     "level": 58,
-     "specialty": "Hermit",
-     "honor": null,
      "needs": [],
      "source": "waiting"
     },
@@ -1063,15 +1055,15 @@
      "name": "Hobo",
      "level": 63,
      "specialty": "Commander",
-     "honor": 8400,
+     "honor": 8700,
      "needs": [],
      "source": "waiting"
     },
     {
      "name": "General",
-     "level": 62,
+     "level": 63,
      "specialty": "Commander",
-     "honor": 6200,
+     "honor": 6800,
      "needs": [],
      "source": "waiting"
     },
@@ -1079,7 +1071,7 @@
      "name": "gerwa",
      "level": 61,
      "specialty": "Vagabond",
-     "honor": 5450,
+     "honor": 5750,
      "needs": [],
      "source": "waiting"
     },
@@ -1747,7 +1739,7 @@
      "name": "Twisted",
      "level": 64,
      "specialty": "I.Swordsman",
-     "honor": 7700,
+     "honor": 8000,
      "needs": [],
      "source": "waiting"
     },
@@ -1771,7 +1763,7 @@
      "name": "Hardcore",
      "level": 61,
      "specialty": "Hitman",
-     "honor": 6500,
+     "honor": 6800,
      "needs": [],
      "source": "waiting"
     },
