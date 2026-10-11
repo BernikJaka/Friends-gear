@@ -9,7 +9,7 @@ same or a higher grade. Players always need higher grades, never lower.
 
 No third-party packages needed - runs on plain Python 3.
 """
-import json, os, re, sys, urllib.request
+import json, os, re, sys, time, urllib.request
 from datetime import datetime, timezone
 
 GUILD = os.environ.get("GUILD", "Friends")
@@ -28,6 +28,7 @@ SPECIALTY = {
 }
 HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(HERE, "docs")
+EXP_TABLE_FILE = os.path.join(DOCS, "exp-table.json")
 CATALOG = json.load(open(os.path.join(DOCS, "catalog.json")))
 # some items exist under several Indexes in inititem.dat (variants of the same grade), see altItemIndex
 BY_INDEX = {i: (cls, e) for cls, items in CATALOG.items() for e in items
@@ -35,7 +36,8 @@ BY_INDEX = {i: (cls, e) for cls, items in CATALOG.items() for e in items
 
 
 def get(url, timeout=30):
-    req = urllib.request.Request(url, headers={"User-Agent": "FriendsGuildGearBot/1.0"})
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "FriendsGuildGearBot/1.0", "Cache-Control": "no-cache", "Pragma": "no-cache"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read().decode("utf-8")
 
@@ -54,15 +56,45 @@ def fetch_ranking(url):
 
 
 def fetch_exp_table():
-    """EXP needed for each level (index = level) from the rankings site's main.js, or None."""
-    try:
-        m = re.search(r"EXP_TABLE\s*=\s*\[([^\]]*)\]", get(MAIN_JS))
-        table = [int(x) for x in re.findall(r"\d+", m.group(1))] if m else []
-        if table:
-            return table
-        print("! EXP_TABLE not found in main.js", file=sys.stderr)
-    except Exception as e:
-        print(f"! {MAIN_JS}: {e}", file=sys.stderr)
+    """Fetch EXP_TABLE; on a transient failure use the last deployed or checked-in table."""
+    table = None
+    for attempt in range(3):
+        try:
+            url = MAIN_JS + "?_=" + str(int(time.time()))  # avoid a stale CDN copy
+            m = re.search(r"EXP_TABLE\s*=\s*\[([^\]]*)\]", get(url))
+            table = [int(x) for x in re.findall(r"\d+", m.group(1))] if m else None
+            if table:
+                print("EXP table: fetched from rankings main.js")
+                break
+            print("! EXP_TABLE not found in main.js", file=sys.stderr)
+        except Exception as e:
+            print(f"! {MAIN_JS} (attempt {attempt + 1}/3): {e}", file=sys.stderr)
+        if attempt < 2:
+            time.sleep(2)
+
+    if not table:
+        # This asset is deployed alongside data.json, so Actions can recalculate against the last
+        # successful table even when the game site's JS endpoint is temporarily unreachable.
+        deployed = PUBLISHED.rsplit("/", 1)[0] + "/exp-table.json"
+        try:
+            candidate = json.loads(get(deployed))
+            if isinstance(candidate, list) and candidate and all(isinstance(x, int) for x in candidate):
+                table = candidate
+                print("EXP table: using last deployed cache", file=sys.stderr)
+        except Exception as e:
+            print(f"! {deployed}: {e}", file=sys.stderr)
+    if not table and os.path.exists(EXP_TABLE_FILE):
+        try:
+            candidate = json.load(open(EXP_TABLE_FILE, encoding="utf-8"))
+            if isinstance(candidate, list) and candidate and all(isinstance(x, int) for x in candidate):
+                table = candidate
+                print("EXP table: using checked-in cache", file=sys.stderr)
+        except Exception as e:
+            print(f"! {EXP_TABLE_FILE}: {e}", file=sys.stderr)
+
+    if table:
+        json.dump(table, open(EXP_TABLE_FILE, "w", encoding="utf-8"), separators=(",", ":"))
+        return table
     return None
 
 

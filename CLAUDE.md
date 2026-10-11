@@ -17,7 +17,8 @@ private KalOnline server (https://www.eclipsekal.com).
   - EXP progress: `EXP_TABLE` (index = level) is parsed from https://www.eclipsekal.com/static/js/main.js.
     `progress` copies the site's progressPct(): exp / EXP_TABLE[level] * 100, but exp above the level's
     requirement is treated as total exp (minus all previous levels); capped 0-100, 2 decimals - it
-    must match what the rankings site shows. If main.js fails, keep the last value.
+    must match what the rankings site shows. `update.py` retries main.js, then uses the deployed or
+    checked-in `docs/exp-table.json` cache so a transient fetch failure cannot leave stale percentages.
   - `class`: 0 Knight, 1 Mage, 2 Archer, 3 Thief. Specialty 7/11 names are in `SPECIALTY` in update.py.
     For Thieves the rankings have Hitman and I.Swordsman reversed, so `SPECIALTY` deliberately maps
     7 = Hitman, 11 = I.Swordsman (the opposite of the rankings site). Keep it that way.
