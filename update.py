@@ -10,6 +10,7 @@ same or a higher grade. Players always need higher grades, never lower.
 No third-party packages needed - runs on plain Python 3.
 """
 import json, os, re, sys, time, urllib.request
+from urllib.parse import quote
 from datetime import datetime, timezone
 
 GUILD = os.environ.get("GUILD", "Friends")
@@ -17,7 +18,8 @@ GUILD = os.environ.get("GUILD", "Friends")
 # deploys to GitHub Pages and no longer commits docs/data.json, so the copy in the repo is only a fallback.
 PUBLISHED = os.environ.get("PUBLISHED_DATA", "https://bernikjaka.github.io/Friends-gear/data.json")
 MAIN_JS = "https://www.eclipsekal.com/static/js/main.js"   # has EXP_TABLE (index = level)
-RANKING = "https://www.eclipsekal.com/api/rankings"   # top 200 by level; the only roster source
+RANKING = "https://www.eclipsekal.com/api/v1/rankings"   # level ranking; the only roster source
+PLAYER_API = "https://www.eclipsekal.com/api/v1/players/"
 CLASSES = {0: "Knight", 1: "Mage", 2: "Archer", 3: "Thief"}
 SPECIALTY = {
     0: {1: "Wandering Knight", 3: "Apprentice Knight", 7: "Vagabond", 11: "Commander", 15: "Two Job Knight"},
@@ -43,9 +45,10 @@ def get(url, timeout=30):
 
 
 def fetch_ranking(url):
-    """{lowercase name: player} from one rankings page, or None if it failed or came back empty."""
+    """{lowercase name: player} from the level ranking, or None if it failed/was empty."""
     try:
-        page = json.loads(get(url)).get("players") or []
+        response = json.loads(get(url))
+        page = response.get("level") or response.get("players") or []
     except Exception as e:  # site down / updating
         print(f"! {url}: {e}", file=sys.stderr)
         return None
@@ -53,6 +56,14 @@ def fetch_ranking(url):
         print(f"! {url}: no players", file=sys.stderr)
         return None
     return {str(p.get("name", "")).lower(): p for p in page}
+
+
+def fetch_player_profile(name):
+    try:
+        return json.loads(get(PLAYER_API + quote(name)))
+    except Exception as e:
+        print(f"! player profile {name}: {e}", file=sys.stderr)
+        return None
 
 
 def fetch_exp_table():
@@ -131,6 +142,35 @@ def gear_from_api(p):
     return owned
 
 
+def gear_from_profile(cls, profile):
+    """Return highest owned grade by tracked slot from the rankings site's equipment list."""
+    if not isinstance(profile, dict) or not isinstance(profile.get("equipment"), list):
+        return None
+    owned = {}
+    armor_slots = {"helmet": "helmet", "chest": "chest", "gloves": "gloves",
+                   "pants": "shorts", "shorts": "shorts", "boots": "boots", "shield": "shield"}
+    weapon_slot = {"Knight": "weapon_1hsword", "Mage": "weapon_stick",
+                   "Archer": "weapon_bow", "Thief": "weapon_dagger"}.get(cls)
+    for item in profile["equipment"]:
+        if not isinstance(item, dict):
+            continue
+        slot = str(item.get("slot", "")).strip().lower()
+        target = armor_slots.get(slot)
+        if slot == "weapon":
+            target = weapon_slot
+            # Knights can equip either sword type. The item name identifies two-handed swords.
+            if cls == "Knight" and any(word in str(item.get("name", "")).lower()
+                                         for word in ("giant", "two-handed", "2h")):
+                target = "weapon_2hsword"
+        try:
+            grade = int(item.get("level"))
+        except (TypeError, ValueError):
+            continue
+        if target:
+            owned[target] = max(owned.get(target, 0), grade)
+    return owned
+
+
 def load_previous(out_path):
     """The previous run's data: the published site's data.json, else the local docs/data.json."""
     try:
@@ -156,7 +196,10 @@ def main():
     previous = load_previous(out_path)
     now = datetime.now(timezone.utc).isoformat(timespec="minutes")
     ranked = fetch_ranking(RANKING)
-    exp_table = fetch_exp_table()
+    exp_table = None
+    if ranked and any(p.get("expPct") is None and p.get("guildName", p.get("guild")) == GUILD
+                      for p in ranked.values()):
+        exp_table = fetch_exp_table()
     prev = {pl["name"].lower(): (c, pl) for c, block in previous.get("classes", {}).items()
             for pl in block.get("players", [])}
     if ranked is None:
@@ -165,14 +208,24 @@ def main():
     roster = {c: [] for c in CATALOG}
     seen = set()
     for key, p in (ranked or {}).items():
-        c = int(p.get("class", -1))
-        if p.get("guildName") != GUILD or c not in CLASSES:
+        c = int(p.get("class", p.get("cls", -1)))
+        guild = p.get("guildName", p.get("guild"))
+        if guild != GUILD or c not in CLASSES:
             continue
         old = prev.get(key, (None, {}))[1]
+        cls = CLASSES[c]
+        profile = fetch_player_profile(p["name"])
+        profile_player = (profile or {}).get("player", {})
+        live_gear = gear_from_profile(cls, profile)
+        if live_gear is None:
+            live_gear = gear_from_api(p)
+        exp_pct = p.get("expPct", profile_player.get("expPct"))
         roster[CLASSES[c]].append({
             "name": p["name"], "level": p.get("level"), "exp": p.get("exp"),
-            "specialty": SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0), CLASSES[c]),
-            "gear": gear_from_api(p) or old.get("gear"),
+            "progress": round(float(exp_pct), 2) if exp_pct is not None else old.get("progress"),
+            "specialty": (SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0))
+                          or profile_player.get("specialty") or old.get("specialty") or CLASSES[c]),
+            "gear": live_gear if live_gear is not None else old.get("gear"),
             "onRanking": True, "lastSeen": now})
         seen.add(key)
 
@@ -182,8 +235,8 @@ def main():
     for key, (c, pl) in prev.items():
         if key in seen or c not in roster:
             continue
-        if ranked and key in ranked and ranked[key].get("guildName") != GUILD:
-            print(f"- {pl['name']} left the guild (now: {ranked[key].get('guildName') or 'no guild'}), removed")
+        if ranked and key in ranked and ranked[key].get("guildName", ranked[key].get("guild")) != GUILD:
+            print(f"- {pl['name']} left the guild (now: {ranked[key].get('guildName', ranked[key].get('guild')) or 'no guild'}), removed")
             continue
         old = {k: v for k, v in pl.items() if k not in ("needs", "source")}
         old.setdefault("lastSeen", None)
@@ -203,8 +256,9 @@ def main():
                 needs, source = needs_from_gear(cls, p["gear"]), "game"
             else:
                 needs, source = [], "waiting"
-            p = {**p, "progress": exp_progress(exp_table, p.get("level"), p.get("exp")) if exp_table
-                 else p.get("progress", old_progress.get(p["name"].lower()))}   # main.js down: keep last known
+            p = {**p, "progress": p.get("progress") if p.get("progress") is not None else
+                 (exp_progress(exp_table, p.get("level"), p.get("exp")) if exp_table
+                  else old_progress.get(p["name"].lower()))}   # preserve ranking progress if EXP data is absent
             players.append({**p, "needs": needs, "source": source})
         items = [{**e, "needers": [p["name"] for p in players if e["col"] in p["needs"]]}
                  for e in CATALOG[cls]]

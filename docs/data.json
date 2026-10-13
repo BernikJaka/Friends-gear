@@ -1,81 +1,247 @@
 {
  "guild": "Friends",
- "updated": "2026-10-11T13:37+00:00",
+ "updated": "2026-10-13T07:46+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
    "players": [
     {
      "name": "SohX",
-     "level": 66,
-     "exp": 100624429,
+     "level": 67,
+     "exp": null,
+     "progress": 47.6,
      "specialty": "Imperial Commander",
-     "gear": null,
+     "gear": {
+      "weapon_bow": 59,
+      "helmet": 55,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 35.12,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "H",
+      "I",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Gusion",
-     "level": 65,
-     "exp": 119508595,
+     "level": 66,
+     "exp": null,
+     "progress": 67.7,
      "specialty": "Imperial Commander",
-     "gear": null,
+     "gear": {
+      "weapon_bow": 59,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 50.05,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "donDafko",
+     "level": 65,
+     "exp": null,
+     "progress": 81.5,
+     "specialty": "Imperial Commander",
+     "gear": {
+      "weapon_bow": 59,
+      "helmet": 50,
+      "chest": 55,
+      "gloves": 50,
+      "boots": 55,
+      "shorts": 55
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "I",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Tyr",
      "level": 65,
-     "exp": 133551,
+     "exp": null,
+     "progress": 35.3,
      "specialty": "Expert Archer",
-     "gear": null,
+     "gear": {
+      "weapon_bow": 59,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 50,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 0.06,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "I",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
-     "name": "donDafko",
+     "name": "J3ackOnTrack",
      "level": 64,
-     "exp": 198407197,
-     "specialty": "Imperial Commander",
-     "gear": null,
+     "exp": null,
+     "progress": 85.0,
+     "specialty": "Expert Archer",
+     "gear": {
+      "weapon_bow": 59,
+      "helmet": 50,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 99.74,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "MajorLazer",
      "level": 64,
-     "exp": 468035,
+     "exp": null,
+     "progress": 21.3,
      "specialty": "Expert Archer",
-     "gear": null,
+     "gear": {
+      "weapon_bow": 56,
+      "helmet": 50,
+      "chest": 55,
+      "gloves": 50,
+      "boots": 55,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 0.24,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "J3ackOnTrack",
-     "level": 63,
-     "exp": 124537698,
-     "specialty": "Expert Archer",
-     "gear": null,
-     "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 75.14,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "I",
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     }
    ],
    "items": [
@@ -143,7 +309,11 @@
      "name": "Helmet of Doggebi",
      "itemIndex": 1510,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def140.png",
-     "needers": []
+     "needers": [
+      "donDafko",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "H",
@@ -154,7 +324,9 @@
      "name": "Armor of Doggebi",
      "itemIndex": 1509,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def139.png",
-     "needers": []
+     "needers": [
+      "SohX"
+     ]
     },
     {
      "col": "I",
@@ -165,7 +337,12 @@
      "name": "Gloves of Doggebi",
      "itemIndex": 1511,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def141.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "donDafko",
+      "Tyr",
+      "MajorLazer"
+     ]
     },
     {
      "col": "J",
@@ -176,7 +353,9 @@
      "name": "Shorts of Doggebi",
      "itemIndex": 1513,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def143.png",
-     "needers": []
+     "needers": [
+      "MajorLazer"
+     ]
     },
     {
      "col": "K",
@@ -198,7 +377,14 @@
      "name": "Golden Armor Helmet",
      "itemIndex": 1525,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def175.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "M",
@@ -209,7 +395,14 @@
      "name": "Golden Armor",
      "itemIndex": 1524,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def174.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "N",
@@ -220,7 +413,14 @@
      "name": "Golden Armor Gloves",
      "itemIndex": 1526,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def176.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "O",
@@ -231,7 +431,14 @@
      "name": "Golden Armor Skirts",
      "itemIndex": 1528,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def178.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "P",
@@ -242,7 +449,14 @@
      "name": "Golden Armor Shoes",
      "itemIndex": 1527,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def177.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "V",
@@ -253,7 +467,14 @@
      "name": "Blood Dragon's Armor Helmet",
      "itemIndex": 1484,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def191.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "W",
@@ -268,7 +489,14 @@
       1635,
       1636
      ],
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "X",
@@ -279,7 +507,14 @@
      "name": "Blood Dragon's Armor Gloves",
      "itemIndex": 1485,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def192.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "Y",
@@ -294,7 +529,14 @@
       1637,
       1638
      ],
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "Z",
@@ -305,7 +547,14 @@
      "name": "Blood Dragon's Armor Shoes",
      "itemIndex": 1486,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def193.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "AA",
@@ -316,7 +565,14 @@
      "name": "Heavenly Executioner Armor Helmet",
      "itemIndex": 1890,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def319.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "AB",
@@ -331,7 +587,14 @@
       1888,
       1889
      ],
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "AC",
@@ -342,7 +605,14 @@
      "name": "Heavenly Executioner Armor Gloves",
      "itemIndex": 1891,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def320.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "AD",
@@ -357,7 +627,14 @@
       1894,
       1895
      ],
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "AE",
@@ -368,7 +645,14 @@
      "name": "Heavenly Executioner Armor Shoes",
      "itemIndex": 1892,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def321.png",
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "Q",
@@ -456,7 +740,9 @@
       1225,
       1226
      ],
-     "needers": []
+     "needers": [
+      "MajorLazer"
+     ]
     },
     {
      "col": "U",
@@ -476,7 +762,14 @@
       2616,
       2621
      ],
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "AF",
@@ -491,7 +784,14 @@
       800,
       1808
      ],
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     },
     {
      "col": "AG",
@@ -506,7 +806,14 @@
       1702,
       1803
      ],
-     "needers": []
+     "needers": [
+      "SohX",
+      "Gusion",
+      "donDafko",
+      "Tyr",
+      "J3ackOnTrack",
+      "MajorLazer"
+     ]
     }
    ]
   },
@@ -514,159 +821,511 @@
    "players": [
     {
      "name": "Ryhu",
-     "level": 66,
-     "exp": 235941327,
+     "level": 67,
+     "exp": null,
+     "progress": 51.2,
      "specialty": "Hermit",
-     "gear": null,
+     "gear": {
+      "weapon_stick": 59,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 82.34,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Karen",
      "level": 66,
-     "exp": 15296263,
+     "exp": null,
+     "progress": 38.9,
      "specialty": "C.J.B",
-     "gear": null,
+     "gear": {
+      "weapon_stick": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 5.34,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Q",
-     "level": 65,
-     "exp": 99630084,
+     "level": 66,
+     "exp": null,
+     "progress": 10.4,
      "specialty": "C.J.B",
-     "gear": null,
+     "gear": {
+      "weapon_stick": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 41.73,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Monkey",
      "level": 65,
-     "exp": 71679240,
+     "exp": null,
+     "progress": 100.0,
      "specialty": "C.J.B",
-     "gear": null,
+     "gear": {
+      "weapon_stick": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 50,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 30.02,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Dimma",
-     "level": 65,
-     "exp": 53251118,
-     "specialty": "Hermit",
-     "gear": null,
-     "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 22.3,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "cosmac",
      "level": 65,
-     "exp": 41565601,
+     "exp": null,
+     "progress": 79.3,
      "specialty": "Hermit",
-     "gear": null,
+     "gear": {
+      "weapon_stick": 59,
+      "helmet": 55,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 50,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 17.41,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "H",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
-     "name": "zolza",
-     "level": 64,
-     "exp": 102492024,
+     "name": "Dimma",
+     "level": 65,
+     "exp": null,
+     "progress": 50.5,
      "specialty": "Hermit",
-     "gear": null,
+     "gear": {
+      "weapon_stick": 56,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 51.52,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Phoenix",
-     "level": 64,
-     "exp": 90563097,
-     "specialty": "Hermit",
-     "gear": null,
-     "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 45.52,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Jilxxx",
-     "level": 64,
-     "exp": 84884352,
+     "level": 65,
+     "exp": null,
+     "progress": 33.6,
      "specialty": "C.J.B",
-     "gear": null,
+     "gear": {
+      "weapon_stick": 59,
+      "helmet": 55,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 42.67,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
-     "name": "Katia",
+     "name": "Phoenix",
+     "level": 65,
+     "exp": null,
+     "progress": 31.0,
+     "specialty": "Hermit",
+     "gear": {
+      "weapon_stick": 56,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "zolza",
+     "level": 65,
+     "exp": null,
+     "progress": 3.4,
+     "specialty": "Hermit",
+     "gear": {
+      "weapon_stick": 56,
+      "helmet": 55,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "Luna",
      "level": 63,
-     "exp": 47825638,
+     "exp": null,
+     "progress": 44.5,
      "specialty": "C.J.B",
-     "gear": null,
-     "onRanking": false,
-     "lastSeen": "2026-10-11T09:30+00:00",
-     "progress": 28.85,
-     "needs": [],
-     "source": "waiting"
+     "gear": {
+      "weapon_stick": 56,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "HolyCjb",
      "level": 63,
-     "exp": 42402376,
+     "exp": null,
+     "progress": 32.6,
      "specialty": "C.J.B",
-     "gear": null,
-     "onRanking": false,
-     "lastSeen": "2026-10-11T02:30+00:00",
-     "progress": 25.58,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Luna",
-     "level": 62,
-     "exp": 63888927,
-     "specialty": "C.J.B",
-     "gear": null,
-     "onRanking": false,
-     "lastSeen": "2026-10-10T15:20+00:00",
-     "progress": 69.4,
-     "needs": [],
-     "source": "waiting"
+     "gear": {
+      "weapon_stick": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 46,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Aes",
-     "level": 58,
+     "level": 62,
      "exp": null,
+     "progress": 0.6,
      "specialty": "Hermit",
-     "gear": null,
-     "onRanking": false,
-     "lastSeen": null,
-     "progress": null,
-     "needs": [],
-     "source": "waiting"
+     "gear": {
+      "weapon_stick": 56,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     }
    ],
    "items": [
@@ -701,7 +1360,9 @@
      "name": "White DaeChangEau Gloves",
      "itemIndex": 838,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def128.png",
-     "needers": []
+     "needers": [
+      "HolyCjb"
+     ]
     },
     {
      "col": "E",
@@ -734,7 +1395,16 @@
      "name": "Hair Decoration of Doggebi",
      "itemIndex": 1515,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def145.png",
-     "needers": []
+     "needers": [
+      "Karen",
+      "Q",
+      "Monkey",
+      "Dimma",
+      "Phoenix",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "H",
@@ -745,7 +1415,19 @@
      "name": "DaeChangEau of Doggebi",
      "itemIndex": 1514,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def144.png",
-     "needers": []
+     "needers": [
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "I",
@@ -756,7 +1438,14 @@
      "name": "DaeChangEau Gloves of Doggebi",
      "itemIndex": 1516,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def146.png",
-     "needers": []
+     "needers": [
+      "Karen",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "HolyCjb"
+     ]
     },
     {
      "col": "J",
@@ -767,7 +1456,19 @@
      "name": "DaeChangEau Shorts of Doggebi",
      "itemIndex": 1518,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def148.png",
-     "needers": []
+     "needers": [
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "K",
@@ -778,7 +1479,18 @@
      "name": "DaeChangEau Shoes of Doggebi",
      "itemIndex": 1517,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def147.png",
-     "needers": []
+     "needers": [
+      "Karen",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "L",
@@ -789,7 +1501,20 @@
      "name": "Golden DaeChangEau Hair Decoration",
      "itemIndex": 1530,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def180.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "M",
@@ -800,7 +1525,20 @@
      "name": "Golden DaeChangEau",
      "itemIndex": 1529,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def179.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "N",
@@ -811,7 +1549,20 @@
      "name": "Golden DaeChangEau Gloves",
      "itemIndex": 1531,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def181.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "O",
@@ -822,7 +1573,20 @@
      "name": "Golden DaeChangEau Shorts",
      "itemIndex": 1533,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def183.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "P",
@@ -833,7 +1597,20 @@
      "name": "Golden DaeChangEau Shoes",
      "itemIndex": 1532,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def182.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "V",
@@ -844,7 +1621,20 @@
      "name": "Blood Dragon's DaeChangEau Hair Decoration",
      "itemIndex": 1489,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def196.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "W",
@@ -859,7 +1649,20 @@
       1639,
       1640
      ],
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "X",
@@ -870,7 +1673,20 @@
      "name": "Blood Dragon's DaeChangEau Gloves",
      "itemIndex": 1490,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def197.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "Y",
@@ -885,7 +1701,20 @@
       1641,
       1642
      ],
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "Z",
@@ -896,7 +1725,20 @@
      "name": "Blood Dragon's DaeChangEau Shoes",
      "itemIndex": 1491,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def198.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "AA",
@@ -907,7 +1749,20 @@
      "name": "Heavenly Executioner DaeChangEau Hair Decoration",
      "itemIndex": 1899,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def324.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "AB",
@@ -922,7 +1777,20 @@
       1897,
       1898
      ],
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "AC",
@@ -933,7 +1801,20 @@
      "name": "Heavenly Executioner DaeChangEau Gloves",
      "itemIndex": 1900,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def325.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "AD",
@@ -948,7 +1829,20 @@
       1903,
       1904
      ],
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "AE",
@@ -959,7 +1853,20 @@
      "name": "Heavenly Executioner DaeChangEau Shoes",
      "itemIndex": 1901,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def326.png",
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "Q",
@@ -1049,7 +1956,13 @@
       1442,
       1443
      ],
-     "needers": []
+     "needers": [
+      "Dimma",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "Aes"
+     ]
     },
     {
      "col": "U",
@@ -1071,7 +1984,20 @@
       2617,
       2622
      ],
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "AF",
@@ -1092,7 +2018,20 @@
       1822,
       1852
      ],
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     },
     {
      "col": "AG",
@@ -1113,7 +2052,20 @@
       1824,
       1853
      ],
-     "needers": []
+     "needers": [
+      "Ryhu",
+      "Karen",
+      "Q",
+      "Monkey",
+      "cosmac",
+      "Dimma",
+      "Jilxxx",
+      "Phoenix",
+      "zolza",
+      "Luna",
+      "HolyCjb",
+      "Aes"
+     ]
     }
    ]
   },
@@ -1122,98 +2074,532 @@
     {
      "name": "General",
      "level": 66,
-     "exp": 5352947,
+     "exp": null,
+     "progress": 84.3,
      "specialty": "Commander",
-     "gear": null,
+     "gear": {
+      "weapon_1hsword": 59,
+      "shield": 52,
+      "helmet": 55,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 1.87,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "H",
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "R",
+      "S",
+      "T",
+      "AO",
+      "Y",
+      "AP",
+      "AQ",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
     },
     {
      "name": "Hobo",
-     "level": 65,
-     "exp": 87530721,
+     "level": 66,
+     "exp": null,
+     "progress": 15.5,
      "specialty": "Commander",
-     "gear": null,
+     "gear": {
+      "weapon_1hsword": 59,
+      "shield": 55,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 50,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 36.66,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "HolaKo",
-     "level": 65,
-     "exp": 4056414,
-     "specialty": "Vagabond",
-     "gear": null,
-     "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 1.7,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "malloc",
-     "level": 64,
-     "exp": 189859681,
-     "specialty": "Vagabond",
-     "gear": null,
-     "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 95.44,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "S",
+      "T",
+      "AO",
+      "Y",
+      "AP",
+      "AQ",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
     },
     {
      "name": "SakuOnIce",
-     "level": 64,
-     "exp": 181862299,
+     "level": 65,
+     "exp": null,
+     "progress": 100.0,
      "specialty": "Commander",
-     "gear": null,
+     "gear": {
+      "weapon_1hsword": 59,
+      "shield": 55,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 91.42,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "S",
+      "T",
+      "AO",
+      "Y",
+      "AP",
+      "AQ",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
     },
     {
      "name": "Pringles",
-     "level": 64,
-     "exp": 168797015,
+     "level": 65,
+     "exp": null,
+     "progress": 100.0,
      "specialty": "Commander",
-     "gear": null,
+     "gear": {
+      "weapon_1hsword": 59,
+      "shield": 52,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 84.85,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "R",
+      "S",
+      "T",
+      "AO",
+      "Y",
+      "AP",
+      "AQ",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "malloc",
+     "level": 65,
+     "exp": null,
+     "progress": 100.0,
+     "specialty": "Vagabond",
+     "gear": {
+      "weapon_2hsword": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "AO",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "AP",
+      "AQ",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "Attractive",
+     "level": 65,
+     "exp": null,
+     "progress": 53.1,
+     "specialty": "Vagabond",
+     "gear": {
+      "weapon_2hsword": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "AO",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "AP",
+      "AQ",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
     },
     {
      "name": "gerwa",
-     "level": 63,
-     "exp": 112587027,
+     "level": 64,
+     "exp": null,
+     "progress": 100.0,
      "specialty": "Vagabond",
-     "gear": null,
+     "gear": {
+      "weapon_2hsword": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 67.93,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "AO",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "AP",
+      "AQ",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
     },
     {
      "name": "DarkSoul",
-     "level": 62,
-     "exp": 60040,
+     "level": 63,
+     "exp": null,
+     "progress": 17.0,
      "specialty": "Vagabond",
-     "gear": null,
-     "onRanking": false,
-     "lastSeen": "2026-10-09T21:50+00:00",
-     "progress": 0.07,
-     "needs": [],
-     "source": "waiting"
+     "gear": {
+      "weapon_2hsword": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "AO",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "AP",
+      "AQ",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "TheShield",
+     "level": 63,
+     "exp": null,
+     "progress": 0.8,
+     "specialty": "Knight",
+     "gear": {
+      "weapon_2hsword": 59,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 55,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "AO",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "AP",
+      "AQ",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "TEA",
+     "level": 62,
+     "exp": null,
+     "progress": 76.0,
+     "specialty": "Knight",
+     "gear": {
+      "weapon_1hsword": 59,
+      "shield": 55,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "S",
+      "T",
+      "AO",
+      "Y",
+      "AP",
+      "AQ",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AR",
+      "AS"
+     ],
+     "source": "game"
     }
    ],
    "items": [
@@ -1281,7 +2667,14 @@
      "name": "Scaled Helmet of Doggebi",
      "itemIndex": 1505,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def135.png",
-     "needers": []
+     "needers": [
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "H",
@@ -1292,7 +2685,15 @@
      "name": "Scaled Armor of Doggebi",
      "itemIndex": 1504,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def134.png",
-     "needers": []
+     "needers": [
+      "General",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "I",
@@ -1303,7 +2704,13 @@
      "name": "Scaled Gloves of Doggebi",
      "itemIndex": 1506,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def136.png",
-     "needers": []
+     "needers": [
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "J",
@@ -1314,7 +2721,17 @@
      "name": "Scaled Shorts of Doggebi",
      "itemIndex": 1508,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def138.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "K",
@@ -1325,7 +2742,14 @@
      "name": "Scaled Shoes of Doggebi",
      "itemIndex": 1507,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def137.png",
-     "needers": []
+     "needers": [
+      "Hobo",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TEA"
+     ]
     },
     {
      "col": "L",
@@ -1336,7 +2760,18 @@
      "name": "Golden Scaled Armor Helmet",
      "itemIndex": 1520,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def170.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "M",
@@ -1347,7 +2782,18 @@
      "name": "Golden Scaled Armor",
      "itemIndex": 1519,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def169.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "N",
@@ -1358,7 +2804,18 @@
      "name": "Golden Scaled Armor Gloves",
      "itemIndex": 1521,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def171.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "O",
@@ -1369,7 +2826,18 @@
      "name": "Golden Scaled Armor Shorts",
      "itemIndex": 1523,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def173.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "P",
@@ -1380,7 +2848,18 @@
      "name": "Golden Scaled Armor Shoes",
      "itemIndex": 1522,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def172.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AE",
@@ -1391,7 +2870,18 @@
      "name": "Blood Dragon's Scaled Armor Helmet",
      "itemIndex": 1479,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def186.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AF",
@@ -1406,7 +2896,18 @@
       1631,
       1632
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AG",
@@ -1417,7 +2918,18 @@
      "name": "Blood Dragon's Scaled Armor Gloves",
      "itemIndex": 1480,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def187.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AH",
@@ -1432,7 +2944,18 @@
       1633,
       1634
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AI",
@@ -1443,7 +2966,18 @@
      "name": "Blood Dragon's Scaled Armor Shoes",
      "itemIndex": 1481,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def188.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AJ",
@@ -1454,7 +2988,18 @@
      "name": "Heavenly Executioner Scaled Armor Helmet",
      "itemIndex": 1881,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def314.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AK",
@@ -1469,7 +3014,18 @@
       1879,
       1880
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AL",
@@ -1480,7 +3036,18 @@
      "name": "Heavenly Executioner Scaled Armor Gloves",
      "itemIndex": 1882,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def315.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AM",
@@ -1495,7 +3062,18 @@
       1885,
       1886
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AN",
@@ -1506,7 +3084,18 @@
      "name": "Heavenly Executioner Scaled Armor Shoes",
      "itemIndex": 1883,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def316.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "Q",
@@ -1517,7 +3106,13 @@
      "name": "Iron Shield With Gong",
      "itemIndex": 431,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def133.png",
-     "needers": []
+     "needers": [
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield"
+     ]
     },
     {
      "col": "R",
@@ -1528,7 +3123,15 @@
      "name": "Ghost Shaped Steel Shield",
      "itemIndex": 1088,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def168.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield"
+     ]
     },
     {
      "col": "S",
@@ -1539,7 +3142,18 @@
      "name": "Golden Shield",
      "itemIndex": 1320,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def184.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "T",
@@ -1550,7 +3164,18 @@
      "name": "Blood Dragon shield",
      "itemIndex": 1609,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def245.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AO",
@@ -1561,7 +3186,18 @@
      "name": "Heavenly Executioner shield",
      "itemIndex": 1928,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def292.png",
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "U",
@@ -1577,7 +3213,13 @@
       244,
       778
      ],
-     "needers": []
+     "needers": [
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield"
+     ]
     },
     {
      "col": "V",
@@ -1599,7 +3241,13 @@
       803,
       804
      ],
-     "needers": []
+     "needers": [
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield"
+     ]
     },
     {
      "col": "W",
@@ -1624,7 +3272,13 @@
       1231,
       1232
      ],
-     "needers": []
+     "needers": [
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield"
+     ]
     },
     {
      "col": "X",
@@ -1649,7 +3303,13 @@
       1219,
       1220
      ],
-     "needers": []
+     "needers": [
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield"
+     ]
     },
     {
      "col": "Y",
@@ -1669,7 +3329,18 @@
       2614,
       2619
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AP",
@@ -1684,7 +3355,18 @@
       798,
       1806
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AQ",
@@ -1699,7 +3381,18 @@
       1700,
       1801
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "Z",
@@ -1715,7 +3408,13 @@
       442,
       779
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "TEA"
+     ]
     },
     {
      "col": "AA",
@@ -1737,7 +3436,13 @@
       806,
       807
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "TEA"
+     ]
     },
     {
      "col": "AB",
@@ -1762,7 +3467,13 @@
       1234,
       1235
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "TEA"
+     ]
     },
     {
      "col": "AC",
@@ -1787,7 +3498,13 @@
       1222,
       1223
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "TEA"
+     ]
     },
     {
      "col": "AD",
@@ -1807,7 +3524,18 @@
       2615,
       2620
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AR",
@@ -1822,7 +3550,18 @@
       799,
       1807
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     },
     {
      "col": "AS",
@@ -1837,7 +3576,18 @@
       1701,
       1802
      ],
-     "needers": []
+     "needers": [
+      "General",
+      "Hobo",
+      "SakuOnIce",
+      "Pringles",
+      "malloc",
+      "Attractive",
+      "gerwa",
+      "DarkSoul",
+      "TheShield",
+      "TEA"
+     ]
     }
    ]
   },
@@ -1845,87 +3595,324 @@
    "players": [
     {
      "name": "Twisted",
-     "level": 66,
-     "exp": 251810959,
+     "level": 67,
+     "exp": null,
+     "progress": 32.5,
      "specialty": "I.Swordsman",
-     "gear": null,
+     "gear": {
+      "weapon_dagger": 59,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 87.88,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "KurvaYebana",
-     "level": 65,
-     "exp": 147652956,
+     "level": 66,
+     "exp": null,
+     "progress": 55.5,
      "specialty": "I.Swordsman",
-     "gear": null,
+     "gear": {
+      "weapon_dagger": 59,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 61.84,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Olivia",
      "level": 65,
-     "exp": 120743394,
+     "exp": null,
+     "progress": 86.3,
      "specialty": "Hitman",
-     "gear": null,
+     "gear": {
+      "weapon_dagger": 59,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 55
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 50.57,
-     "needs": [],
-     "source": "waiting"
-    },
-    {
-     "name": "Hardcore",
-     "level": 65,
-     "exp": 15894139,
-     "specialty": "Hitman",
-     "gear": null,
-     "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 6.66,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "Schnitzel",
      "level": 65,
-     "exp": 11190775,
+     "exp": null,
+     "progress": 82.2,
      "specialty": "I.Swordsman",
-     "gear": null,
+     "gear": {
+      "weapon_dagger": 56,
+      "helmet": 55,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 4.69,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "H",
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "Hardcore",
+     "level": 65,
+     "exp": null,
+     "progress": 60.8,
+     "specialty": "Hitman",
+     "gear": {
+      "weapon_dagger": 56,
+      "helmet": 55,
+      "chest": 55,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "ExoticAlpha",
      "level": 64,
-     "exp": 5238091,
+     "exp": null,
+     "progress": 2.5,
      "specialty": "I.Swordsman",
-     "gear": null,
+     "gear": {
+      "weapon_dagger": 59,
+      "helmet": 55,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 50
+     },
      "onRanking": true,
-     "lastSeen": "2026-10-11T13:37+00:00",
-     "progress": 2.63,
-     "needs": [],
-     "source": "waiting"
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "H",
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
+    },
+    {
+     "name": "TmC",
+     "level": 63,
+     "exp": null,
+     "progress": 2.9,
+     "specialty": "Thief",
+     "gear": {
+      "weapon_dagger": 56,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 55,
+      "boots": 55,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "J",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     },
     {
      "name": "codename",
-     "level": 61,
-     "exp": 1286221,
+     "level": 62,
+     "exp": null,
+     "progress": 14.3,
      "specialty": "I.Swordsman",
-     "gear": null,
-     "onRanking": false,
-     "lastSeen": "2026-10-08T23:00+00:00",
-     "progress": 1.68,
-     "needs": [],
-     "source": "waiting"
+     "gear": {
+      "weapon_dagger": 56,
+      "helmet": 50,
+      "chest": 50,
+      "gloves": 50,
+      "boots": 50,
+      "shorts": 50
+     },
+     "onRanking": true,
+     "lastSeen": "2026-10-13T07:46+00:00",
+     "needs": [
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "T",
+      "U",
+      "AF",
+      "AG"
+     ],
+     "source": "game"
     }
    ],
    "items": [
@@ -1993,7 +3980,10 @@
      "name": "Doggebi Hood of thief",
      "itemIndex": 1586,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def236.png",
-     "needers": []
+     "needers": [
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "H",
@@ -2004,7 +3994,12 @@
      "name": "Doggebi suit of thief",
      "itemIndex": 1585,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def235.png",
-     "needers": []
+     "needers": [
+      "Schnitzel",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "I",
@@ -2015,7 +4010,9 @@
      "name": "Doggebi Gloves of thief",
      "itemIndex": 1587,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def237.png",
-     "needers": []
+     "needers": [
+      "codename"
+     ]
     },
     {
      "col": "J",
@@ -2026,7 +4023,13 @@
      "name": "Doggebi suit Shorts of thief",
      "itemIndex": 1589,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def239.png",
-     "needers": []
+     "needers": [
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "K",
@@ -2037,7 +4040,9 @@
      "name": "Doggebi Boots of thief",
      "itemIndex": 1588,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def238.png",
-     "needers": []
+     "needers": [
+      "codename"
+     ]
     },
     {
      "col": "L",
@@ -2048,7 +4053,16 @@
      "name": "Golden Hood of thief",
      "itemIndex": 1591,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def241.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "M",
@@ -2059,7 +4073,16 @@
      "name": "Golden suit of thief",
      "itemIndex": 1590,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def240.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "N",
@@ -2070,7 +4093,16 @@
      "name": "Golden Gloves of thief",
      "itemIndex": 1592,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def242.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "O",
@@ -2081,7 +4113,16 @@
      "name": "Golden suit Shorts of thief",
      "itemIndex": 1594,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def244.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "P",
@@ -2092,7 +4133,16 @@
      "name": "Golden Boots of thief",
      "itemIndex": 1593,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def243.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "V",
@@ -2103,7 +4153,16 @@
      "name": "Blood Dragon's Hood of thief",
      "itemIndex": 1766,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def247.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "W",
@@ -2118,7 +4177,16 @@
       1764,
       1765
      ],
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "X",
@@ -2129,7 +4197,16 @@
      "name": "Blood Dragon's Gloves of thief",
      "itemIndex": 1767,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def248.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "Y",
@@ -2144,7 +4221,16 @@
       1770,
       1771
      ],
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "Z",
@@ -2155,7 +4241,16 @@
      "name": "Blood Dragon's Boots of thief",
      "itemIndex": 1768,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def249.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "AA",
@@ -2166,7 +4261,16 @@
      "name": "Heavenly Executioner Hood of thief",
      "itemIndex": 1908,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def329.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "AB",
@@ -2181,7 +4285,16 @@
       1906,
       1907
      ],
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "AC",
@@ -2192,7 +4305,16 @@
      "name": "Heavenly Executioner Gloves of thief",
      "itemIndex": 1909,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def330.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "AD",
@@ -2207,7 +4329,16 @@
       1912,
       1913
      ],
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "AE",
@@ -2218,7 +4349,16 @@
      "name": "Heavenly Executioner Boots of thief",
      "itemIndex": 1910,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def331.png",
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "Q",
@@ -2281,7 +4421,12 @@
       1430,
       1439
      ],
-     "needers": []
+     "needers": [
+      "Schnitzel",
+      "Hardcore",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "U",
@@ -2299,7 +4444,16 @@
       2618,
       2623
      ],
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "AF",
@@ -2314,7 +4468,16 @@
       1441,
       1809
      ],
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     },
     {
      "col": "AG",
@@ -2329,7 +4492,16 @@
       1704,
       1804
      ],
-     "needers": []
+     "needers": [
+      "Twisted",
+      "KurvaYebana",
+      "Olivia",
+      "Schnitzel",
+      "Hardcore",
+      "ExoticAlpha",
+      "TmC",
+      "codename"
+     ]
     }
    ]
   }

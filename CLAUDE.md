@@ -12,18 +12,21 @@ private KalOnline server (https://www.eclipsekal.com).
   (`PUBLISHED` in update.py, https://bernikjaka.github.io/Friends-gear/data.json), falling back to
   the repo's `docs/data.json`, which is only a stale seed. update.py must always write data.json
   (never skip the write), or the deploy would publish the stale repo copy.
-- Roster (guild members, class, level, specialty, exp) comes only from the level ranking:
-  - https://www.eclipsekal.com/api/rankings -> `{"players":[{name,class,specialty,level,exp,guildName,...}]}` (top 200 by level)
-  - EXP progress: `EXP_TABLE` (index = level) is parsed from https://www.eclipsekal.com/static/js/main.js.
-    `progress` copies the site's progressPct(): exp / EXP_TABLE[level] * 100, but exp above the level's
-    requirement is treated as total exp (minus all previous levels); capped 0-100, 2 decimals - it
-    must match what the rankings site shows. `update.py` retries main.js, then uses the deployed or
-    checked-in `docs/exp-table.json` cache so a transient fetch failure cannot leave stale percentages.
+- Roster (guild members, class, level and progress) comes only from the level ranking:
+  - https://www.eclipsekal.com/api/v1/rankings -> `level: [{name,cls,level,expPct,guild,...}]`.
+  - Player equipment comes from https://www.eclipsekal.com/api/v1/players/<name> in `equipment`;
+    each entry has a `slot`, `name` and item `level` (grade). `gear_from_profile()` maps these
+    to tracked slots and takes the highest grade. Knights' weapon name distinguishes Giant (2H)
+    swords from standard (1H) swords. Honor ranking data is not used.
+  - `expPct` is supplied by the rankings API and is the value shown on the rankings site; store it
+    rounded to two decimals. The old `main.js`/EXP_TABLE endpoint is no longer reliable and is only
+    a fallback for carried data that has no API progress value.
   - `class`: 0 Knight, 1 Mage, 2 Archer, 3 Thief. Specialty 7/11 names are in `SPECIALTY` in update.py.
     For Thieves the rankings have Hitman and I.Swordsman reversed, so `SPECIALTY` deliberately maps
     7 = Hitman, 11 = I.Swordsman (the opposite of the rankings site). Keep it that way.
-- Gear comes only from the rankings API (the guild Google Sheet is no longer used). Until the
-  API shows gear, every player has `source: "waiting"` ("waiting for game data" on the site).
+- Gear comes only from the rankings player profiles (the guild Google Sheet is no longer used).
+  Until the profile exposes equipment, every player has `source: "waiting"` ("waiting for game
+  data" on the site). Use its `expPct` for progress; it is the rankings site's displayed value.
 - `docs/catalog.json` lists the tracked items per class (G50-G70 armor, weapons, Knight shields):
   col (unique item id, originally the sheet column), group, label, slot, grade, in-game name,
   `itemIndex` (the item's Index in Bango's inititem.dat), optional `altItemIndex` (other Indexes
@@ -39,7 +42,7 @@ private KalOnline server (https://www.eclipsekal.com).
   they need every tracked item in that slot with grade > X and nothing at or below X.
 - Knights (Commander specialty) are the only class with shields.
 - If the rankings API is down or empty, keep the previous roster - never wipe the site.
-- `onRanking` means on /api/rankings as a guild member; `lastSeen` (UTC ISO) is the last run they were.
+- `onRanking` means on `/api/v1/rankings` as a guild member; `lastSeen` (UTC ISO) is the last run they were.
 - Guild members who drop off the ranking are kept (carried over from the previous docs/data.json)
   with their last known level, specialty, exp and gear and `onRanking: false`; the site shows them
   grey with "last seen on ranking: <local time>" (or "unknown") below the others.
@@ -48,10 +51,8 @@ private KalOnline server (https://www.eclipsekal.com).
   kept. If the ranking fails to load, nobody is removed and nobody's flags or lastSeen change.
 - No third-party Python packages (plain urllib) so the Action stays simple.
 
-## Planned change: gear on the rankings
-The server admins said the rankings will show player gear. When that happens:
-1. Fetch the API and look at the new field (`curl -s https://www.eclipsekal.com/api/rankings | head -c 3000`).
-2. Update `gear_from_api()` in update.py so it returns `{slot: highest grade owned}`.
-   Match items by `itemIndex` from catalog.json where possible.
-3. Players with game gear get `source: "game"`; everyone else stays `source: "waiting"`.
-4. Run `python update.py` locally, check docs/data.json, commit and push (the push deploys).
+## Dropped items and Discord names
+- The Dropped items tab combines catalog items and current needers to produce `/wheel list ...`.
+- Only players currently on the level ranking are selectable because carried-over gear is stale.
+- Add Discord names to `docs/discord-users.json`, keyed by exact in-game name. Unmapped users
+  appear as plain in-game names in the generated command.

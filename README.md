@@ -3,9 +3,9 @@
 A small website that shows, for every item, which **Friends** guild members still need it.
 It updates itself every 5 minutes (GitHub sometimes runs it a bit later): no PC needs to be on.
 
-- Guild members, class and level come from the Eclipse Kal rankings.
-- Gear comes from the rankings too, once the admins add it there. Until then every
-  player shows as "waiting for game data".
+- Guild members, class, level and EXP progress come from the Eclipse Kal level rankings.
+- Equipped gear comes from each player's rankings profile. Until a player profile exposes
+  equipment, that player shows as "waiting for game data".
 - A player is only listed for grades **higher** than what they already have.
 - Members who drop off the level ranking stay on the site, greyed out with the time they were
   last seen on it. They are removed when the ranking shows them in another guild or without a
@@ -81,18 +81,26 @@ Every visitor can also turn grades off just for themselves with the G50 / G53 / 
 buttons above the item cards. That choice is saved in their own browser and doesn't
 affect anyone else.
 
+## Dropped items and Discord wheel commands
+
+Open **Dropped items**, search or filter by class, then select the item that dropped. The
+site lists ranked guild members who still need that slot and grade, and creates a copyable
+`/wheel list ...` command. The list uses current gear from the rankings profiles; members
+who are currently off the level ranking are excluded because their gear may be stale.
+
+Discord names are kept in `docs/discord-users.json`, keyed by the exact in-game name. For
+example:
+
+```json
+{
+  "Monkey": "@Monkey",
+  "AnotherPlayer": "@anotherdiscordname"
+}
+```
+
+Add or update entries and commit the file. Until a Discord name is added, the command uses
+that player's in-game name as plain text and the tab identifies the missing mappings.
+
 ---
 
-## When the rankings start showing gear (using Claude Code)
-
-The script already looks for gear on the rankings, but nobody knows the exact format
-yet. When the admins add it, let Claude Code adapt the script:
-
-1. Install Claude Code: https://docs.claude.com/en/docs/claude-code/overview
-2. Download the repo to your PC (green **Code** button → *Download ZIP*, or `git clone`).
-3. Open a terminal in that folder and run `claude`.
-4. Tell it: *"The Eclipse Kal rankings now show player gear. Update gear_from_api in
-   update.py so the site uses it, test it, and push."*
-   `CLAUDE.md` already explains the project and the higher-grade rule, so it knows the context.
-
-After the push, the hourly GitHub Action uses the new code automatically.
+Gear and progress update every five minutes from the current level rankings and player profiles.

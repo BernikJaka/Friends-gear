@@ -54,6 +54,17 @@
   .gradebtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
   .gradebtns button{background:var(--panel);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
   .gradebtns button.off{color:var(--muted);border-color:var(--line);opacity:.5}
+  .dropcontrols{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+  .dropcontrols input{flex:1 1 220px;min-width:0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit}
+  .dropcontrols button,.wheel button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font:inherit;cursor:pointer}
+  .dropcontrols button.on{border-color:var(--accent);color:var(--accent)}
+  .dropcard{width:100%;text-align:left;color:var(--text);font:inherit;background:transparent;border:0;cursor:pointer;padding:0}
+  .dropcard:hover .lbl,.dropcard.on .lbl{color:var(--accent)}
+  .selected{margin:18px 0;padding:14px;background:var(--panel);border:1px solid var(--accent);border-radius:10px}
+  .selected .top img{width:48px;height:48px}
+  .wheel{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .wheel code{flex:1 1 300px;overflow-wrap:anywhere;background:#0b0d11;padding:9px;border-radius:6px}
+  .warn{color:var(--accent);font-size:12px}
 </style>
 </head>
 <body>
@@ -65,8 +76,9 @@
 <main id="main"></main>
 <script>
 const ORDER=["Archer","Mage","Knight","Thief"];
-let DATA=null, view=localStorageGet("view")||"Archer";
+let DATA=null, DISCORD_USERS={}, view=localStorageGet("view")||"Archer";
 let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSort=localStorageGet("rosterSort")||"class:1";
+let dropQuery="", dropClass="All", selectedDrop=null;
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -77,8 +89,9 @@ const seenText=p=>`last seen on ranking: ${seenTime(p)}`;
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 const settings=fetch("settings.json?"+Date.now()).then(r=>r.json()).catch(()=>({}));
-Promise.all([fetch("data.json?"+Date.now()).then(r=>r.json()),settings]).then(([d,s])=>{
-  HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;render()}).catch(()=>{
+Promise.all([fetch("data.json?"+Date.now()).then(r=>r.json()),settings,
+  fetch("discord-users.json?"+Date.now()).then(r=>r.json()).catch(()=>({}))]).then(([d,s,users])=>{
+  HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;DISCORD_USERS=users;render()}).catch(()=>{
   document.getElementById("meta").textContent="Could not load data.json yet - the first update run may not have finished.";
 });
 
@@ -87,16 +100,67 @@ function render(){
   const t=new Date(DATA.updated);
   document.getElementById("meta").textContent="Updated "+t.toLocaleString()+
     (DATA.rankingsOnline?"":" · rankings were offline, showing last known roster");
-  const tabs=[...ORDER.map(c=>[c,c]),["Roster","Roster"]];
+  const tabs=[...ORDER.map(c=>[c,c]),["Roster","Roster"],["Dropped items","Dropped items"]];
   document.getElementById("tabs").innerHTML=tabs.map(([k,l])=>{
     const n=k==="Roster"?"":`<span class="n">${DATA.classes[k].players.length}</span>`;
     return `<button class="${k===view?"on":""}" data-k="${k}">${l}${n}</button>`}).join("");
   document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.k;localStorageSet("view",view);render()});
-  document.getElementById("main").innerHTML=view==="Roster"?roster():needs(view);
+  document.getElementById("main").innerHTML=view==="Roster"?roster():view==="Dropped items"?droppedItems():needs(view);
   if(view==="Roster") wireRoster();
+  if(view==="Dropped items") wireDroppedItems();
   document.querySelectorAll(".gradebtns button").forEach(b=>b.onclick=()=>{
     const g=+b.dataset.g;OFF.has(g)?OFF.delete(g):OFF.add(g);
     localStorageSet("offGrades",JSON.stringify([...OFF]));render()});
+}
+
+function allDropItems(){
+  return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
+    needers:it.needers.filter(name=>{
+      const p=DATA.classes[cls].players.find(x=>x.name===name);
+      return p&&p.onRanking!==false;
+    })
+  })));
+}
+function droppedItems(){
+  const classes=["All",...ORDER].map(c=>`<button data-c="${c}" class="${c===dropClass?"on":""}">${c}</button>`).join("");
+  const q=dropQuery.trim().toLowerCase();
+  const items=allDropItems().filter(it=>(dropClass==="All"||it.cls===dropClass)&&
+    (!q||`${it.name} ${it.label} ${it.group} ${it.cls}`.toLowerCase().includes(q)));
+  const cards=items.map(it=>`<div class="card ${it.needers.length?"":"empty"}">
+    <button class="dropcard ${selectedDrop===it.cls+":"+it.col?"on":""}" data-drop="${esc(it.cls+":"+it.col)}">
+      <div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div>
+      <div class="full">${esc(it.cls)} · G${it.grade} · ${esc(it.label)}</div></div>${it.needers.length?`<span class="cnt">${it.needers.length}</span>`:""}</div>
+    </button></div>`).join("");
+  const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop);
+  let detail="";
+  if(selected){
+    const handles=Object.fromEntries(Object.entries(DISCORD_USERS).map(([n,v])=>[n.toLowerCase(),v]));
+    const eligible=selected.needers;
+    const command="/wheel list"+(eligible.length?" "+eligible.map(n=>handles[n.toLowerCase()]||n).join(" "):"");
+    const unmapped=eligible.filter(n=>!handles[n.toLowerCase()]);
+    detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div>
+      <div class="group">${eligible.length} ranked member${eligible.length===1?"":"s"} still need this item</div>
+      <div class="names">${eligible.length?eligible.map(n=>`<span>${esc(n)}${handles[n.toLowerCase()]?` <small>${esc(handles[n.toLowerCase()])}</small>`:""}</span>`).join(""):`<span>No ranked members currently need this item.</span>`}</div>
+      ${unmapped.length?`<p class="warn">Discord name missing for: ${unmapped.map(esc).join(", ")}. Those names are used as plain text until added to docs/discord-users.json.</p>`:""}
+      <div class="wheel"><code id="wheel-command">${esc(command)}</code><button id="copy-wheel" ${eligible.length?"":"disabled"}>Copy /wheel list</button><span id="copy-status" class="full" aria-live="polite"></span></div></section>`;
+  }
+  return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div></div>
+    <div class="count">${items.length} items · select an item to see who needs it</div>${detail}<div class="grid">${cards||"<p class='note'>No items match.</p>"}</div>
+    <p class="note">Only members currently on the level ranking are included, because their gear is refreshed from the game. Add Discord names in docs/discord-users.json to replace plain in-game names in the command.</p>`;
+}
+function wireDroppedItems(){
+  const q=document.getElementById("drop-q");q.oninput=e=>{dropQuery=e.target.value;const pos=q.selectionStart;render();const next=document.getElementById("drop-q");next.focus();next.setSelectionRange(pos,pos)};
+  document.querySelectorAll(".dropcontrols button").forEach(b=>b.onclick=()=>{dropClass=b.dataset.c;render()});
+  document.querySelectorAll(".dropcard").forEach(b=>b.onclick=()=>{selectedDrop=b.dataset.drop;render()});
+  const copy=document.getElementById("copy-wheel");
+  if(copy)copy.onclick=async()=>{
+    const command=document.getElementById("wheel-command").textContent;
+    try{await navigator.clipboard.writeText(command)}catch(e){
+      const box=document.createElement("textarea");box.value=command;document.body.appendChild(box);box.select();
+      try{document.execCommand("copy")}catch(_){}box.remove();
+    }
+    document.getElementById("copy-status").textContent="Copied";
+  };
 }
 
 function needs(cls){
