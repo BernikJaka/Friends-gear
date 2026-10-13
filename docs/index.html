@@ -23,10 +23,10 @@
   .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px;min-height:0}
   .card.empty{opacity:.45}
   .top{display:flex;align-items:center;gap:8px}
-  .top img{width:36px;height:36px;image-rendering:pixelated;background:#0b0d11;border-radius:6px}
-  .lbl{font-weight:600}
+  .top img{width:36px;height:36px;flex:0 0 36px;image-rendering:pixelated;background:#0b0d11;border-radius:6px}
+  .lbl{font-weight:600;flex:1;min-width:0;overflow-wrap:anywhere}
   .full{color:var(--muted);font-size:11px}
-  .cnt{margin-left:auto;background:var(--need);color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:1px 8px}
+  .cnt{margin-left:auto;flex:0 0 auto;background:var(--need);color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:1px 8px}
   .names{display:flex;flex-wrap:wrap;gap:4px}
   .names span{background:#222734;border-radius:6px;padding:1px 7px;font-size:12px}
   .names span.off{opacity:.45}
@@ -60,6 +60,8 @@
   .dropcontrols button.on{border-color:var(--accent);color:var(--accent)}
   .dropcard{width:100%;text-align:left;color:var(--text);font:inherit;background:transparent;border:0;cursor:pointer;padding:0}
   .dropcard:hover .lbl,.dropcard.on .lbl{color:var(--accent)}
+  .dropcard .top>div{flex:1;min-width:0}
+  .dropcard .lbl{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
   .selected{margin:18px 0;padding:14px;background:var(--panel);border:1px solid var(--accent);border-radius:10px}
   .selected .top img{width:48px;height:48px}
   .wheel{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
@@ -106,9 +108,9 @@ const settings=jsonFile("settings.json").catch(()=>({}));
 Promise.all([jsonFile("data.json"),settings,
   jsonFile("discord-users.json").catch(()=>({}))]).then(([d,s,users])=>{
   HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;DISCORD_USERS=users;
-  const grades=[...new Set(ORDER.flatMap(c=>DATA.classes[c].items.map(it=>it.grade)))];
-  AUTO_OFF=new Set(grades.filter(g=>ORDER.every(c=>DATA.classes[c].items
-    .filter(it=>it.grade===g).every(it=>it.needers.length===0))));
+  AUTO_OFF=new Set(ORDER.flatMap(c=>[...new Set(DATA.classes[c].items.map(it=>it.grade))]
+    .filter(g=>DATA.classes[c].items.filter(it=>it.grade===g).every(it=>it.needers.length===0))
+    .map(g=>c+":"+g)));
   render()}).catch(error=>{
   console.error("Friends gear site failed to load or render",error);
   document.getElementById("meta").textContent="Could not load the site: "+(error?.message||String(error));
@@ -128,13 +130,14 @@ function render(){
   if(view==="Roster") wireRoster();
   if(view==="Dropped items") wireDroppedItems();
   document.querySelectorAll(".gradebtns button").forEach(b=>b.onclick=()=>{
-    toggleGrade(+b.dataset.g);render()});
+    toggleGrade(b.dataset.c,+b.dataset.g);render()});
 }
 
-function gradeIsOff(g){return OFF.has(g)||(AUTO_OFF.has(g)&&!ON.has(g))}
-function toggleGrade(g){
-  if(gradeIsOff(g)){OFF.delete(g);if(AUTO_OFF.has(g))ON.add(g)}
-  else{OFF.add(g);ON.delete(g)}
+function gradeIsOff(cls,g){const key=cls+":"+g;return OFF.has(g)||(AUTO_OFF.has(key)&&!ON.has(key))}
+function toggleGrade(cls,g){
+  const key=cls+":"+g;
+  if(gradeIsOff(cls,g)){OFF.delete(g);if(AUTO_OFF.has(key))ON.add(key)}
+  else{OFF.add(g);ON.delete(key)}
   localStorageSet("offGrades",JSON.stringify([...OFF]));
   localStorageSet("onGrades",JSON.stringify([...ON]));
 }
@@ -197,8 +200,8 @@ function needs(cls){
   const items=DATA.classes[cls].items.filter(it=>!HIDDEN.has(it.grade));
   const grades=[...new Set(items.map(it=>it.grade))].sort((a,b)=>a-b);
   const byName=Object.fromEntries(DATA.classes[cls].players.map(p=>[p.name,p]));
-  let html=`<div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(g)?"off":""}" data-g="${g}">G${g}</button>`).join("")}</div>`,group=null;
-  for(const it of items.filter(it=>!gradeIsOff(it.grade))){
+  let html=`<div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(cls,g)?"off":""}" data-c="${esc(cls)}" data-g="${g}">G${g}</button>`).join("")}</div>`,group=null;
+  for(const it of items.filter(it=>!gradeIsOff(cls,it.grade))){
     if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
     const n=it.needers.length;
     html+=`<div class="card ${n?"":"empty"}">

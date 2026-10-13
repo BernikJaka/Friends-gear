@@ -56,7 +56,7 @@ private KalOnline server (https://www.eclipsekal.com).
 - The Dropped items tab combines catalog items and current needers to produce `/wheel list ...`.
 - The Dropped items tab shows items below G60 only until higher grades start dropping; updater tracking remains unchanged.
 - Dropped items omits items with no current ranked needers and groups the remaining cards by class.
-- Class grade buttons default to dimmed when that grade has no current needers anywhere; visitors can override that default locally.
+- Per-class grade buttons default to dimmed when that grade has no current needers in that class; visitors can override that default locally.
 - Only players currently on the level ranking are selectable because carried-over gear is stale.
 - Add Discord names to `docs/discord-users.json`, keyed by exact in-game name. Unmapped users
   appear as plain in-game names in the generated command.
