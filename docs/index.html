@@ -88,11 +88,16 @@ const seenTime=p=>p.lastSeen?new Date(p.lastSeen).toLocaleString(undefined,{date
 const seenText=p=>`last seen on ranking: ${seenTime(p)}`;
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-const settings=fetch("settings.json?"+Date.now()).then(r=>r.json()).catch(()=>({}));
-Promise.all([fetch("data.json?"+Date.now()).then(r=>r.json()),settings,
-  fetch("discord-users.json?"+Date.now()).then(r=>r.json()).catch(()=>({}))]).then(([d,s,users])=>{
-  HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;DISCORD_USERS=users;render()}).catch(()=>{
-  document.getElementById("meta").textContent="Could not load data.json yet - the first update run may not have finished.";
+const jsonFile=path=>fetch(path+"?"+Date.now()).then(r=>{
+  if(!r.ok)throw new Error(`${path}: HTTP ${r.status}`);
+  return r.json();
+});
+const settings=jsonFile("settings.json").catch(()=>({}));
+Promise.all([jsonFile("data.json"),settings,
+  jsonFile("discord-users.json").catch(()=>({}))]).then(([d,s,users])=>{
+  HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;DISCORD_USERS=users;render()}).catch(error=>{
+  console.error("Friends gear site failed to load or render",error);
+  document.getElementById("meta").textContent="Could not load the site: "+(error?.message||String(error));
 });
 
 function render(){
