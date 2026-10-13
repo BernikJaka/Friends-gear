@@ -8,16 +8,24 @@
   :root{--bg:#0f1115;--panel:#171a21;--line:#262b36;--text:#e7e9ee;--muted:#8b93a7;--accent:#e0b04a;--need:#e5484d;--ok:#3fb950}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-  header{padding:20px 16px 8px;max-width:1200px;margin:auto}
-  h1{margin:0;font-size:22px;letter-spacing:.3px}
+  header{padding:24px 16px 14px;max-width:1200px;margin:auto}
+  h1{margin:0;font-size:24px;letter-spacing:.2px}
   h1 span{color:var(--accent)}
   .meta{color:var(--muted);font-size:12px;margin-top:4px}
-  nav{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line)}
-  .tabs{max-width:1200px;margin:auto;display:flex;gap:6px;padding:8px 16px;overflow-x:auto}
-  .tabs button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer;white-space:nowrap}
-  .tabs button.on{border-color:var(--accent);color:var(--accent)}
-  .tabs .n{color:var(--muted);font-size:12px;margin-left:4px}
-  main{max-width:1200px;margin:auto;padding:12px 16px 40px}
+  nav{position:sticky;top:0;z-index:2;background:#111319f5;border-bottom:1px solid var(--line);box-shadow:0 8px 24px #0003;backdrop-filter:blur(12px)}
+  .nav-inner{max-width:1200px;margin:auto;padding:10px 16px 9px}
+  .primary-tabs,.class-tabs{display:flex;align-items:center;gap:7px;overflow-x:auto;scrollbar-width:thin}
+  .class-tabs{flex:1;min-width:0}
+  .primary-tabs{padding-bottom:9px}
+  .primary-tabs button,.class-tabs button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:8px 14px;font:inherit;cursor:pointer;white-space:nowrap}
+  .primary-tabs button{font-weight:650}
+  .primary-tabs button.on{background:#332916;border-color:var(--accent);color:#f4ca70}
+  .class-section{display:flex;align-items:center;gap:14px;border-top:1px solid #252832;padding-top:8px}
+  .class-label{flex:none;color:var(--muted);font-size:10px;font-weight:650;letter-spacing:1px;text-transform:uppercase}
+  .class-tabs button{padding:5px 11px;font-size:13px;color:#c4c9d4}
+  .class-tabs button.on{border-color:#7e6639;color:#f4ca70;background:#211d16}
+  .tabs .n{color:var(--muted);font-size:11px;margin-left:5px}
+  main{max-width:1200px;margin:auto;padding:20px 16px 48px}
   .group{margin:18px 0 6px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px;min-height:0}
@@ -127,11 +135,11 @@ function render(){
   const t=new Date(DATA.updated);
   document.getElementById("meta").textContent="Updated "+t.toLocaleString()+
     (DATA.rankingsOnline?"":" · rankings were offline, showing last known roster");
-  const tabs=[["Roster","Roster"],...ORDER.map(c=>[c,c]),["Dropped items","Dropped items"]];
-  document.getElementById("tabs").innerHTML=tabs.map(([k,l])=>{
+  const button=([k,l])=>{
     const n=DATA.classes[k]?`<span class="n">${DATA.classes[k].players.length}</span>`:"";
-    return `<button class="${k===view?"on":""}" data-k="${k}">${l}${n}</button>`}).join("");
-  document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.k;localStorageSet("view",view);render()});
+    return `<button class="${k===view?"on":""}" data-k="${k}">${l}${n}</button>`};
+  document.getElementById("tabs").innerHTML=`<div class="nav-inner"><div class="primary-tabs" aria-label="Main pages">${[["Roster","Roster"],["Dropped items","Dropped items"]].map(button).join("")}</div><div class="class-section"><span class="class-label">Gear by class</span><div class="class-tabs">${ORDER.map(c=>button([c,c])).join("")}</div></div></div>`;
+  document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.k;localStorageSet("view",view);render()});
   document.getElementById("main").innerHTML=view==="Roster"?roster():view==="Dropped items"?droppedItems():needs(view);
   if(view==="Roster") wireRoster();
   if(view==="Dropped items") wireDroppedItems();
