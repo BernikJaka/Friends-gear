@@ -107,7 +107,7 @@ function render(){
     (DATA.rankingsOnline?"":" · rankings were offline, showing last known roster");
   const tabs=[...ORDER.map(c=>[c,c]),["Roster","Roster"],["Dropped items","Dropped items"]];
   document.getElementById("tabs").innerHTML=tabs.map(([k,l])=>{
-    const n=k==="Roster"?"":`<span class="n">${DATA.classes[k].players.length}</span>`;
+    const n=DATA.classes[k]?`<span class="n">${DATA.classes[k].players.length}</span>`:"";
     return `<button class="${k===view?"on":""}" data-k="${k}">${l}${n}</button>`}).join("");
   document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.k;localStorageSet("view",view);render()});
   document.getElementById("main").innerHTML=view==="Roster"?roster():view==="Dropped items"?droppedItems():needs(view);
