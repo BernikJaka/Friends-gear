@@ -89,6 +89,8 @@ let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSor
 let dropQuery="", dropClass="All", selectedDrop=null;
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
+let ON=new Set((()=>{try{return JSON.parse(localStorageGet("onGrades"))||[]}catch(e){return []}})());  // visitor override for auto-hidden grades
+let AUTO_OFF=new Set();
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 const isOff=p=>p&&p.onRanking===false;   // dropped off the ranking, kept with last known data: greyed out
@@ -103,7 +105,11 @@ const jsonFile=path=>fetch(path+"?"+Date.now()).then(r=>{
 const settings=jsonFile("settings.json").catch(()=>({}));
 Promise.all([jsonFile("data.json"),settings,
   jsonFile("discord-users.json").catch(()=>({}))]).then(([d,s,users])=>{
-  HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;DISCORD_USERS=users;render()}).catch(error=>{
+  HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;DISCORD_USERS=users;
+  const grades=[...new Set(ORDER.flatMap(c=>DATA.classes[c].items.map(it=>it.grade)))];
+  AUTO_OFF=new Set(grades.filter(g=>ORDER.every(c=>DATA.classes[c].items
+    .filter(it=>it.grade===g).every(it=>it.needers.length===0))));
+  render()}).catch(error=>{
   console.error("Friends gear site failed to load or render",error);
   document.getElementById("meta").textContent="Could not load the site: "+(error?.message||String(error));
 });
@@ -122,8 +128,15 @@ function render(){
   if(view==="Roster") wireRoster();
   if(view==="Dropped items") wireDroppedItems();
   document.querySelectorAll(".gradebtns button").forEach(b=>b.onclick=()=>{
-    const g=+b.dataset.g;OFF.has(g)?OFF.delete(g):OFF.add(g);
-    localStorageSet("offGrades",JSON.stringify([...OFF]));render()});
+    toggleGrade(+b.dataset.g);render()});
+}
+
+function gradeIsOff(g){return OFF.has(g)||(AUTO_OFF.has(g)&&!ON.has(g))}
+function toggleGrade(g){
+  if(gradeIsOff(g)){OFF.delete(g);if(AUTO_OFF.has(g))ON.add(g)}
+  else{OFF.add(g);ON.delete(g)}
+  localStorageSet("offGrades",JSON.stringify([...OFF]));
+  localStorageSet("onGrades",JSON.stringify([...ON]));
 }
 
 function allDropItems(){
@@ -132,18 +145,22 @@ function allDropItems(){
       const p=DATA.classes[cls].players.find(x=>x.name===name);
       return p&&p.onRanking!==false;
     })
-  })));
+  })).filter(it=>it.needers.length>0));
 }
 function droppedItems(){
   const classes=["All",...ORDER].map(c=>`<button data-c="${c}" class="${c===dropClass?"on":""}">${c}</button>`).join("");
   const q=dropQuery.trim().toLowerCase();
   const items=allDropItems().filter(it=>(dropClass==="All"||it.cls===dropClass)&&
     (!q||`${it.name} ${it.label} ${it.group} ${it.cls}`.toLowerCase().includes(q)));
-  const cards=items.map(it=>`<div class="card ${it.needers.length?"":"empty"}">
+  const card=it=>`<div class="card">
     <button class="dropcard ${selectedDrop===it.cls+":"+it.col?"on":""}" data-drop="${esc(it.cls+":"+it.col)}">
       <div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div>
-      <div class="full">${esc(it.cls)} · G${it.grade} · ${esc(it.label)}</div></div>${it.needers.length?`<span class="cnt">${it.needers.length}</span>`:""}</div>
-    </button></div>`).join("");
+      <div class="full">G${it.grade} · ${esc(it.label)}</div></div><span class="cnt">${it.needers.length}</span></div>
+    </button></div>`;
+  const byClass=(dropClass==="All"?[...ORDER]:[dropClass]).map(cls=>{
+    const found=items.filter(it=>it.cls===cls);
+    return found.length?`<div class="group">${cls} · ${found.length} needed items</div><div class="grid">${found.map(card).join("")}</div>`:"";
+  }).join("");
   const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop);
   let detail="";
   if(selected){
@@ -158,7 +175,7 @@ function droppedItems(){
       <div class="wheel"><code id="wheel-command">${esc(command)}</code><button id="copy-wheel" ${eligible.length?"":"disabled"}>Copy /wheel list</button><span id="copy-status" class="full" aria-live="polite"></span></div></section>`;
   }
   return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div></div>
-    <div class="count">${items.length} items · select an item to see who needs it</div>${detail}<div class="grid">${cards||"<p class='note'>No items match.</p>"}</div>
+    <div class="count">${items.length} needed items · select an item to see who needs it</div>${detail}${byClass||"<p class='note'>No needed items match.</p>"}
     <p class="note">Only G50–G59 items are listed for now. Members currently on the level ranking are included because their gear is refreshed from the game. Add Discord names in docs/discord-users.json to replace plain in-game names in the command.</p>`;
 }
 function wireDroppedItems(){
@@ -180,8 +197,8 @@ function needs(cls){
   const items=DATA.classes[cls].items.filter(it=>!HIDDEN.has(it.grade));
   const grades=[...new Set(items.map(it=>it.grade))].sort((a,b)=>a-b);
   const byName=Object.fromEntries(DATA.classes[cls].players.map(p=>[p.name,p]));
-  let html=`<div class="gradebtns">${grades.map(g=>`<button class="${OFF.has(g)?"off":""}" data-g="${g}">G${g}</button>`).join("")}</div>`,group=null;
-  for(const it of items.filter(it=>!OFF.has(it.grade))){
+  let html=`<div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(g)?"off":""}" data-g="${g}">G${g}</button>`).join("")}</div>`,group=null;
+  for(const it of items.filter(it=>!gradeIsOff(it.grade))){
     if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
     const n=it.needers.length;
     html+=`<div class="card ${n?"":"empty"}">
