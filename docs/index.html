@@ -52,6 +52,8 @@
   .sortbtn:hover,.sortbtn.on{color:var(--accent)}
   .count{color:var(--muted);font-size:12px;margin-top:10px}
   .gradebtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .grade-scope{margin:10px 0 14px}
+  .grade-scope-title{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.8px}
   .gradebtns button{background:var(--panel);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
   .gradebtns button.off{color:var(--muted);border-color:var(--line);opacity:.5}
   .dropcontrols{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
@@ -92,6 +94,7 @@ let dropQuery="", dropClass="All", selectedDrop=null;
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 let ON=new Set((()=>{try{return JSON.parse(localStorageGet("onGrades"))||[]}catch(e){return []}})());  // visitor override for auto-hidden grades
+let GRADE_PREFS=(()=>{try{return JSON.parse(localStorageGet("gradePrefs"))||{}}catch(e){return {}}})();
 let AUTO_OFF=new Set();
 function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
@@ -108,9 +111,12 @@ const settings=jsonFile("settings.json").catch(()=>({}));
 Promise.all([jsonFile("data.json"),settings,
   jsonFile("discord-users.json").catch(()=>({}))]).then(([d,s,users])=>{
   HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;DISCORD_USERS=users;
-  AUTO_OFF=new Set(ORDER.flatMap(c=>[...new Set(DATA.classes[c].items.map(it=>it.grade))]
-    .filter(g=>DATA.classes[c].items.filter(it=>it.grade===g).every(it=>it.needers.length===0))
-    .map(g=>c+":"+g)));
+  AUTO_OFF=new Set(ORDER.flatMap(c=>["armor","weapons"].flatMap(scope=>{
+    const scoped=DATA.classes[c].items.filter(it=>itemScope(it)===scope);
+    return [...new Set(scoped.map(it=>it.grade))]
+      .filter(g=>scoped.filter(it=>it.grade===g).every(it=>it.needers.length===0))
+      .map(g=>gradeKey(c,scope,g));
+  })));
   render()}).catch(error=>{
   console.error("Friends gear site failed to load or render",error);
   document.getElementById("meta").textContent="Could not load the site: "+(error?.message||String(error));
@@ -130,16 +136,21 @@ function render(){
   if(view==="Roster") wireRoster();
   if(view==="Dropped items") wireDroppedItems();
   document.querySelectorAll(".gradebtns button").forEach(b=>b.onclick=()=>{
-    toggleGrade(b.dataset.c,+b.dataset.g);render()});
+    toggleGrade(b.dataset.c,b.dataset.scope,+b.dataset.g);render()});
 }
 
-function gradeIsOff(cls,g){const key=cls+":"+g;return OFF.has(g)||(AUTO_OFF.has(key)&&!ON.has(key))}
-function toggleGrade(cls,g){
-  const key=cls+":"+g;
-  if(gradeIsOff(cls,g)){OFF.delete(g);if(AUTO_OFF.has(key))ON.add(key)}
-  else{OFF.add(g);ON.delete(key)}
-  localStorageSet("offGrades",JSON.stringify([...OFF]));
-  localStorageSet("onGrades",JSON.stringify([...ON]));
+function itemScope(it){return it.slot.startsWith("weapon_")?"weapons":"armor"}
+function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
+function gradeIsOff(cls,scope,g){
+  const key=gradeKey(cls,scope,g);
+  if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
+  if(ON.has(cls+":"+g))return false;
+  return OFF.has(g)||AUTO_OFF.has(key);
+}
+function toggleGrade(cls,scope,g){
+  const key=gradeKey(cls,scope,g);
+  GRADE_PREFS[key]=gradeIsOff(cls,scope,g);
+  localStorageSet("gradePrefs",JSON.stringify(GRADE_PREFS));
 }
 
 function allDropItems(){
@@ -198,10 +209,15 @@ function wireDroppedItems(){
 
 function needs(cls){
   const items=DATA.classes[cls].items.filter(it=>!HIDDEN.has(it.grade));
-  const grades=[...new Set(items.map(it=>it.grade))].sort((a,b)=>a-b);
   const byName=Object.fromEntries(DATA.classes[cls].players.map(p=>[p.name,p]));
-  let html=`<div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(cls,g)?"off":""}" data-c="${esc(cls)}" data-g="${g}">G${g}</button>`).join("")}</div>`,group=null;
-  for(const it of items.filter(it=>!gradeIsOff(cls,it.grade))){
+  let html="";
+  for(const [scope,title] of [["armor","Armor & shields"],["weapons","Weapons"]]){
+    const scoped=items.filter(it=>itemScope(it)===scope);
+    if(!scoped.length)continue;
+    const grades=[...new Set(scoped.map(it=>it.grade))].sort((a,b)=>a-b);
+    html+=`<div class="grade-scope"><div class="grade-scope-title">${title}</div><div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(cls,scope,g)?"off":""}" data-c="${esc(cls)}" data-scope="${scope}" data-g="${g}">G${g}</button>`).join("")}</div></div>`;
+    let group=null;
+    for(const it of scoped.filter(it=>!gradeIsOff(cls,scope,it.grade))){
     if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
     const n=it.needers.length;
     html+=`<div class="card ${n?"":"empty"}">
@@ -210,8 +226,10 @@ function needs(cls){
         ${n?`<span class="cnt">${n}</span>`:""}</div>
       <div class="names">${it.needers.map(x=>{const p=byName[x];return isOff(p)
         ?`<span class="off">${esc(x)}<small>${esc(seenText(p))}</small></span>`:`<span>${esc(x)}</span>`}).join("")}</div></div>`;
+    }
+    if(group!==null)html+="</div>";
   }
-  return html+(group!==null?"</div>":"")+"<p class='note'>A player is only listed for grades higher than what they already have in that slot.</p>";
+  return html+"<p class='note'>A player is only listed for grades higher than what they already have in that slot.</p>";
 }
 
 function roster(){

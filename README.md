@@ -101,8 +101,9 @@ example:
 Add or update entries and commit the file. Until a Discord name is added, the command uses
 that player's in-game name as plain text and the tab identifies the missing mappings.
 The tab currently lists G50–G59 only; G60 and higher can be added when those items start dropping.
-Items with no current needers are omitted. In each class tab, a grade with no needers in that class
-is dimmed by default; each visitor can turn it back on or save their own grade choices.
+Items with no current needers are omitted. In each class tab, armor and shields and weapons have
+separate grade controls. A grade with no needers in that class and category is dimmed by default;
+each visitor can turn it back on or save their own choices for that category.
 
 ---
 
