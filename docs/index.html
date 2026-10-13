@@ -190,7 +190,7 @@ function droppedItems(){
   }
   return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div></div>
     <div class="count">${items.length} needed items · select an item to see who needs it</div>${detail}${byClass||"<p class='note'>No needed items match.</p>"}
-    <p class="note">This list follows the server’s drop tables. New gear will appear here as it is added to the drop tables. Add Discord names in docs/discord-users.json to replace plain in-game names in the command.</p>`;
+    <p class="note">This list follows the server’s drop tables. New gear will appear here as it is added to the drop tables.</p>`;
 }
 function wireDroppedItems(){
   const q=document.getElementById("drop-q");q.oninput=e=>{dropQuery=e.target.value;const pos=q.selectionStart;render();const next=document.getElementById("drop-q");next.focus();next.setSelectionRange(pos,pos)};
