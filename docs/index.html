@@ -65,6 +65,14 @@
   .wheel{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
   .wheel code{flex:1 1 300px;overflow-wrap:anywhere;background:#0b0d11;padding:9px;border-radius:6px}
   .warn{color:var(--accent);font-size:12px}
+  .playerlink,.missinglink{padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+  .playerlink:hover,.missinglink:hover{color:var(--accent);text-decoration:underline}
+  .modal-backdrop{position:fixed;inset:0;z-index:5;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px}
+  .modal{width:min(760px,100%);max-height:85vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:0 12px 50px #0009}
+  .modalhead{display:flex;align-items:center;gap:12px;position:sticky;top:-16px;background:var(--panel);padding:4px 0 12px}
+  .modalhead h2{font-size:18px;margin:0}
+  .modalhead button{margin-left:auto;background:#222734;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
+  .modal .grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
 </style>
 </head>
 <body>
@@ -119,7 +127,7 @@ function render(){
 }
 
 function allDropItems(){
-  return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
+  return ORDER.flatMap(cls=>DATA.classes[cls].items.filter(it=>it.grade<60).map(it=>({...it,cls,
     needers:it.needers.filter(name=>{
       const p=DATA.classes[cls].players.find(x=>x.name===name);
       return p&&p.onRanking!==false;
@@ -151,7 +159,7 @@ function droppedItems(){
   }
   return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div></div>
     <div class="count">${items.length} items · select an item to see who needs it</div>${detail}<div class="grid">${cards||"<p class='note'>No items match.</p>"}</div>
-    <p class="note">Only members currently on the level ranking are included, because their gear is refreshed from the game. Add Discord names in docs/discord-users.json to replace plain in-game names in the command.</p>`;
+    <p class="note">Only G50–G59 items are listed for now. Members currently on the level ranking are included because their gear is refreshed from the game. Add Discord names in docs/discord-users.json to replace plain in-game names in the command.</p>`;
 }
 function wireDroppedItems(){
   const q=document.getElementById("drop-q");q.oninput=e=>{dropQuery=e.target.value;const pos=q.selectionStart;render();const next=document.getElementById("drop-q");next.focus();next.setSelectionRange(pos,pos)};
@@ -192,7 +200,7 @@ function roster(){
     <div class="classbtns">${btns}</div></div>
     <div class="count" id="count"></div>
     <table><thead id="head"></thead>
-    <tbody id="rows"></tbody></table>`;
+    <tbody id="rows"></tbody></table><div id="modal-root"></div>`;
 }
 
 function rosterRows(){
@@ -213,8 +221,8 @@ function rosterRows(){
              missing:(a,b)=>a.missing-b.missing}[key];
   const empty={specialty:a=>!a.p.specialty,level:a=>a.p.level==null}[key];
   list.sort((a,b)=>isOff(a.p)-isOff(b.p)||(empty?empty(a)-empty(b):0)||dir*cmp(a,b)||byLevel(a,b)||a.p.name.localeCompare(b.p.name));
-  const rows=list.map(({p,c,missing})=>`<tr class="${isOff(p)?"off":""}"><td>${esc(p.name)}${isOff(p)?`<div class="seen">${esc(seenText(p))}</div>`:""}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${lvCell(p)}</td>
-        <td>${missing}</td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`).join("");
+  const rows=list.map(({p,c,missing})=>`<tr class="${isOff(p)?"off":""}"><td><button class="playerlink" data-player="${esc(p.name)}" data-class="${esc(c)}">${esc(p.name)}</button>${isOff(p)?`<div class="seen">${esc(seenText(p))}</div>`:""}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${lvCell(p)}</td>
+        <td><button class="missinglink" data-player="${esc(p.name)}" data-class="${esc(c)}" title="Show ${missing} missing items">${missing}</button></td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`).join("");
   return {html:rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`,shown:list.length};
 }
 
@@ -242,9 +250,26 @@ function refreshRoster(){
   const total=ORDER.reduce((n,c)=>n+DATA.classes[c].players.length,0);
   const {html,shown}=rosterRows();
   document.getElementById("rows").innerHTML=html;
+  document.querySelectorAll(".playerlink,.missinglink").forEach(b=>b.onclick=()=>showPlayerNeeds(b.dataset.class,b.dataset.player));
   const off=ORDER.reduce((n,c)=>n+DATA.classes[c].players.filter(isOff).length,0);
   document.getElementById("count").textContent=(shown===total?`${total} members`:`Showing ${shown} of ${total} members`)+(off?` · ${off} not on the ranking`:"");
 }
+
+function showPlayerNeeds(cls,name){
+  const player=DATA.classes[cls].players.find(p=>p.name===name);
+  if(!player)return;
+  const items=DATA.classes[cls].items.filter(it=>player.needs.includes(it.col)&&!HIDDEN.has(it.grade));
+  const body=player.source==="waiting"?`<p class="note">Waiting for game data; this player's needs are not known yet.</p>`:
+    items.length?`<div class="grid">${items.map(it=>`<div class="card"><div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div><div class="full">G${it.grade} · ${esc(it.label)}</div></div></div></div>`).join("")}</div>`:
+    `<p class="note">No visible tracked items needed.</p>`;
+  const root=document.getElementById("modal-root");
+  root.innerHTML=`<div class="modal-backdrop" id="needs-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="needs-title">
+    <div class="modalhead"><h2 id="needs-title">${esc(name)} · Items needed</h2><button id="close-needs" aria-label="Close">Close</button></div>${body}</section></div>`;
+  document.getElementById("close-needs").onclick=closePlayerNeeds;
+  document.getElementById("needs-backdrop").onclick=e=>{if(e.target===e.currentTarget)closePlayerNeeds()};
+  document.onkeydown=e=>{if(e.key==="Escape")closePlayerNeeds()};
+}
+function closePlayerNeeds(){document.getElementById("modal-root").innerHTML="";document.onkeydown=null}
 
 function wireRoster(){
   document.getElementById("q").oninput=e=>{rosterQuery=e.target.value;refreshRoster()};

@@ -1,6 +1,6 @@
 {
  "guild": "Friends",
- "updated": "2026-10-13T07:46+00:00",
+ "updated": "2026-10-13T08:05+00:00",
  "rankingsOnline": true,
  "classes": {
   "Archer": {
@@ -20,7 +20,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "H",
       "I",
@@ -60,7 +60,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "L",
       "M",
@@ -98,7 +98,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "I",
@@ -138,7 +138,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "I",
       "L",
@@ -177,7 +177,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "L",
@@ -216,7 +216,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "I",
@@ -834,7 +834,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "L",
       "M",
@@ -872,7 +872,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -915,7 +915,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -956,7 +956,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -998,7 +998,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "H",
       "J",
@@ -1039,7 +1039,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -1083,7 +1083,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "H",
       "I",
@@ -1125,7 +1125,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -1169,7 +1169,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "H",
       "I",
@@ -1212,7 +1212,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -1255,7 +1255,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "D",
       "G",
@@ -1299,7 +1299,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -2087,7 +2087,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "H",
       "J",
@@ -2112,14 +2112,7 @@
       "AO",
       "Y",
       "AP",
-      "AQ",
-      "Z",
-      "AA",
-      "AB",
-      "AC",
-      "AD",
-      "AR",
-      "AS"
+      "AQ"
      ],
      "source": "game"
     },
@@ -2139,7 +2132,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "J",
       "K",
@@ -2163,14 +2156,7 @@
       "AO",
       "Y",
       "AP",
-      "AQ",
-      "Z",
-      "AA",
-      "AB",
-      "AC",
-      "AD",
-      "AR",
-      "AS"
+      "AQ"
      ],
      "source": "game"
     },
@@ -2190,7 +2176,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "J",
       "L",
@@ -2213,14 +2199,7 @@
       "AO",
       "Y",
       "AP",
-      "AQ",
-      "Z",
-      "AA",
-      "AB",
-      "AC",
-      "AD",
-      "AR",
-      "AS"
+      "AQ"
      ],
      "source": "game"
     },
@@ -2240,7 +2219,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "L",
       "M",
@@ -2263,14 +2242,7 @@
       "AO",
       "Y",
       "AP",
-      "AQ",
-      "Z",
-      "AA",
-      "AB",
-      "AC",
-      "AD",
-      "AR",
-      "AS"
+      "AQ"
      ],
      "source": "game"
     },
@@ -2289,7 +2261,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -2310,18 +2282,6 @@
       "AL",
       "AM",
       "AN",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "AO",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "AP",
-      "AQ",
       "AD",
       "AR",
       "AS"
@@ -2343,7 +2303,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -2365,18 +2325,6 @@
       "AL",
       "AM",
       "AN",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "AO",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "AP",
-      "AQ",
       "AD",
       "AR",
       "AS"
@@ -2398,7 +2346,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -2420,18 +2368,6 @@
       "AL",
       "AM",
       "AN",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "AO",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "AP",
-      "AQ",
       "AD",
       "AR",
       "AS"
@@ -2453,7 +2389,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -2475,18 +2411,6 @@
       "AL",
       "AM",
       "AN",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "AO",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "AP",
-      "AQ",
       "AD",
       "AR",
       "AS"
@@ -2508,7 +2432,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -2529,18 +2453,6 @@
       "AL",
       "AM",
       "AN",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "AO",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "AP",
-      "AQ",
       "AD",
       "AR",
       "AS"
@@ -2563,7 +2475,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -2590,14 +2502,7 @@
       "AO",
       "Y",
       "AP",
-      "AQ",
-      "Z",
-      "AA",
-      "AB",
-      "AC",
-      "AD",
-      "AR",
-      "AS"
+      "AQ"
      ],
      "source": "game"
     }
@@ -3106,13 +3011,7 @@
      "name": "Iron Shield With Gong",
      "itemIndex": 431,
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def133.png",
-     "needers": [
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield"
-     ]
+     "needers": []
     },
     {
      "col": "R",
@@ -3125,12 +3024,7 @@
      "icon": "https://stribidi.github.io/kal-atlas/assets/icons/def168.png",
      "needers": [
       "General",
-      "Pringles",
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield"
+      "Pringles"
      ]
     },
     {
@@ -3147,11 +3041,6 @@
       "Hobo",
       "SakuOnIce",
       "Pringles",
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield",
       "TEA"
      ]
     },
@@ -3169,11 +3058,6 @@
       "Hobo",
       "SakuOnIce",
       "Pringles",
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield",
       "TEA"
      ]
     },
@@ -3191,11 +3075,6 @@
       "Hobo",
       "SakuOnIce",
       "Pringles",
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield",
       "TEA"
      ]
     },
@@ -3213,13 +3092,7 @@
       244,
       778
      ],
-     "needers": [
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield"
-     ]
+     "needers": []
     },
     {
      "col": "V",
@@ -3241,13 +3114,7 @@
       803,
       804
      ],
-     "needers": [
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield"
-     ]
+     "needers": []
     },
     {
      "col": "W",
@@ -3272,13 +3139,7 @@
       1231,
       1232
      ],
-     "needers": [
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield"
-     ]
+     "needers": []
     },
     {
      "col": "X",
@@ -3303,13 +3164,7 @@
       1219,
       1220
      ],
-     "needers": [
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield"
-     ]
+     "needers": []
     },
     {
      "col": "Y",
@@ -3334,11 +3189,6 @@
       "Hobo",
       "SakuOnIce",
       "Pringles",
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield",
       "TEA"
      ]
     },
@@ -3360,11 +3210,6 @@
       "Hobo",
       "SakuOnIce",
       "Pringles",
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield",
       "TEA"
      ]
     },
@@ -3386,11 +3231,6 @@
       "Hobo",
       "SakuOnIce",
       "Pringles",
-      "malloc",
-      "Attractive",
-      "gerwa",
-      "DarkSoul",
-      "TheShield",
       "TEA"
      ]
     },
@@ -3408,13 +3248,7 @@
       442,
       779
      ],
-     "needers": [
-      "General",
-      "Hobo",
-      "SakuOnIce",
-      "Pringles",
-      "TEA"
-     ]
+     "needers": []
     },
     {
      "col": "AA",
@@ -3436,13 +3270,7 @@
       806,
       807
      ],
-     "needers": [
-      "General",
-      "Hobo",
-      "SakuOnIce",
-      "Pringles",
-      "TEA"
-     ]
+     "needers": []
     },
     {
      "col": "AB",
@@ -3467,13 +3295,7 @@
       1234,
       1235
      ],
-     "needers": [
-      "General",
-      "Hobo",
-      "SakuOnIce",
-      "Pringles",
-      "TEA"
-     ]
+     "needers": []
     },
     {
      "col": "AC",
@@ -3498,13 +3320,7 @@
       1222,
       1223
      ],
-     "needers": [
-      "General",
-      "Hobo",
-      "SakuOnIce",
-      "Pringles",
-      "TEA"
-     ]
+     "needers": []
     },
     {
      "col": "AD",
@@ -3525,16 +3341,11 @@
       2620
      ],
      "needers": [
-      "General",
-      "Hobo",
-      "SakuOnIce",
-      "Pringles",
       "malloc",
       "Attractive",
       "gerwa",
       "DarkSoul",
-      "TheShield",
-      "TEA"
+      "TheShield"
      ]
     },
     {
@@ -3551,16 +3362,11 @@
       1807
      ],
      "needers": [
-      "General",
-      "Hobo",
-      "SakuOnIce",
-      "Pringles",
       "malloc",
       "Attractive",
       "gerwa",
       "DarkSoul",
-      "TheShield",
-      "TEA"
+      "TheShield"
      ]
     },
     {
@@ -3577,16 +3383,11 @@
       1802
      ],
      "needers": [
-      "General",
-      "Hobo",
-      "SakuOnIce",
-      "Pringles",
       "malloc",
       "Attractive",
       "gerwa",
       "DarkSoul",
-      "TheShield",
-      "TEA"
+      "TheShield"
      ]
     }
    ]
@@ -3608,7 +3409,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "L",
       "M",
@@ -3646,7 +3447,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "L",
       "M",
@@ -3684,7 +3485,7 @@
       "shorts": 55
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "L",
       "M",
@@ -3722,7 +3523,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "H",
       "J",
@@ -3763,7 +3564,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "J",
       "L",
@@ -3803,7 +3604,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "H",
       "J",
@@ -3843,7 +3644,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",
@@ -3885,7 +3686,7 @@
       "shorts": 50
      },
      "onRanking": true,
-     "lastSeen": "2026-10-13T07:46+00:00",
+     "lastSeen": "2026-10-13T08:05+00:00",
      "needs": [
       "G",
       "H",

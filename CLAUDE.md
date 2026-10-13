@@ -41,6 +41,7 @@ private KalOnline server (https://www.eclipsekal.com).
 - Players always need HIGHER grades, never lower. If a player has a slot at grade X,
   they need every tracked item in that slot with grade > X and nothing at or below X.
 - Knights (Commander specialty) are the only class with shields.
+- Commander Knights need checks for 1H swords and shields; Vagabond Knights need checks for 2H swords.
 - If the rankings API is down or empty, keep the previous roster - never wipe the site.
 - `onRanking` means on `/api/v1/rankings` as a guild member; `lastSeen` (UTC ISO) is the last run they were.
 - Guild members who drop off the ranking are kept (carried over from the previous docs/data.json)
@@ -53,6 +54,7 @@ private KalOnline server (https://www.eclipsekal.com).
 
 ## Dropped items and Discord names
 - The Dropped items tab combines catalog items and current needers to produce `/wheel list ...`.
+- The Dropped items tab shows items below G60 only until higher grades start dropping; updater tracking remains unchanged.
 - Only players currently on the level ranking are selectable because carried-over gear is stale.
 - Add Discord names to `docs/discord-users.json`, keyed by exact in-game name. Unmapped users
   appear as plain in-game names in the generated command.

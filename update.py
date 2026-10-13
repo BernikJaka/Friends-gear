@@ -187,8 +187,17 @@ def load_previous(out_path):
     return {}
 
 
-def needs_from_gear(cls, owned):
-    return [e["col"] for e in CATALOG[cls] if e["grade"] > owned.get(e["slot"], 0)]
+def needs_from_gear(cls, owned, specialty=None):
+    excluded_slots = set()
+    if cls == "Knight":
+        # Use the specialization when available; otherwise infer the track from equipped gear.
+        if specialty == "Commander" or (specialty != "Vagabond" and
+                                          ("weapon_1hsword" in owned or "shield" in owned)):
+            excluded_slots.add("weapon_2hsword")
+        elif specialty == "Vagabond" or "weapon_2hsword" in owned:
+            excluded_slots.update(("weapon_1hsword", "shield"))
+    return [e["col"] for e in CATALOG[cls]
+            if e["grade"] > owned.get(e["slot"], 0) and e["slot"] not in excluded_slots]
 
 
 def main():
@@ -253,7 +262,7 @@ def main():
         # players still on the rankings first, then those who dropped off; highest level first
         for p in sorted(roster[cls], key=lambda x: (not x.get("onRanking", True), -(x.get("level") or 0))):
             if p.get("gear"):
-                needs, source = needs_from_gear(cls, p["gear"]), "game"
+                needs, source = needs_from_gear(cls, p["gear"], p.get("specialty")), "game"
             else:
                 needs, source = [], "waiting"
             p = {**p, "progress": p.get("progress") if p.get("progress") is not None else
