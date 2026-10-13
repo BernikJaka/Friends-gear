@@ -88,7 +88,7 @@
 <main id="main"></main>
 <script>
 const ORDER=["Archer","Mage","Knight","Thief"];
-let DATA=null, DISCORD_USERS={}, view=localStorageGet("view")||"Archer";
+let DATA=null, DISCORD_USERS={}, view=localStorageGet("view")||"Roster";
 let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSort=localStorageGet("rosterSort")||"class:1";
 let dropQuery="", dropClass="All", selectedDrop=null;
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
@@ -127,7 +127,7 @@ function render(){
   const t=new Date(DATA.updated);
   document.getElementById("meta").textContent="Updated "+t.toLocaleString()+
     (DATA.rankingsOnline?"":" · rankings were offline, showing last known roster");
-  const tabs=[...ORDER.map(c=>[c,c]),["Roster","Roster"],["Dropped items","Dropped items"]];
+  const tabs=[["Roster","Roster"],...ORDER.map(c=>[c,c]),["Dropped items","Dropped items"]];
   document.getElementById("tabs").innerHTML=tabs.map(([k,l])=>{
     const n=DATA.classes[k]?`<span class="n">${DATA.classes[k].players.length}</span>`:"";
     return `<button class="${k===view?"on":""}" data-k="${k}">${l}${n}</button>`}).join("");
