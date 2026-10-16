@@ -153,6 +153,7 @@ function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
 function gradeIsOff(cls,scope,g){
   const key=gradeKey(cls,scope,g);
   if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
+  if(HIDDEN.has(g))return true;
   if(ON.has(cls+":"+g))return false;
   return OFF.has(g)||AUTO_OFF.has(key);
 }
@@ -232,7 +233,7 @@ function wireDroppedItems(){
 }
 
 function needs(cls){
-  const items=DATA.classes[cls].items.filter(it=>!HIDDEN.has(it.grade));
+  const items=DATA.classes[cls].items;
   const byName=Object.fromEntries(DATA.classes[cls].players.map(p=>[p.name,p]));
   let html="";
   for(const [scope,title] of [["armor","Armor & shields"],["weapons","Weapons"]]){
