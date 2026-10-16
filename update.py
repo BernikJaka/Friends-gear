@@ -14,6 +14,7 @@ from urllib.parse import quote
 from datetime import datetime, timezone
 
 GUILD = os.environ.get("GUILD", "Friends")
+EXCLUDED_PLAYERS = {"codename"}  # confirmed former guild members
 # The live site's data.json is the previous run's state (lastSeen, carried-over players): the Action
 # deploys to GitHub Pages and no longer commits docs/data.json, so the copy in the repo is only a fallback.
 PUBLISHED = os.environ.get("PUBLISHED_DATA", "https://bernikjaka.github.io/Friends-gear/data.json")
@@ -217,6 +218,8 @@ def main():
     roster = {c: [] for c in CATALOG}
     seen = set()
     for key, p in (ranked or {}).items():
+        if key in EXCLUDED_PLAYERS:
+            continue
         c = int(p.get("class", p.get("cls", -1)))
         guild = p.get("guildName", p.get("guild"))
         if guild != GUILD or c not in CLASSES:
@@ -242,6 +245,8 @@ def main():
     # level/specialty/exp/gear. A player who IS on the ranking with any guildName other than GUILD
     # (another guild, or no guild: empty, null, "-" or missing) has left and is removed.
     for key, (c, pl) in prev.items():
+        if key in EXCLUDED_PLAYERS:
+            continue
         if key in seen or c not in roster:
             continue
         if ranked and key in ranked and ranked[key].get("guildName", ranked[key].get("guild")) != GUILD:
