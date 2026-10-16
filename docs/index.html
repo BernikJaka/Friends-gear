@@ -199,7 +199,7 @@ function droppedItems(){
     const handles=Object.fromEntries(Object.entries(DISCORD_USERS).map(([n,v])=>[n.toLowerCase(),v]));
     const eligible=selected.needers;
     const command="/wheel list"+(eligible.length?" "+eligible.join(" "):"");
-    const discordMessage=WHEEL_TITLES[wheelTitleIndex](selected.name)+"\\n"+eligible.map(n=>handles[n.toLowerCase()]||n).join(" ");
+    const discordMessage=WHEEL_TITLES[wheelTitleIndex](selected.name)+"\n"+eligible.map(n=>handles[n.toLowerCase()]||n).join(" ");
     const unmapped=eligible.filter(n=>!handles[n.toLowerCase()]);
     detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div>
       <div class="group">${eligible.length} ranked member${eligible.length===1?"":"s"} still need this item</div>
