@@ -76,6 +76,7 @@
   .selected .top img{width:48px;height:48px}
   .wheel{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
   .wheel code{flex:1 1 300px;overflow-wrap:anywhere;background:#0b0d11;padding:9px;border-radius:6px}
+  .wheel-message{white-space:pre-wrap;overflow-wrap:anywhere;background:#0b0d11;padding:10px;border-radius:6px;margin-top:10px}
   .warn{color:var(--accent);font-size:12px}
   .playerlink,.missinglink{padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
   .playerlink:hover,.missinglink:hover{color:var(--accent);text-decoration:underline}
@@ -169,6 +170,15 @@ function allDropItems(){
     })
   })).filter(it=>it.needers.length>0));
 }
+const WHEEL_TITLES=[
+  item=>`🎰 Wheel incoming for ${item}!`,
+  item=>`🎲 RNG gods, choose your champion! Prize: ${item}`,
+  item=>`🏆 Who gets the loot tonight? ${item}`,
+  item=>`🔥 Time to spin the wheel! Up for grabs: ${item}`,
+  item=>`🍀 Feeling lucky? ${item} is on the line!`,
+  item=>`⚔️ Let the loot gods decide! ${item}`
+];
+let wheelTitleIndex=Math.floor(Math.random()*WHEEL_TITLES.length);
 function droppedItems(){
   const classes=["All",...ORDER].map(c=>`<button data-c="${c}" class="${c===dropClass?"on":""}">${c}</button>`).join("");
   const q=dropQuery.trim().toLowerCase();
@@ -188,13 +198,14 @@ function droppedItems(){
   if(selected){
     const handles=Object.fromEntries(Object.entries(DISCORD_USERS).map(([n,v])=>[n.toLowerCase(),v]));
     const eligible=selected.needers;
-    const command="/wheel list"+(eligible.length?" "+eligible.map(n=>handles[n.toLowerCase()]||n).join(" "):"");
+    const command="/wheel list"+(eligible.length?" "+eligible.join(" "):"");
+    const discordMessage=WHEEL_TITLES[wheelTitleIndex](selected.name)+"\\n"+eligible.map(n=>handles[n.toLowerCase()]||n).join(" ");
     const unmapped=eligible.filter(n=>!handles[n.toLowerCase()]);
     detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div>
       <div class="group">${eligible.length} ranked member${eligible.length===1?"":"s"} still need this item</div>
       <div class="names">${eligible.length?eligible.map(n=>`<span>${esc(n)}${handles[n.toLowerCase()]?` <small>${esc(handles[n.toLowerCase()])}</small>`:""}</span>`).join(""):`<span>No ranked members currently need this item.</span>`}</div>
-      ${unmapped.length?`<p class="warn">Discord name missing for: ${unmapped.map(esc).join(", ")}. Those names are used as plain text until added to docs/discord-users.json.</p>`:""}
-      <div class="wheel"><code id="wheel-command">${esc(command)}</code><button id="copy-wheel" ${eligible.length?"":"disabled"}>Copy /wheel list</button><span id="copy-status" class="full" aria-live="polite"></span></div></section>`;
+      ${unmapped.length?`<p class="warn">Discord tag missing for: ${unmapped.map(esc).join(", ")}. Add them to docs/discord-users.json for tagging.</p>`:""}
+      <div class="wheel-message" id="discord-message">${esc(discordMessage)}</div><div class="wheel"><button id="copy-discord" ${eligible.length?"":"disabled"}>Copy Discord message</button><button id="new-title">🎲 New title</button></div><div class="wheel"><code id="wheel-command">${esc(command)}</code><button id="copy-wheel" ${eligible.length?"":"disabled"}>Copy /wheel list</button><span id="copy-status" class="full" aria-live="polite"></span></div></section>`;
   }
   return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div></div>
     <div class="count">${items.length} needed items · select an item to see who needs it</div>${detail}${byClass||"<p class='note'>No needed items match.</p>"}
@@ -204,15 +215,20 @@ function wireDroppedItems(){
   const q=document.getElementById("drop-q");q.oninput=e=>{dropQuery=e.target.value;const pos=q.selectionStart;render();const next=document.getElementById("drop-q");next.focus();next.setSelectionRange(pos,pos)};
   document.querySelectorAll(".dropcontrols button").forEach(b=>b.onclick=()=>{dropClass=b.dataset.c;render()});
   document.querySelectorAll(".dropcard").forEach(b=>b.onclick=()=>{selectedDrop=b.dataset.drop;render()});
-  const copy=document.getElementById("copy-wheel");
-  if(copy)copy.onclick=async()=>{
-    const command=document.getElementById("wheel-command").textContent;
-    try{await navigator.clipboard.writeText(command)}catch(e){
-      const box=document.createElement("textarea");box.value=command;document.body.appendChild(box);box.select();
+  async function copyText(value,status){
+    try{await navigator.clipboard.writeText(value)}catch(e){
+      const box=document.createElement("textarea");box.value=value;document.body.appendChild(box);box.select();
       try{document.execCommand("copy")}catch(_){}box.remove();
     }
-    document.getElementById("copy-status").textContent="Copied";
-  };
+    document.getElementById("copy-status").textContent=status;
+  }
+  const copy=document.getElementById("copy-wheel");
+  if(copy)copy.onclick=()=>copyText(document.getElementById("wheel-command").textContent,"Wheel list copied");
+  const discord=document.getElementById("copy-discord");
+  if(discord)discord.onclick=()=>copyText(document.getElementById("discord-message").textContent,"Discord message copied");
+  const newTitle=document.getElementById("new-title");
+  if(newTitle)newTitle.onclick=()=>{wheelTitleIndex=(wheelTitleIndex+1+Math.floor(Math.random()*(WHEEL_TITLES.length-1)))%WHEEL_TITLES.length;render()};
+
 }
 
 function needs(cls){
