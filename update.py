@@ -14,7 +14,7 @@ from urllib.parse import quote
 from datetime import datetime, timezone
 
 GUILD = os.environ.get("GUILD", "Friends")
-EXCLUDED_PLAYERS = {"codename"}  # confirmed former guild members
+EXCLUDED_PLAYERS = {"codename", "exoticalpha"}  # confirmed former guild members
 # The live site's data.json is the previous run's state (lastSeen, carried-over players): the Action
 # deploys to GitHub Pages and no longer commits docs/data.json, so the copy in the repo is only a fallback.
 PUBLISHED = os.environ.get("PUBLISHED_DATA", "https://bernikjaka.github.io/Friends-gear/data.json")
