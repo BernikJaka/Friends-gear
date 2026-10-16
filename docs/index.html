@@ -100,6 +100,7 @@ const ORDER=["Archer","Mage","Knight","Thief"];
 let DATA=null, DISCORD_USERS={}, view=localStorageGet("view")||"Roster";
 let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSort=localStorageGet("rosterSort")||"class:1";
 let dropQuery="", dropClass="All", selectedDrop=null;
+let DROP_SHOW_HIGH=false;
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 let ON=new Set((()=>{try{return JSON.parse(localStorageGet("onGrades"))||[]}catch(e){return []}})());  // visitor override for auto-hidden grades
@@ -164,12 +165,12 @@ function toggleGrade(cls,scope,g){
 }
 
 function allDropItems(){
-  return ORDER.flatMap(cls=>DATA.classes[cls].items.filter(it=>it.grade<60).map(it=>({...it,cls,
-    needers:it.needers.filter(name=>{
+  return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
+    needers:it.grade>55?[]:it.needers.filter(name=>{
       const p=DATA.classes[cls].players.find(x=>x.name===name);
       return p&&p.onRanking!==false;
     })
-  })).filter(it=>it.needers.length>0));
+  })).filter(it=>it.grade>55||it.needers.length>0));
 }
 const WHEEL_TITLES=[
   item=>`🎰 Wheel incoming for ${item}!`,
@@ -183,20 +184,22 @@ let wheelTitleIndex=Math.floor(Math.random()*WHEEL_TITLES.length);
 function droppedItems(){
   const classes=["All",...ORDER].map(c=>`<button data-c="${c}" class="${c===dropClass?"on":""}">${c}</button>`).join("");
   const q=dropQuery.trim().toLowerCase();
-  const items=allDropItems().filter(it=>(dropClass==="All"||it.cls===dropClass)&&
+  const items=allDropItems().filter(it=>(it.grade<=55||DROP_SHOW_HIGH)&&(dropClass==="All"||it.cls===dropClass)&&
     (!q||`${it.name} ${it.label} ${it.group} ${it.cls}`.toLowerCase().includes(q)));
   const card=it=>`<div class="card">
     <button class="dropcard ${selectedDrop===it.cls+":"+it.col?"on":""}" data-drop="${esc(it.cls+":"+it.col)}">
       <div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div>
-      <div class="full">G${it.grade} · ${esc(it.label)}</div></div><span class="cnt">${it.needers.length}</span></div>
+      <div class="full">G${it.grade} · ${esc(it.label)}</div></div>${it.grade>55?`<span class="full">Catalog</span>`:`<span class="cnt">${it.needers.length}</span>`}</div>
     </button></div>`;
   const byClass=(dropClass==="All"?[...ORDER]:[dropClass]).map(cls=>{
     const found=items.filter(it=>it.cls===cls);
-    return found.length?`<div class="group">${cls} · ${found.length} needed items</div><div class="grid">${found.map(card).join("")}</div>`:"";
+    return found.length?`<div class="group">${cls} · ${found.length} items</div><div class="grid">${found.map(card).join("")}</div>`:"";
   }).join("");
-  const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop);
+  const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop&&(it.grade<=55||DROP_SHOW_HIGH));
   let detail="";
-  if(selected){
+  if(selected&&selected.grade>55){
+    detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div><p class="note">Catalog item only — player needs and wheel eligibility are not tracked for G60+ yet.</p></section>`;
+  }else if(selected){
     const handles=Object.fromEntries(Object.entries(DISCORD_USERS).map(([n,v])=>[n.toLowerCase(),v]));
     const eligible=selected.needers;
     const command="/wheel list"+(eligible.length?" "+eligible.join(" "):"");
@@ -208,13 +211,14 @@ function droppedItems(){
       ${unmapped.length?`<p class="warn">Discord tag missing for: ${unmapped.map(esc).join(", ")}. Add them to docs/discord-users.json for tagging.</p>`:""}
       <div class="wheel-message" id="discord-message">${esc(discordMessage)}</div><div class="wheel"><button id="copy-discord" ${eligible.length?"":"disabled"}>Copy Discord message</button><button id="new-title">🎲 New title</button></div><div class="wheel"><code id="wheel-command">${esc(command)}</code><button id="copy-wheel" ${eligible.length?"":"disabled"}>Copy /wheel list</button><span id="copy-status" class="full" aria-live="polite"></span></div></section>`;
   }
-  return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div></div>
-    <div class="count">${items.length} needed items · select an item to see who needs it</div>${detail}${byClass||"<p class='note'>No needed items match.</p>"}
+  return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div><div class="classbtns"><button id="drop-high" class="${DROP_SHOW_HIGH?"on":""}">${DROP_SHOW_HIGH?"Hide G60+ gear":"Show G60+ gear"}</button></div></div>
+    <div class="count">${items.length} items · select an item for details</div>${detail}${byClass||"<p class='note'>No needed items match.</p>"}
     <p class="note">This list follows the server’s drop tables. New gear will appear here as it is added to the drop tables.</p>`;
 }
 function wireDroppedItems(){
   const q=document.getElementById("drop-q");q.oninput=e=>{dropQuery=e.target.value;const pos=q.selectionStart;render();const next=document.getElementById("drop-q");next.focus();next.setSelectionRange(pos,pos)};
-  document.querySelectorAll(".dropcontrols button").forEach(b=>b.onclick=()=>{dropClass=b.dataset.c;render()});
+  document.querySelectorAll(".dropcontrols button[data-c]").forEach(b=>b.onclick=()=>{dropClass=b.dataset.c;render()});
+  document.getElementById("drop-high").onclick=()=>{DROP_SHOW_HIGH=!DROP_SHOW_HIGH;if(!DROP_SHOW_HIGH&&selectedDrop){const it=allDropItems().find(x=>x.cls+":"+x.col===selectedDrop);if(it&&it.grade>55)selectedDrop=null;}render()};
   document.querySelectorAll(".dropcard").forEach(b=>b.onclick=()=>{selectedDrop=b.dataset.drop;render()});
   async function copyText(value,status){
     try{await navigator.clipboard.writeText(value)}catch(e){
