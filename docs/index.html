@@ -101,6 +101,7 @@ let DATA=null, DISCORD_USERS={}, view=localStorageGet("view")||"Roster";
 let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSort=localStorageGet("rosterSort")||"class:1";
 let dropQuery="", dropClass="All", selectedDrop=null;
 let DROP_SHOW_HIGH=false;
+let G62_WATCH=null;
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 let ON=new Set((()=>{try{return JSON.parse(localStorageGet("onGrades"))||[]}catch(e){return []}})());  // visitor override for auto-hidden grades
@@ -127,7 +128,8 @@ Promise.all([jsonFile("data.json"),settings,
       .filter(g=>scoped.filter(it=>it.grade===g).every(it=>it.needers.length===0))
       .map(g=>gradeKey(c,scope,g));
   })));
-  render()}).catch(error=>{
+  render();jsonFile("g62-watch.json").then(w=>{G62_WATCH=w;render()}).catch(()=>{});
+}).catch(error=>{
   console.error("Friends gear site failed to load or render",error);
   document.getElementById("meta").textContent="Could not load the site: "+(error?.message||String(error));
 });
@@ -184,6 +186,13 @@ const WHEEL_TITLES=[
   item=>`⚔️ Let the loot gods decide! ${item}`
 ];
 let wheelTitleIndex=Math.floor(Math.random()*WHEEL_TITLES.length);
+function g62WatchPanel(){
+  if(!G62_WATCH)return '<section class="selected"><div class="group">G62 weapon watch · Top 300</div><p class="note">Waiting for the first ranking scan.</p></section>';
+  const current=G62_WATCH.current||[];
+  const history=G62_WATCH.history||[];
+  const rows=current.map(x=>{const first=history.find(h=>h.name.toLowerCase()===x.name.toLowerCase()&&h.weapon.toLowerCase()===x.weapon.toLowerCase());return '<div class="card"><div class="lbl">'+esc(x.name)+' · '+esc(x.weapon)+'</div><div class="full">'+esc(x.guild)+' · First detected: '+esc(first?.firstSeen||'unknown')+'</div></div>'}).join('');
+  return '<section class="selected"><div class="group">G62 weapon watch · Top 300</div><p class="note">Last scan: '+esc(G62_WATCH.checkedAt||'unknown')+' UTC · '+esc(G62_WATCH.playersChecked||0)+' profiles checked. Detection time is not equip time.</p>'+(rows?'<div class="grid">'+rows+'</div>':'<p class="note">No G62 weapons detected as equipped in the latest scan.</p>')+'</section>';
+}
 function droppedItems(){
   const classes=["All",...ORDER].map(c=>`<button data-c="${c}" class="${c===dropClass?"on":""}">${c}</button>`).join("");
   const q=dropQuery.trim().toLowerCase();
@@ -215,7 +224,7 @@ function droppedItems(){
       <div class="wheel-message" id="discord-message">${esc(discordMessage)}</div><div class="wheel"><button id="copy-discord" ${eligible.length?"":"disabled"}>Copy Discord message</button><button id="new-title">🎲 New title</button></div><div class="wheel"><code id="wheel-command">${esc(command)}</code><button id="copy-wheel" ${eligible.length?"":"disabled"}>Copy /wheel list</button><span id="copy-status" class="full" aria-live="polite"></span></div></section>`;
   }
   return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div><div class="classbtns"><button id="drop-high" class="${DROP_SHOW_HIGH?"on":""}">${DROP_SHOW_HIGH?"Hide G60+ gear":"Show G60+ gear"}</button></div></div>
-    <div class="count">${items.length} items · select an item for details</div>${detail}${byClass||"<p class='note'>No needed items match.</p>"}
+    <div class="count">${items.length} items · select an item for details</div>${g62WatchPanel()}${detail}${byClass||"<p class='note'>No needed items match.</p>"}
     <p class="note">This list follows the server’s drop tables. New gear will appear here as it is added to the drop tables.</p>`;
 }
 function wireDroppedItems(){
