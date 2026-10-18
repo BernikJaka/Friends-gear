@@ -30,6 +30,8 @@ jobs:
           python-version: "3.12"
       - name: Build data.json
         run: python update.py     # reads the live site's data.json as the previous state
+      - name: Check top 300 for G62 weapons
+        run: python watch_g62.py
       - uses: actions/upload-pages-artifact@v4
         with:
           path: docs
