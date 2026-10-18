@@ -154,9 +154,9 @@ function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
 function gradeIsOff(cls,scope,g){
   const key=gradeKey(cls,scope,g);
   if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
-  if(HIDDEN.has(g))return true;
+  if(HIDDEN.has(g)&&!(g===60&&scope==="armor"))return true;
   if(ON.has(cls+":"+g))return false;
-  return OFF.has(g)||AUTO_OFF.has(key);
+  return OFF.has(g)||(g===60&&scope==="armor"?false:AUTO_OFF.has(key));
 }
 function toggleGrade(cls,scope,g){
   const key=gradeKey(cls,scope,g);
@@ -165,13 +165,14 @@ function toggleGrade(cls,scope,g){
 }
 
 function defaultG60Drop(it){return it.grade===60&&["helmet","gloves","boots"].includes(it.slot)}
+function trackedItem(it){return it.grade<=55||defaultG60Drop(it)}
 function allDropItems(){
   return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
-    needers:it.grade>55?[]:it.needers.filter(name=>{
+    needers:!trackedItem(it)?[]:it.needers.filter(name=>{
       const p=DATA.classes[cls].players.find(x=>x.name===name);
       return p&&p.onRanking!==false;
     })
-  })).filter(it=>it.grade>55||it.needers.length>0));
+  })).filter(it=>!trackedItem(it)||it.needers.length>0));
 }
 const WHEEL_TITLES=[
   item=>`🎰 Wheel incoming for ${item}!`,
@@ -190,7 +191,7 @@ function droppedItems(){
   const card=it=>`<div class="card">
     <button class="dropcard ${selectedDrop===it.cls+":"+it.col?"on":""}" data-drop="${esc(it.cls+":"+it.col)}">
       <div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div>
-      <div class="full">G${it.grade} · ${esc(it.label)}</div></div>${it.grade>55?`<span class="full">Catalog</span>`:`<span class="cnt">${it.needers.length}</span>`}</div>
+      <div class="full">G${it.grade} · ${esc(it.label)}</div></div>${!trackedItem(it)?`<span class="full">Catalog</span>`:`<span class="cnt">${it.needers.length}</span>`}</div>
     </button></div>`;
   const byClass=(dropClass==="All"?[...ORDER]:[dropClass]).map(cls=>{
     const found=items.filter(it=>it.cls===cls);
@@ -198,7 +199,7 @@ function droppedItems(){
   }).join("");
   const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop&&(it.grade<=55||defaultG60Drop(it)||DROP_SHOW_HIGH));
   let detail="";
-  if(selected&&selected.grade>55){
+  if(selected&&!trackedItem(selected)){
     detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div><p class="note">Catalog item only — player needs and wheel eligibility are not tracked for G60+ yet.</p></section>`;
   }else if(selected){
     const handles=Object.fromEntries(Object.entries(DISCORD_USERS).map(([n,v])=>[n.toLowerCase(),v]));
@@ -278,7 +279,7 @@ function rosterRows(){
     if(rosterClass!=="All"&&c!==rosterClass) continue;
     const grade=Object.fromEntries(DATA.classes[c].items.map(it=>[it.col,it.grade]));
     for(const p of DATA.classes[c].players)
-      if(!q||p.name.toLowerCase().includes(q)) list.push({p,c,missing:p.needs.filter(col=>!HIDDEN.has(grade[col])).length});
+      if(!q||p.name.toLowerCase().includes(q)) list.push({p,c,missing:p.needs.filter(col=>{const it=DATA.classes[c].items.find(x=>x.col===col);return it&&trackedItem(it)}).length});
   }
   const [key,d]=sortState(), dir=+d;
   const prog=x=>x.p.progress??-1;
@@ -326,7 +327,7 @@ function refreshRoster(){
 function showPlayerNeeds(cls,name){
   const player=DATA.classes[cls].players.find(p=>p.name===name);
   if(!player)return;
-  const items=DATA.classes[cls].items.filter(it=>player.needs.includes(it.col)&&!HIDDEN.has(it.grade));
+  const items=DATA.classes[cls].items.filter(it=>player.needs.includes(it.col)&&trackedItem(it));
   const body=player.source==="waiting"?`<p class="note">Waiting for game data; this player's needs are not known yet.</p>`:
     items.length?`<div class="grid">${items.map(it=>`<div class="card"><div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div><div class="full">G${it.grade} · ${esc(it.label)}</div></div></div></div>`).join("")}</div>`:
     `<p class="note">No visible tracked items needed.</p>`;
