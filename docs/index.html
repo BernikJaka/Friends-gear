@@ -153,6 +153,7 @@ function itemScope(it){return it.slot.startsWith("weapon_")?"weapons":"armor"}
 function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
 function gradeIsOff(cls,scope,g){
   const key=gradeKey(cls,scope,g);
+  if(g===60&&scope==="armor")return false;
   if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
   if(HIDDEN.has(g)&&!(g===60&&scope==="armor"))return true;
   if(ON.has(cls+":"+g))return false;
@@ -243,7 +244,7 @@ function needs(cls){
   const byName=Object.fromEntries(DATA.classes[cls].players.map(p=>[p.name,p]));
   let html="";
   for(const [scope,title] of [["armor","Armor & shields"],["weapons","Weapons"]]){
-    const scoped=items.filter(it=>itemScope(it)===scope);
+    const scoped=items.filter(it=>itemScope(it)===scope&&(it.grade!==60||defaultG60Drop(it)));
     if(!scoped.length)continue;
     const grades=[...new Set(scoped.map(it=>it.grade))].sort((a,b)=>a-b);
     html+=`<div class="grade-scope"><div class="grade-scope-title">${title}</div><div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(cls,scope,g)?"off":""}" data-c="${esc(cls)}" data-scope="${scope}" data-g="${g}">G${g}</button>`).join("")}</div></div>`;
