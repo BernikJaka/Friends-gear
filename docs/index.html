@@ -153,11 +153,11 @@ function itemScope(it){return it.slot.startsWith("weapon_")?"weapons":"armor"}
 function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
 function gradeIsOff(cls,scope,g){
   const key=gradeKey(cls,scope,g);
-  if(g===60&&scope==="armor")return false;
+  if((g===60&&scope==="armor")||(g===62&&scope==="weapons"))return false;
   if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
   if(HIDDEN.has(g)&&!(g===60&&scope==="armor"))return true;
   if(ON.has(cls+":"+g))return false;
-  return OFF.has(g)||(g===60&&scope==="armor"?false:AUTO_OFF.has(key));
+  return OFF.has(g)||((g===60&&scope==="armor")||(g===62&&scope==="weapons")?false:AUTO_OFF.has(key));
 }
 function toggleGrade(cls,scope,g){
   const key=gradeKey(cls,scope,g);
@@ -166,7 +166,7 @@ function toggleGrade(cls,scope,g){
 }
 
 function defaultG60Drop(it){return it.grade===60&&["helmet","gloves","boots"].includes(it.slot)}
-function trackedItem(it){return it.grade<=55||defaultG60Drop(it)}
+function trackedItem(it){return it.grade<=55||defaultG60Drop(it)||(it.grade===62&&it.slot.startsWith("weapon_"))}
 function allDropItems(){
   return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
     needers:!trackedItem(it)?[]:it.needers.filter(name=>{
@@ -187,7 +187,7 @@ let wheelTitleIndex=Math.floor(Math.random()*WHEEL_TITLES.length);
 function droppedItems(){
   const classes=["All",...ORDER].map(c=>`<button data-c="${c}" class="${c===dropClass?"on":""}">${c}</button>`).join("");
   const q=dropQuery.trim().toLowerCase();
-  const items=allDropItems().filter(it=>(it.grade<=55||defaultG60Drop(it)||DROP_SHOW_HIGH)&&(dropClass==="All"||it.cls===dropClass)&&
+  const items=allDropItems().filter(it=>(trackedItem(it)||DROP_SHOW_HIGH)&&(dropClass==="All"||it.cls===dropClass)&&
     (!q||`${it.name} ${it.label} ${it.group} ${it.cls}`.toLowerCase().includes(q)));
   const card=it=>`<div class="card">
     <button class="dropcard ${selectedDrop===it.cls+":"+it.col?"on":""}" data-drop="${esc(it.cls+":"+it.col)}">
@@ -198,7 +198,7 @@ function droppedItems(){
     const found=items.filter(it=>it.cls===cls);
     return found.length?`<div class="group">${cls} · ${found.length} items</div><div class="grid">${found.map(card).join("")}</div>`:"";
   }).join("");
-  const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop&&(it.grade<=55||defaultG60Drop(it)||DROP_SHOW_HIGH));
+  const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop&&(trackedItem(it)||DROP_SHOW_HIGH));
   let detail="";
   if(selected&&!trackedItem(selected)){
     detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div><p class="note">Catalog item only — player needs and wheel eligibility are not tracked for G60+ yet.</p></section>`;
@@ -221,7 +221,7 @@ function droppedItems(){
 function wireDroppedItems(){
   const q=document.getElementById("drop-q");q.oninput=e=>{dropQuery=e.target.value;const pos=q.selectionStart;render();const next=document.getElementById("drop-q");next.focus();next.setSelectionRange(pos,pos)};
   document.querySelectorAll(".dropcontrols button[data-c]").forEach(b=>b.onclick=()=>{dropClass=b.dataset.c;render()});
-  document.getElementById("drop-high").onclick=()=>{DROP_SHOW_HIGH=!DROP_SHOW_HIGH;if(!DROP_SHOW_HIGH&&selectedDrop){const it=allDropItems().find(x=>x.cls+":"+x.col===selectedDrop);if(it&&it.grade>55&&!defaultG60Drop(it))selectedDrop=null;}render()};
+  document.getElementById("drop-high").onclick=()=>{DROP_SHOW_HIGH=!DROP_SHOW_HIGH;if(!DROP_SHOW_HIGH&&selectedDrop){const it=allDropItems().find(x=>x.cls+":"+x.col===selectedDrop);if(it&&!trackedItem(it))selectedDrop=null;}render()};
   document.querySelectorAll(".dropcard").forEach(b=>b.onclick=()=>{selectedDrop=b.dataset.drop;render()});
   async function copyText(value,status){
     try{await navigator.clipboard.writeText(value)}catch(e){
