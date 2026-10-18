@@ -187,11 +187,14 @@ const WHEEL_TITLES=[
 ];
 let wheelTitleIndex=Math.floor(Math.random()*WHEEL_TITLES.length);
 function g62WatchPanel(){
-  if(!G62_WATCH)return '<section class="selected"><div class="group">G62 weapon watch · Top 300</div><p class="note">Waiting for the first ranking scan.</p></section>';
+  if(!G62_WATCH)return '<p class="note">G62 weapon watch (top 300): Waiting for first scan.</p>';
   const current=G62_WATCH.current||[];
   const history=G62_WATCH.history||[];
-  const rows=current.map(x=>{const first=history.find(h=>h.name.toLowerCase()===x.name.toLowerCase()&&h.weapon.toLowerCase()===x.weapon.toLowerCase());return '<div class="card"><div class="lbl">'+esc(x.name)+' · '+esc(x.weapon)+'</div><div class="full">'+esc(x.guild)+' · First detected: '+esc(first?.firstSeen||'unknown')+'</div></div>'}).join('');
-  return '<section class="selected"><div class="group">G62 weapon watch · Top 300</div><p class="note">Last scan: '+esc(G62_WATCH.checkedAt||'unknown')+' UTC · '+esc(G62_WATCH.playersChecked||0)+' profiles checked. Detection time is not equip time.</p>'+(rows?'<div class="grid">'+rows+'</div>':'<p class="note">No G62 weapons detected as equipped in the latest scan.</p>')+'</section>';
+  const rows=current.map(x=>{
+    const first=history.find(h=>h.name.toLowerCase()===x.name.toLowerCase()&&h.weapon.toLowerCase()===x.weapon.toLowerCase());
+    return '<p class="note">'+esc(x.name)+' ('+esc(x.guild)+') · '+esc(x.weapon)+' · First detected: '+esc(first?.firstSeen||'unknown')+'</p>';
+  }).join('');
+  return '<p class="note">G62 weapon watch · Top 300 · Last scan: '+esc(G62_WATCH.checkedAt||'unknown')+' UTC · '+esc(G62_WATCH.playersChecked||0)+' profiles checked. '+(current.length?current.length+' equipped weapon(s) detected.':'No equipped G62 weapons detected.')+'</p>'+rows;
 }
 function droppedItems(){
   const classes=["All",...ORDER].map(c=>`<button data-c="${c}" class="${c===dropClass?"on":""}">${c}</button>`).join("");
@@ -224,8 +227,8 @@ function droppedItems(){
       <div class="wheel-message" id="discord-message">${esc(discordMessage)}</div><div class="wheel"><button id="copy-discord" ${eligible.length?"":"disabled"}>Copy Discord message</button><button id="new-title">🎲 New title</button></div><div class="wheel"><code id="wheel-command">${esc(command)}</code><button id="copy-wheel" ${eligible.length?"":"disabled"}>Copy /wheel list</button><span id="copy-status" class="full" aria-live="polite"></span></div></section>`;
   }
   return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div><div class="classbtns"><button id="drop-high" class="${DROP_SHOW_HIGH?"on":""}">${DROP_SHOW_HIGH?"Hide G60+ gear":"Show G60+ gear"}</button></div></div>
-    <div class="count">${items.length} items · select an item for details</div>${g62WatchPanel()}${detail}${byClass||"<p class='note'>No needed items match.</p>"}
-    <p class="note">This list follows the server’s drop tables. New gear will appear here as it is added to the drop tables.</p>`;
+    <div class="count">${items.length} items · select an item for details</div>${detail}${byClass||"<p class='note'>No needed items match.</p>"}
+    <p class="note">This list follows the server’s drop tables. New gear will appear here as it is added to the drop tables.</p>${g62WatchPanel()}`;
 }
 function wireDroppedItems(){
   const q=document.getElementById("drop-q");q.oninput=e=>{dropQuery=e.target.value;const pos=q.selectionStart;render();const next=document.getElementById("drop-q");next.focus();next.setSelectionRange(pos,pos)};
