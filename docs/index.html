@@ -153,7 +153,7 @@ function itemScope(it){return it.slot.startsWith("weapon_")?"weapons":"armor"}
 function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
 function gradeIsOff(cls,scope,g){
   const key=gradeKey(cls,scope,g);
-  if((g===60&&scope==="armor")||(g===62&&scope==="weapons"))return false;
+  if((g===60&&scope==="armor"))return false;
   if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
   if(HIDDEN.has(g)&&!(g===60&&scope==="armor"))return true;
   if(ON.has(cls+":"+g))return false;
@@ -166,7 +166,7 @@ function toggleGrade(cls,scope,g){
 }
 
 function defaultG60Drop(it){return it.grade===60&&["helmet","gloves","boots"].includes(it.slot)}
-function trackedItem(it){return it.grade<=55||defaultG60Drop(it)||(it.grade===62&&it.slot.startsWith("weapon_"))}
+function trackedItem(it){return it.grade<=55||defaultG60Drop(it)}
 function allDropItems(){
   return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
     needers:!trackedItem(it)?[]:it.needers.filter(name=>{
