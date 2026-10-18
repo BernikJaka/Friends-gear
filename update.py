@@ -198,7 +198,8 @@ def needs_from_gear(cls, owned, specialty=None):
         elif specialty == "Vagabond" or "weapon_2hsword" in owned:
             excluded_slots.update(("weapon_1hsword", "shield"))
     return [e["col"] for e in CATALOG[cls]
-            if e["grade"] > owned.get(e["slot"], 0) and e["slot"] not in excluded_slots]
+            if (e["grade"] <= 55 or (e["grade"] == 60 and e["slot"] in ("helmet", "gloves", "boots")))
+            and e["grade"] > owned.get(e["slot"], 0) and e["slot"] not in excluded_slots]
 
 
 def main():
