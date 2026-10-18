@@ -244,12 +244,12 @@ function needs(cls){
   const byName=Object.fromEntries(DATA.classes[cls].players.map(p=>[p.name,p]));
   let html="";
   for(const [scope,title] of [["armor","Armor & shields"],["weapons","Weapons"]]){
-    const scoped=items.filter(it=>itemScope(it)===scope&&(it.grade!==60||defaultG60Drop(it)));
+    const scoped=items.filter(it=>itemScope(it)===scope);
     if(!scoped.length)continue;
     const grades=[...new Set(scoped.map(it=>it.grade))].sort((a,b)=>a-b);
     html+=`<div class="grade-scope"><div class="grade-scope-title">${title}</div><div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(cls,scope,g)?"off":""}" data-c="${esc(cls)}" data-scope="${scope}" data-g="${g}">G${g}</button>`).join("")}</div></div>`;
     let group=null;
-    for(const it of scoped.filter(it=>!gradeIsOff(cls,scope,it.grade) && !(cls==="Knight" && ((it.slot==="weapon_1hsword" && it.grade===59)||(it.slot==="shield" && it.grade===55)) && it.needers.length===0))){
+    for(const it of scoped.filter(it=>!gradeIsOff(cls,scope,it.grade) && (it.needers.length>0 || (!trackedItem(it) && it.grade!==60)))){
     if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
     const n=it.needers.length;
     html+=`<div class="card ${n?"":"empty"}">
