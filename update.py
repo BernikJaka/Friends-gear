@@ -29,6 +29,13 @@ SPECIALTY = {
     # Thief 7/11 are deliberately swapped: the Eclipse Kal rankings mix up Hitman and I.Swordsman
     3: {1: "Wandering Thief", 3: "Thief Guild member", 7: "Hitman", 11: "I.Swordsman", 15: "Two Job Thief"},
 }
+# Confirmed corrections from the in-game rankings; these take precedence over API code mappings.
+SPECIALTY_OVERRIDES = {
+    "roki": "Hermit",
+    "holycjb": "C.J.B",
+    "dinkler": "Commander",
+    "pringles": "Commander",
+}
 HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(HERE, "docs")
 EXP_TABLE_FILE = os.path.join(DOCS, "exp-table.json")
@@ -236,7 +243,8 @@ def main():
         roster[CLASSES[c]].append({
             "name": p["name"], "level": p.get("level"), "exp": p.get("exp"),
             "progress": round(float(exp_pct), 2) if exp_pct is not None else old.get("progress"),
-            "specialty": (SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0))
+            "specialty": (SPECIALTY_OVERRIDES.get(str(p.get("name", "")).lower())
+                          or SPECIALTY.get(c, {}).get(int(p.get("specialty") or 0))
                           or profile_player.get("specialty") or old.get("specialty") or CLASSES[c]),
             "gear": live_gear if live_gear is not None else old.get("gear"),
             "onRanking": True, "lastSeen": now})
