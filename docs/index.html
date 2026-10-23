@@ -213,7 +213,7 @@ function droppedItems(){
   const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop&&(trackedItem(it)||DROP_SHOW_HIGH));
   let detail="";
   if(selected&&!trackedItem(selected)){
-    detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div><p class="note">Catalog item only — player needs and wheel eligibility are not tracked for G60+ yet.</p></section>`;
+    detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div><p class="note">This catalog item is not in the currently tracked drop groups, so player needs and wheel eligibility are not tracked for it yet.</p></section>`;
   }else if(selected){
     const handles=Object.fromEntries(Object.entries(DISCORD_USERS).map(([n,v])=>[n.toLowerCase(),v]));
     const eligible=selected.needers;
