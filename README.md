@@ -65,7 +65,7 @@ Grades in this list are hidden for every visitor: no item cards, no toggle butto
 they don't count in **Missing** on the Roster tab. The script still tracks all grades,
 so nothing is lost while a grade is hidden.
 
-To **unhide a grade** (for example when the guild starts farming G60), open
+To **unhide a hidden grade** (for example G65), open
 `docs/settings.json` on GitHub, click the pencil icon, remove the number from the list
 and click **Commit changes**:
 
