@@ -155,11 +155,10 @@ function itemScope(it){return it.slot.startsWith("weapon_")?"weapons":"armor"}
 function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
 function gradeIsOff(cls,scope,g){
   const key=gradeKey(cls,scope,g);
-  if((g===60&&scope==="armor"))return false;
+  if(HIDDEN.has(g))return true;
   if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
-  if(HIDDEN.has(g)&&!(g===60&&scope==="armor"))return true;
   if(ON.has(cls+":"+g))return false;
-  return OFF.has(g)||((g===60&&scope==="armor")||(g===62&&scope==="weapons")?false:AUTO_OFF.has(key));
+  return OFF.has(g)||AUTO_OFF.has(key);
 }
 function toggleGrade(cls,scope,g){
   const key=gradeKey(cls,scope,g);
@@ -167,8 +166,9 @@ function toggleGrade(cls,scope,g){
   localStorageSet("gradePrefs",JSON.stringify(GRADE_PREFS));
 }
 
-function defaultG60Drop(it){return it.grade===60&&["helmet","gloves","boots"].includes(it.slot)}
-function trackedItem(it){return it.grade<=55||defaultG60Drop(it)}
+function defaultG60Drop(it){return it.grade===60&&["helmet","chest","gloves","shorts","boots"].includes(it.slot)}
+function defaultG62Weapon(it){return it.grade===62&&it.slot.startsWith("weapon_")}
+function trackedItem(it){return it.grade<=55||defaultG60Drop(it)||defaultG62Weapon(it)}
 function allDropItems(){
   return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
     needers:!trackedItem(it)?[]:it.needers.filter(name=>{
