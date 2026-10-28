@@ -113,7 +113,7 @@ function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 const isOff=p=>p&&p.onRanking===false;   // dropped off the ranking, kept with last known data: greyed out
 const seenTime=p=>p.lastSeen?new Date(p.lastSeen).toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"}):"unknown";
 const seenText=p=>`last seen on ranking: ${seenTime(p)}`;
-const NEED_GRACE_MS=48*60*60*1000;
+const NEED_GRACE_MS=5*24*60*60*1000;
 const eligibleForDrops=p=>{
   if(!p)return false;
   if(p.onRanking!==false)return true;
