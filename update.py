@@ -207,7 +207,9 @@ def needs_from_gear(cls, owned, specialty=None):
     return [e["col"] for e in CATALOG[cls]
             if (e["grade"] <= 55
                 or (e["grade"] == 60 and e["slot"] in ("helmet", "chest", "gloves", "shorts", "boots"))
-                or (e["grade"] == 62 and e["slot"].startswith("weapon_")))
+                or (e["grade"] == 62 and e["slot"].startswith("weapon_"))
+                or (e["grade"] == 65 and (e["slot"] in ("helmet", "gloves", "boots")
+                                          or e["slot"].startswith("weapon_"))))
             and e["grade"] > owned.get(e["slot"], 0) and e["slot"] not in excluded_slots]
 
 
