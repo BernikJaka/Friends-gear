@@ -75,7 +75,7 @@ Each visitor can also turn visible grades off just for themselves with the grade
 Open **Dropped items**, search or filter by class, then select the item that dropped. The
 site lists ranked guild members who still need that slot and grade, and creates a copyable
 `/wheel list ...` command. The list uses current gear from the rankings profiles; members
-who are currently off the level ranking are excluded because their gear may be stale.
+who drop off the level ranking stay eligible for up to 48 hours after their last seen time, then disappear from item need lists and wheel candidates.
 
 Discord names are kept in `docs/discord-users.json`, keyed by the exact in-game name. For
 example:
