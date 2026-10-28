@@ -89,7 +89,7 @@ example:
 
 Add or update entries and commit the file. Until a Discord name is added, the command uses
 that player's in-game name as plain text and the tab identifies the missing mappings.
-The tab tracks G50–G59 gear, G60 armor, G62 weapons, and G65 helmets, gloves, boots, and weapons. Other higher-grade catalog items remain catalog-only until their drop groups are added.
+The tab tracks G50–G59 gear, G60 armor, G62 weapons, and G65 helmets, gloves, boots, and weapons. G65 Knight shields are tracked for Commanders. Other higher-grade catalog items remain catalog-only until their drop groups are added.
 Items with no current needers are omitted. In each class tab, armor and shields and weapons have
 separate grade controls. A grade with no needers in that class and category is dimmed by default;
 each visitor can turn it back on or save their own choices for that category.
