@@ -58,6 +58,6 @@ private KalOnline server (https://www.eclipsekal.com).
 - `docs/settings.json` uses `hiddenItems` entries in `Class:col` form for item-level global hiding. Hidden catalog items are excluded from updater needs, item cards, roster Missing totals, player needs overlays and Dropped items. Removing an entry activates that item without unhiding the whole grade.
 - Dropped items omits items with no current ranked needers and groups the remaining cards by class.
 - Armor/shield and weapon grade buttons are separate within each class. A class/category/grade defaults to dimmed when no ranked member needs any item in that category and grade; visitors can override and save each choice locally.
-- Only players currently on the level ranking are selectable because carried-over gear is stale.
+- Players who drop off the level ranking remain in item need lists and wheel eligibility for 48 hours after `lastSeen`; after that they are excluded from item cards and Dropped items. Their grey roster rows remain.
 - Add Discord names to `docs/discord-users.json`, keyed by exact in-game name. Unmapped users
   appear as plain in-game names in the generated command.
