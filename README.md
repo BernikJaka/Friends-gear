@@ -58,19 +58,19 @@ Open the failed run in the Actions tab and read the red step. Most likely causes
 `docs/settings.json` decides which grades the website shows to everyone:
 
 ```json
-{"hiddenGrades": [65, 70]}
+{"hiddenGrades": []}
 ```
 
 Grades in this list are hidden for every visitor: no item cards, no toggle button, and
 they don't count in **Missing** on the Roster tab. The script still tracks all grades,
 so nothing is lost while a grade is hidden.
 
-To **unhide a hidden grade** (for example G65), open
+To **unhide a hidden grade** (for example G70), open
 `docs/settings.json` on GitHub, click the pencil icon, remove the number from the list
 and click **Commit changes**:
 
 ```json
-{"hiddenGrades": [70]}
+{"hiddenGrades": []}
 ```
 
 To show every grade, use an empty list: `{"hiddenGrades": []}`. The site updates within
@@ -100,7 +100,7 @@ example:
 
 Add or update entries and commit the file. Until a Discord name is added, the command uses
 that player's in-game name as plain text and the tab identifies the missing mappings.
-The tab tracks G50–G59 gear, G60 armor (including chest and shorts), and G62 weapons. Other higher-grade catalog items remain catalog-only until their drop groups are added.
+The tab tracks G50–G59 gear, G60 armor, G62 weapons, and G65 helmets, gloves, boots, and weapons. Other higher-grade catalog items remain catalog-only until their drop groups are added.
 Items with no current needers are omitted. In each class tab, armor and shields and weapons have
 separate grade controls. A grade with no needers in that class and category is dimmed by default;
 each visitor can turn it back on or save their own choices for that category.
