@@ -55,6 +55,7 @@ private KalOnline server (https://www.eclipsekal.com).
 ## Dropped items and Discord names
 - The Dropped items tab combines catalog items and current needers to produce `/wheel list ...`.
 - The Dropped items tab tracks G50–G59 gear, G60 armor, G62 weapons, and G65 helmets, gloves, boots, and weapons; other higher-grade catalog items remain catalog-only until added to tracked drops.
+- `docs/settings.json` uses `hiddenItems` entries in `Class:col` form for item-level global hiding. Hidden catalog items are excluded from updater needs, item cards, roster Missing totals, player needs overlays and Dropped items. Removing an entry activates that item without unhiding the whole grade.
 - Dropped items omits items with no current ranked needers and groups the remaining cards by class.
 - Armor/shield and weapon grade buttons are separate within each class. A class/category/grade defaults to dimmed when no ranked member needs any item in that category and grade; visitors can override and save each choice locally.
 - Only players currently on the level ranking are selectable because carried-over gear is stale.
