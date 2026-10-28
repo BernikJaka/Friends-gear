@@ -174,7 +174,7 @@ function defaultG65Drop(it){return it.grade===65&&(["helmet","chest","gloves","s
 function trackedItem(it,cls=it.cls){return !hiddenItem(it,cls)&&(it.grade<=55||defaultG60Drop(it)||defaultG62Weapon(it)||defaultG65Drop(it))}
 function allDropItems(){
   return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
-    needers:!trackedItem(it)?[]:it.needers.filter(name=>{
+    needers:!trackedItem(it,cls)?[]:it.needers.filter(name=>{
       const p=DATA.classes[cls].players.find(x=>x.name===name);
       return p&&p.onRanking!==false;
     })
