@@ -34,7 +34,7 @@ SPECIALTY_OVERRIDES = {
     "roki": "Hermit",
     "holycjb": "C.J.B",
     "dinkler": "Commander",
-    "pringles": "Vagabond",
+    "pringles": "Commander",
     "rendleas": "Vagabond",
 }
 HERE = os.path.dirname(os.path.abspath(__file__))
