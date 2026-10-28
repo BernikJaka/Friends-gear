@@ -103,6 +103,7 @@ let dropQuery="", dropClass="All", selectedDrop=null;
 let DROP_SHOW_HIGH=false;
 let G62_WATCH=null;
 let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
+let HIDDEN_ITEMS=new Set(); // individually hidden catalog items (Class:col)
 let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
 let ON=new Set((()=>{try{return JSON.parse(localStorageGet("onGrades"))||[]}catch(e){return []}})());  // visitor override for auto-hidden grades
 let GRADE_PREFS=(()=>{try{return JSON.parse(localStorageGet("gradePrefs"))||{}}catch(e){return {}}})();
@@ -121,7 +122,7 @@ const jsonFile=path=>fetch(path+"?"+Date.now()).then(r=>{
 const settings=jsonFile("settings.json").catch(()=>({}));
 Promise.all([jsonFile("data.json"),settings,
   jsonFile("discord-users.json").catch(()=>({}))]).then(([d,s,users])=>{
-  HIDDEN=new Set(s.hiddenGrades||[]);DATA=d;DISCORD_USERS=users;
+  HIDDEN=new Set(s.hiddenGrades||[]);HIDDEN_ITEMS=new Set(s.hiddenItems||[]);DATA=d;DISCORD_USERS=users;
   AUTO_OFF=new Set(ORDER.flatMap(c=>["armor","weapons"].flatMap(scope=>{
     const scoped=DATA.classes[c].items.filter(it=>itemScope(it)===scope);
     return [...new Set(scoped.map(it=>it.grade))]
@@ -152,6 +153,7 @@ function render(){
 }
 
 function itemScope(it){return it.slot.startsWith("weapon_")?"weapons":"armor"}
+function hiddenItem(it,cls=it.cls){return HIDDEN_ITEMS.has(cls+":"+it.col)}
 function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
 function gradeIsOff(cls,scope,g){
   const key=gradeKey(cls,scope,g);
@@ -168,15 +170,15 @@ function toggleGrade(cls,scope,g){
 
 function defaultG60Drop(it){return it.grade===60&&["helmet","chest","gloves","shorts","boots"].includes(it.slot)}
 function defaultG62Weapon(it){return it.grade===62&&it.slot.startsWith("weapon_")}
-function defaultG65Drop(it){return it.grade===65&&(["helmet","gloves","boots"].includes(it.slot)||it.slot.startsWith("weapon_"))}
-function trackedItem(it){return it.grade<=55||defaultG60Drop(it)||defaultG62Weapon(it)||defaultG65Drop(it)}
+function defaultG65Drop(it){return it.grade===65&&(["helmet","chest","gloves","shorts","boots"].includes(it.slot)||it.slot.startsWith("weapon_"))}
+function trackedItem(it,cls=it.cls){return !hiddenItem(it,cls)&&(it.grade<=55||defaultG60Drop(it)||defaultG62Weapon(it)||defaultG65Drop(it))}
 function allDropItems(){
   return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
     needers:!trackedItem(it)?[]:it.needers.filter(name=>{
       const p=DATA.classes[cls].players.find(x=>x.name===name);
       return p&&p.onRanking!==false;
     })
-  })).filter(it=>!trackedItem(it)||it.needers.length>0));
+  })).filter(it=>!hiddenItem(it)&&(!trackedItem(it)||it.needers.length>0)));
 }
 const WHEEL_TITLES=[
   item=>`🎰 Wheel incoming for ${item}!`,
@@ -262,7 +264,7 @@ function needs(cls){
     const grades=[...new Set(scoped.map(it=>it.grade))].sort((a,b)=>a-b);
     html+=`<div class="grade-scope"><div class="grade-scope-title">${title}</div><div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(cls,scope,g)?"off":""}" data-c="${esc(cls)}" data-scope="${scope}" data-g="${g}">G${g}</button>`).join("")}</div></div>`;
     let group=null;
-    for(const it of scoped.filter(it=>!gradeIsOff(cls,scope,it.grade) && (it.needers.length>0 || (!trackedItem(it) && it.grade!==60)))){
+    for(const it of scoped.filter(it=>!hiddenItem(it,cls) && !gradeIsOff(cls,scope,it.grade) && (it.needers.length>0 || (!trackedItem(it,cls) && it.grade!==60)))){
     if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
     const n=it.needers.length;
     html+=`<div class="card ${n?"":"empty"}">
@@ -293,7 +295,7 @@ function rosterRows(){
     if(rosterClass!=="All"&&c!==rosterClass) continue;
     const grade=Object.fromEntries(DATA.classes[c].items.map(it=>[it.col,it.grade]));
     for(const p of DATA.classes[c].players)
-      if(!q||p.name.toLowerCase().includes(q)) list.push({p,c,missing:p.needs.filter(col=>{const it=DATA.classes[c].items.find(x=>x.col===col);return it&&trackedItem(it)}).length});
+      if(!q||p.name.toLowerCase().includes(q)) list.push({p,c,missing:p.needs.filter(col=>{const it=DATA.classes[c].items.find(x=>x.col===col);return it&&trackedItem(it,c)}).length});
   }
   const [key,d]=sortState(), dir=+d;
   const prog=x=>x.p.progress??-1;
@@ -341,7 +343,7 @@ function refreshRoster(){
 function showPlayerNeeds(cls,name){
   const player=DATA.classes[cls].players.find(p=>p.name===name);
   if(!player)return;
-  const items=DATA.classes[cls].items.filter(it=>player.needs.includes(it.col)&&trackedItem(it));
+  const items=DATA.classes[cls].items.filter(it=>player.needs.includes(it.col)&&trackedItem(it,cls));
   const body=player.source==="waiting"?`<p class="note">Waiting for game data; this player's needs are not known yet.</p>`:
     items.length?`<div class="grid">${items.map(it=>`<div class="card"><div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div><div class="full">G${it.grade} · ${esc(it.label)}</div></div></div></div>`).join("")}</div>`:
     `<p class="note">No visible tracked items needed.</p>`;
