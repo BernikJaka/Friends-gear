@@ -34,7 +34,7 @@ SPECIALTY_OVERRIDES = {
     "roki": "Hermit",
     "holycjb": "C.J.B",
     "dinkler": "Commander",
-    "pringles": "Commander",
+    "pringles": "Vagabond",
 }
 HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(HERE, "docs")
@@ -211,7 +211,8 @@ def needs_from_gear(cls, owned, specialty=None):
                 or (e["grade"] == 60 and e["slot"] in ("helmet", "chest", "gloves", "shorts", "boots"))
                 or (e["grade"] == 62 and e["slot"].startswith("weapon_"))
                 or (e["grade"] == 65 and (e["slot"] in ("helmet", "chest", "gloves", "shorts", "boots")
-                                          or e["slot"].startswith("weapon_"))))
+                                          or e["slot"].startswith("weapon_")
+                                          or (e["slot"] == "shield" and cls == "Knight" and specialty == "Commander"))))
             and f'{cls}:{e["col"]}' not in HIDDEN_ITEMS
             and e["grade"] > owned.get(e["slot"], 0) and e["slot"] not in excluded_slots]
 
