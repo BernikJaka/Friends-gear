@@ -177,8 +177,8 @@ function toggleGrade(cls,scope,g){
 
 function defaultG60Drop(it){return it.grade===60&&["helmet","chest","gloves","shorts","boots"].includes(it.slot)}
 function defaultG62Weapon(it){return it.grade===62&&it.slot.startsWith("weapon_")}
-function defaultG65Drop(it){return it.grade===65&&(["helmet","chest","gloves","shorts","boots"].includes(it.slot)||it.slot.startsWith("weapon_"))}
-function trackedItem(it,cls=it.cls){return !hiddenItem(it,cls)&&(it.grade<=55||defaultG60Drop(it)||defaultG62Weapon(it)||defaultG65Drop(it))}
+function defaultG65Drop(it,cls){return it.grade===65&&(["helmet","chest","gloves","shorts","boots"].includes(it.slot)||it.slot.startsWith("weapon_")||(cls==="Knight"&&it.slot==="shield"))}
+function trackedItem(it,cls=it.cls){return !hiddenItem(it,cls)&&(it.grade<=55||defaultG60Drop(it)||defaultG62Weapon(it)||defaultG65Drop(it,cls))}
 function allDropItems(){
   return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
     needers:!trackedItem(it,cls)?[]:it.needers.filter(name=>{
