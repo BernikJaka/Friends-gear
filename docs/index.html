@@ -113,6 +113,13 @@ function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 const isOff=p=>p&&p.onRanking===false;   // dropped off the ranking, kept with last known data: greyed out
 const seenTime=p=>p.lastSeen?new Date(p.lastSeen).toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"}):"unknown";
 const seenText=p=>`last seen on ranking: ${seenTime(p)}`;
+const NEED_GRACE_MS=48*60*60*1000;
+const eligibleForDrops=p=>{
+  if(!p)return false;
+  if(p.onRanking!==false)return true;
+  const seen=Date.parse(p.lastSeen||"");
+  return Number.isFinite(seen)&&Date.now()-seen<NEED_GRACE_MS;
+};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 const jsonFile=path=>fetch(path+"?"+Date.now()).then(r=>{
@@ -176,7 +183,7 @@ function allDropItems(){
   return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
     needers:!trackedItem(it,cls)?[]:it.needers.filter(name=>{
       const p=DATA.classes[cls].players.find(x=>x.name===name);
-      return p&&p.onRanking!==false;
+      return eligibleForDrops(p);
     })
   })).filter(it=>!hiddenItem(it)&&(!trackedItem(it)||it.needers.length>0)));
 }
@@ -264,14 +271,15 @@ function needs(cls){
     const grades=[...new Set(scoped.map(it=>it.grade))].sort((a,b)=>a-b);
     html+=`<div class="grade-scope"><div class="grade-scope-title">${title}</div><div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(cls,scope,g)?"off":""}" data-c="${esc(cls)}" data-scope="${scope}" data-g="${g}">G${g}</button>`).join("")}</div></div>`;
     let group=null;
-    for(const it of scoped.filter(it=>!hiddenItem(it,cls) && !gradeIsOff(cls,scope,it.grade) && (it.needers.length>0 || (!trackedItem(it,cls) && it.grade!==60)))){
+    for(const it of scoped.filter(it=>!hiddenItem(it,cls) && !gradeIsOff(cls,scope,it.grade) && (it.needers.some(name=>eligibleForDrops(byName[name])) || (!trackedItem(it,cls) && it.grade!==60)))){
     if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
-    const n=it.needers.length;
+    const needers=it.needers.filter(name=>eligibleForDrops(byName[name]));
+    const n=needers.length;
     html+=`<div class="card ${n?"":"empty"}">
       <div class="top" title="${esc(it.name)}"><img src="${esc(it.icon)}" alt="${esc(it.name)}" loading="lazy">
         <div class="lbl">${esc(it.label)}</div>
         ${n?`<span class="cnt">${n}</span>`:""}</div>
-      <div class="names">${it.needers.map(x=>{const p=byName[x];return isOff(p)
+      <div class="names">${needers.map(x=>{const p=byName[x];return isOff(p)
         ?`<span class="off">${esc(x)}<small>${esc(seenText(p))}</small></span>`:`<span>${esc(x)}</span>`}).join("")}</div></div>`;
     }
     if(group!==null)html+="</div>";
