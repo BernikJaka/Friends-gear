@@ -58,7 +58,7 @@ Open the failed run in the Actions tab and read the red step. Most likely causes
 `docs/settings.json` decides which grades the website shows to everyone:
 
 ```json
-{"hiddenGrades": []}
+{"hiddenGrades": [70]}
 ```
 
 Grades in this list are hidden for every visitor: no item cards, no toggle button, and
