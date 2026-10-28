@@ -53,33 +53,22 @@ Open the failed run in the Actions tab and read the red step. Most likely causes
 
 ---
 
-## Hiding or showing grades
+## Hiding grades and individual items
 
-`docs/settings.json` decides which grades the website shows to everyone:
-
-```json
-{"hiddenGrades": [70]}
-```
-
-Grades in this list are hidden for every visitor: no item cards, no toggle button, and
-they don't count in **Missing** on the Roster tab. The script still tracks all grades,
-so nothing is lost while a grade is hidden.
-
-To **unhide a hidden grade** (for example G70), open
-`docs/settings.json` on GitHub, click the pencil icon, remove the number from the list
-and click **Commit changes**:
+`docs/settings.json` controls what everyone sees. Grades in `hiddenGrades` are hidden globally. Individual items in `hiddenItems` are hidden by class and catalog column (`Class:col`), so selected pieces can be hidden without hiding a whole grade:
 
 ```json
-{"hiddenGrades": []}
+{
+  "hiddenGrades": [70],
+  "hiddenItems": ["Archer:W", "Archer:Y", "Mage:W", "Mage:Y", "Knight:AF", "Knight:AH", "Thief:W", "Thief:Y"]
+}
 ```
 
-To show every grade, use an empty list: `{"hiddenGrades": []}`. The site updates within
-a minute or two (refresh the page). Keep the format exactly as above - numbers only,
-separated by commas.
+The hidden G65 chest and shorts stay out of item cards, player missing-item counts, and Dropped items. Remove an entry from `hiddenItems` when that specific piece is ready to track. To show a hidden grade, remove its number from `hiddenGrades`.
 
-Every visitor can also turn grades off just for themselves with the G50 / G53 / ...
-buttons above the item cards. That choice is saved in their own browser and doesn't
-affect anyone else.
+Each visitor can also turn visible grades off just for themselves with the grade buttons above the item cards. That choice is saved in their browser and does not affect anyone else.
+
+---
 
 ## Dropped items and Discord wheel commands
 
