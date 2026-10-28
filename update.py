@@ -43,6 +43,8 @@ CATALOG = json.load(open(os.path.join(DOCS, "catalog.json")))
 # some items exist under several Indexes in inititem.dat (variants of the same grade), see altItemIndex
 BY_INDEX = {i: (cls, e) for cls, items in CATALOG.items() for e in items
             for i in [e["itemIndex"], *e.get("altItemIndex", [])]}
+SETTINGS = json.load(open(os.path.join(DOCS, "settings.json"), encoding="utf-8"))
+HIDDEN_ITEMS = set(SETTINGS.get("hiddenItems", []))
 
 
 def get(url, timeout=30):
@@ -208,8 +210,9 @@ def needs_from_gear(cls, owned, specialty=None):
             if (e["grade"] <= 55
                 or (e["grade"] == 60 and e["slot"] in ("helmet", "chest", "gloves", "shorts", "boots"))
                 or (e["grade"] == 62 and e["slot"].startswith("weapon_"))
-                or (e["grade"] == 65 and (e["slot"] in ("helmet", "gloves", "boots")
+                or (e["grade"] == 65 and (e["slot"] in ("helmet", "chest", "gloves", "shorts", "boots")
                                           or e["slot"].startswith("weapon_"))))
+            and f'{cls}:{e["col"]}' not in HIDDEN_ITEMS
             and e["grade"] > owned.get(e["slot"], 0) and e["slot"] not in excluded_slots]
 
 
