@@ -1,25 +1,378 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101114">
-  <title>Data unavailable</title>
-  <style>
-    :root{color-scheme:dark;--bg:#101114;--panel:#191c22;--line:#2a2f39;--text:#e8eaf0;--muted:#9ba3b3;--accent:#e3b64f}
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
-    main{width:min(100%,480px);padding:32px;border:1px solid var(--line);border-radius:14px;background:var(--panel);text-align:center;box-shadow:0 16px 48px #0004}
-    .mark{display:grid;place-items:center;width:48px;height:48px;margin:0 auto 18px;border:1px solid #705d37;border-radius:50%;color:var(--accent);font-size:24px}
-    h1{margin:0 0 8px;font-size:22px;font-weight:650}
-    p{margin:0;color:var(--muted)}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Friends · Gear Needs</title>
+<style>
+  :root{--bg:#0f1115;--panel:#171a21;--line:#262b36;--text:#e7e9ee;--muted:#8b93a7;--accent:#e0b04a;--need:#e5484d;--ok:#3fb950}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  header{padding:24px 16px 14px;max-width:1200px;margin:auto}
+  h1{margin:0;font-size:24px;letter-spacing:.2px}
+  h1 span{color:var(--accent)}
+  .meta{color:var(--muted);font-size:12px;margin-top:4px}
+  nav{position:sticky;top:0;z-index:2;background:#111319f5;border-bottom:1px solid var(--line);box-shadow:0 8px 24px #0003;backdrop-filter:blur(12px)}
+  .nav-inner{max-width:1200px;margin:auto;padding:10px 16px 9px}
+  .primary-tabs,.class-tabs{display:flex;align-items:center;gap:7px;overflow-x:auto;scrollbar-width:thin}
+  .class-tabs{flex:1;min-width:0}
+  .primary-tabs{padding-bottom:9px}
+  .primary-tabs button,.class-tabs button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:8px 14px;font:inherit;cursor:pointer;white-space:nowrap}
+  .primary-tabs button{font-weight:650}
+  .primary-tabs button.on{background:#332916;border-color:var(--accent);color:#f4ca70}
+  .class-section{display:flex;align-items:center;gap:14px;border-top:1px solid #252832;padding-top:8px}
+  .class-label{flex:none;color:var(--muted);font-size:10px;font-weight:650;letter-spacing:1px;text-transform:uppercase}
+  .class-tabs button{padding:5px 11px;font-size:13px;color:#c4c9d4}
+  .class-tabs button.on{border-color:#7e6639;color:#f4ca70;background:#211d16}
+  .tabs .n{color:var(--muted);font-size:11px;margin-left:5px}
+  main{max-width:1200px;margin:auto;padding:20px 16px 48px}
+  .group{margin:18px 0 6px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px;min-height:0}
+  .card.empty{opacity:.45}
+  .top{display:flex;align-items:center;gap:8px}
+  .top img{width:36px;height:36px;flex:0 0 36px;image-rendering:pixelated;background:#0b0d11;border-radius:6px}
+  .lbl{font-weight:600;flex:1;min-width:0;overflow-wrap:anywhere}
+  .full{color:var(--muted);font-size:11px}
+  .cnt{margin-left:auto;flex:0 0 auto;background:var(--need);color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:1px 8px}
+  .names{display:flex;flex-wrap:wrap;gap:4px}
+  .names span{background:#222734;border-radius:6px;padding:1px 7px;font-size:12px}
+  .names span.off{opacity:.45}
+  .names span.off small{display:block;font-size:10px;color:var(--muted)}
+  tr.off td{opacity:.45}
+  .seen{font-size:11px;color:var(--muted)}
+  td .xp{height:3px;background:var(--line);border-radius:2px;margin-top:3px;min-width:70px;overflow:hidden}
+  td .xp i{display:block;height:100%;background:var(--accent)}
+  table{width:100%;border-collapse:collapse;margin-top:8px}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:500;font-size:12px}
+  .src{font-size:11px;padding:1px 6px;border-radius:6px;background:#222734;color:var(--muted)}
+  .src.game{color:var(--ok)}
+  .note{color:var(--muted);font-size:12px;margin-top:14px}
+  .toggle{margin-left:auto}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:4px}
+  .filters input{flex:1 1 200px;min-width:0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:inherit}
+  .filters input:focus{outline:none;border-color:var(--accent)}
+  .classbtns{display:flex;flex-wrap:wrap;gap:6px}
+  .classbtns button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font:inherit;cursor:pointer}
+  .classbtns button.on{border-color:var(--accent);color:var(--accent)}
+  .sortbtn{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;white-space:nowrap}
+  .sortbtn:hover,.sortbtn.on{color:var(--accent)}
+  .count{color:var(--muted);font-size:12px;margin-top:10px}
+  .gradebtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .grade-scope{margin:10px 0 14px}
+  .grade-scope-title{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+  .gradebtns button{background:var(--panel);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
+  .gradebtns button.off{color:var(--muted);border-color:var(--line);opacity:.5}
+  .dropcontrols{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+  .dropcontrols input{flex:1 1 220px;min-width:0;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit}
+  .dropcontrols button,.wheel button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font:inherit;cursor:pointer}
+  .dropcontrols button.on{border-color:var(--accent);color:var(--accent)}
+  .dropcard{width:100%;text-align:left;color:var(--text);font:inherit;background:transparent;border:0;cursor:pointer;padding:0}
+  .dropcard:hover .lbl,.dropcard.on .lbl{color:var(--accent)}
+  .dropcard .top>div{flex:1;min-width:0}
+  .dropcard .lbl{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+  .selected{margin:18px 0;padding:14px;background:var(--panel);border:1px solid var(--accent);border-radius:10px}
+  .selected .top img{width:48px;height:48px}
+  .wheel{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .wheel code{flex:1 1 300px;overflow-wrap:anywhere;background:#0b0d11;padding:9px;border-radius:6px}
+  .wheel-message{white-space:pre-wrap;overflow-wrap:anywhere;background:#0b0d11;padding:10px;border-radius:6px;margin-top:10px}
+  .warn{color:var(--accent);font-size:12px}
+  .playerlink,.missinglink{padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+  .playerlink:hover,.missinglink:hover{color:var(--accent);text-decoration:underline}
+  .modal-backdrop{position:fixed;inset:0;z-index:5;background:#000b;display:flex;align-items:center;justify-content:center;padding:16px}
+  .modal{width:min(760px,100%);max-height:85vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:0 12px 50px #0009}
+  .modalhead{display:flex;align-items:center;gap:12px;position:sticky;top:-16px;background:var(--panel);padding:4px 0 12px}
+  .modalhead h2{font-size:18px;margin:0}
+  .modalhead button{margin-left:auto;background:#222734;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
+  .modal .grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+</style>
 </head>
 <body>
-  <main>
-    <div class="mark" aria-hidden="true">!</div>
-    <h1>No data received</h1>
-    <p>The site is temporarily unavailable. Please try again later.</p>
-  </main>
+<header>
+  <h1><span id="guild">Friends</span> · Who still needs what</h1>
+  <div class="meta" id="meta">Loading…</div>
+</header>
+<nav><div class="tabs" id="tabs"></div></nav>
+<main id="main"></main>
+<script>
+const ORDER=["Archer","Mage","Knight","Thief"];
+let DATA=null, DISCORD_USERS={}, view=localStorageGet("view")||"Roster";
+let rosterQuery="", rosterClass=localStorageGet("rosterClass")||"All", rosterSort=localStorageGet("rosterSort")||"class:1";
+let dropQuery="", dropClass="All", selectedDrop=null;
+let DROP_SHOW_HIGH=false;
+let G62_WATCH=null;
+let HIDDEN=new Set();   // grades hidden for everyone (docs/settings.json)
+let HIDDEN_ITEMS=new Set(); // individually hidden catalog items (Class:col)
+let OFF=new Set((()=>{try{return JSON.parse(localStorageGet("offGrades"))||[]}catch(e){return []}})());  // turned off by this visitor
+let ON=new Set((()=>{try{return JSON.parse(localStorageGet("onGrades"))||[]}catch(e){return []}})());  // visitor override for auto-hidden grades
+let GRADE_PREFS=(()=>{try{return JSON.parse(localStorageGet("gradePrefs"))||{}}catch(e){return {}}})();
+let AUTO_OFF=new Set();
+function localStorageGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function localStorageSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+const isOff=p=>p&&p.onRanking===false;   // dropped off the ranking, kept with last known data: greyed out
+const seenTime=p=>p.lastSeen?new Date(p.lastSeen).toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"}):"unknown";
+const seenText=p=>`last seen on ranking: ${seenTime(p)}`;
+const NEED_GRACE_MS=5*24*60*60*1000;
+const eligibleForDrops=p=>{
+  if(!p)return false;
+  if(p.onRanking!==false)return true;
+  const seen=Date.parse(p.lastSeen||"");
+  return Number.isFinite(seen)&&Date.now()-seen<NEED_GRACE_MS;
+};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const jsonFile=path=>fetch(path+"?"+Date.now()).then(r=>{
+  if(!r.ok)throw new Error(`${path}: HTTP ${r.status}`);
+  return r.json();
+});
+const settings=jsonFile("settings.json").catch(()=>({}));
+Promise.all([jsonFile("data.json"),settings,
+  jsonFile("discord-users.json").catch(()=>({}))]).then(([d,s,users])=>{
+  HIDDEN=new Set(s.hiddenGrades||[]);HIDDEN_ITEMS=new Set(s.hiddenItems||[]);DATA=d;DISCORD_USERS=users;
+  AUTO_OFF=new Set(ORDER.flatMap(c=>["armor","weapons"].flatMap(scope=>{
+    const scoped=DATA.classes[c].items.filter(it=>itemScope(it)===scope);
+    return [...new Set(scoped.map(it=>it.grade))]
+      .filter(g=>scoped.filter(it=>it.grade===g).every(it=>it.needers.length===0))
+      .map(g=>gradeKey(c,scope,g));
+  })));
+  render();jsonFile("g62-watch.json").then(w=>{G62_WATCH=w;render()}).catch(()=>{});
+}).catch(error=>{
+  console.error("Friends gear site failed to load or render",error);
+  document.getElementById("meta").textContent="Could not load the site: "+(error?.message||String(error));
+});
+
+function render(){
+  document.getElementById("guild").textContent=DATA.guild;
+  const t=new Date(DATA.updated);
+  document.getElementById("meta").textContent="Updated "+t.toLocaleString()+
+    (DATA.rankingsOnline?"":" · rankings were offline, showing last known roster");
+  const button=([k,l])=>{
+    const n=DATA.classes[k]?`<span class="n">${DATA.classes[k].players.length}</span>`:"";
+    return `<button class="${k===view?"on":""}" data-k="${k}">${l}${n}</button>`};
+  document.getElementById("tabs").innerHTML=`<div class="nav-inner"><div class="primary-tabs" aria-label="Main pages">${[["Roster","Roster"],["Dropped items","Dropped items"]].map(button).join("")}</div><div class="class-section"><span class="class-label">Gear by class</span><div class="class-tabs">${ORDER.map(c=>button([c,c])).join("")}</div></div></div>`;
+  document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.k;localStorageSet("view",view);render()});
+  document.getElementById("main").innerHTML=view==="Roster"?roster():view==="Dropped items"?droppedItems():needs(view);
+  if(view==="Roster") wireRoster();
+  if(view==="Dropped items") wireDroppedItems();
+  document.querySelectorAll(".gradebtns button").forEach(b=>b.onclick=()=>{
+    toggleGrade(b.dataset.c,b.dataset.scope,+b.dataset.g);render()});
+}
+
+function itemScope(it){return it.slot.startsWith("weapon_")?"weapons":"armor"}
+function hiddenItem(it,cls=it.cls){return HIDDEN_ITEMS.has(cls+":"+it.col)}
+function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
+function gradeIsOff(cls,scope,g){
+  const key=gradeKey(cls,scope,g);
+  if(HIDDEN.has(g))return true;
+  if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
+  if(ON.has(cls+":"+g))return false;
+  return OFF.has(g)||AUTO_OFF.has(key);
+}
+function toggleGrade(cls,scope,g){
+  const key=gradeKey(cls,scope,g);
+  GRADE_PREFS[key]=gradeIsOff(cls,scope,g);
+  localStorageSet("gradePrefs",JSON.stringify(GRADE_PREFS));
+}
+
+function defaultG60Drop(it){return it.grade===60&&["helmet","chest","gloves","shorts","boots"].includes(it.slot)}
+function defaultG62Weapon(it){return it.grade===62&&it.slot.startsWith("weapon_")}
+function defaultG65Drop(it,cls){return it.grade===65&&(["helmet","chest","gloves","shorts","boots"].includes(it.slot)||it.slot.startsWith("weapon_")||(cls==="Knight"&&it.slot==="shield"))}
+function trackedItem(it,cls=it.cls){return !hiddenItem(it,cls)&&(it.grade<=55||defaultG60Drop(it)||defaultG62Weapon(it)||defaultG65Drop(it,cls))}
+function allDropItems(){
+  return ORDER.flatMap(cls=>DATA.classes[cls].items.map(it=>({...it,cls,
+    needers:!trackedItem(it,cls)?[]:it.needers.filter(name=>{
+      const p=DATA.classes[cls].players.find(x=>x.name===name);
+      return eligibleForDrops(p);
+    })
+  })).filter(it=>!hiddenItem(it)&&(!trackedItem(it)||it.needers.length>0)));
+}
+const WHEEL_TITLES=[
+  item=>`🎰 Wheel incoming for ${item}!`,
+  item=>`🎲 RNG gods, choose your champion! Prize: ${item}`,
+  item=>`🏆 Who gets the loot tonight? ${item}`,
+  item=>`🔥 Time to spin the wheel! Up for grabs: ${item}`,
+  item=>`🍀 Feeling lucky? ${item} is on the line!`,
+  item=>`⚔️ Let the loot gods decide! ${item}`
+];
+let wheelTitleIndex=Math.floor(Math.random()*WHEEL_TITLES.length);
+function g62WatchPanel(){
+  if(!G62_WATCH)return '<p class="note">G62 weapon watch (top 300): Waiting for first scan.</p>';
+  const current=G62_WATCH.current||[];
+  const history=G62_WATCH.history||[];
+  const rows=current.map(x=>{
+    const first=history.find(h=>h.name.toLowerCase()===x.name.toLowerCase()&&h.weapon.toLowerCase()===x.weapon.toLowerCase());
+    return '<p class="note">'+esc(x.name)+' ('+esc(x.guild)+') · '+esc(x.weapon)+' · First detected: '+esc(first?.firstSeen||'unknown')+'</p>';
+  }).join('');
+  return '<p class="note">G62 weapon watch · Top 300 · Last scan: '+esc(G62_WATCH.checkedAt||'unknown')+' UTC · '+esc(G62_WATCH.playersChecked||0)+' profiles checked. '+(current.length?current.length+' equipped weapon(s) detected.':'No equipped G62 weapons detected.')+'</p>'+rows;
+}
+function droppedItems(){
+  const classes=["All",...ORDER].map(c=>`<button data-c="${c}" class="${c===dropClass?"on":""}">${c}</button>`).join("");
+  const q=dropQuery.trim().toLowerCase();
+  const items=allDropItems().filter(it=>(trackedItem(it)||DROP_SHOW_HIGH)&&(dropClass==="All"||it.cls===dropClass)&&
+    (!q||`${it.name} ${it.label} ${it.group} ${it.cls}`.toLowerCase().includes(q)));
+  const card=it=>`<div class="card">
+    <button class="dropcard ${selectedDrop===it.cls+":"+it.col?"on":""}" data-drop="${esc(it.cls+":"+it.col)}">
+      <div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div>
+      <div class="full">G${it.grade} · ${esc(it.label)}</div></div>${!trackedItem(it)?`<span class="full">Catalog</span>`:`<span class="cnt">${it.needers.length}</span>`}</div>
+    </button></div>`;
+  const byClass=(dropClass==="All"?[...ORDER]:[dropClass]).map(cls=>{
+    const found=items.filter(it=>it.cls===cls);
+    return found.length?`<div class="group">${cls} · ${found.length} items</div><div class="grid">${found.map(card).join("")}</div>`:"";
+  }).join("");
+  const selected=selectedDrop&&allDropItems().find(it=>it.cls+":"+it.col===selectedDrop&&(trackedItem(it)||DROP_SHOW_HIGH));
+  let detail="";
+  if(selected&&!trackedItem(selected)){
+    detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div><p class="note">This catalog item is not in the currently tracked drop groups, so player needs and wheel eligibility are not tracked for it yet.</p></section>`;
+  }else if(selected){
+    const handles=Object.fromEntries(Object.entries(DISCORD_USERS).map(([n,v])=>[n.toLowerCase(),v]));
+    const eligible=selected.needers;
+    const command="/wheel list"+(eligible.length?" "+eligible.join(" "):"");
+    const discordMessage=WHEEL_TITLES[wheelTitleIndex](selected.name)+"\n"+eligible.map(n=>handles[n.toLowerCase()]||n).join(" ");
+    const unmapped=eligible.filter(n=>!handles[n.toLowerCase()]);
+    detail=`<section class="selected"><div class="top"><img src="${esc(selected.icon)}" alt=""><div><div class="lbl">${esc(selected.name)}</div><div class="full">${esc(selected.cls)} · G${selected.grade}</div></div></div>
+      <div class="group">${eligible.length} ranked member${eligible.length===1?"":"s"} still need this item</div>
+      <div class="names">${eligible.length?eligible.map(n=>`<span>${esc(n)}${handles[n.toLowerCase()]?` <small>${esc(handles[n.toLowerCase()])}</small>`:""}</span>`).join(""):`<span>No ranked members currently need this item.</span>`}</div>
+      ${unmapped.length?`<p class="warn">Discord tag missing for: ${unmapped.map(esc).join(", ")}. Add them to docs/discord-users.json for tagging.</p>`:""}
+      <div class="wheel-message" id="discord-message">${esc(discordMessage)}</div><div class="wheel"><button id="copy-discord" ${eligible.length?"":"disabled"}>Copy Discord message</button><button id="new-title">🎲 New title</button></div><div class="wheel"><code id="wheel-command">${esc(command)}</code><button id="copy-wheel" ${eligible.length?"":"disabled"}>Copy /wheel list</button><span id="copy-status" class="full" aria-live="polite"></span></div></section>`;
+  }
+  return `<div class="dropcontrols"><input id="drop-q" type="search" placeholder="Search items…" value="${esc(dropQuery)}"><div class="classbtns">${classes}</div><div class="classbtns"><button id="drop-high" class="${DROP_SHOW_HIGH?"on":""}">${DROP_SHOW_HIGH?"Hide G60+ gear":"Show G60+ gear"}</button></div></div>
+    <div class="count">${items.length} items · select an item for details</div>${detail}${byClass||"<p class='note'>No needed items match.</p>"}
+    <p class="note">This list follows the server’s drop tables. New gear will appear here as it is added to the drop tables.</p>${g62WatchPanel()}`;
+}
+function wireDroppedItems(){
+  const q=document.getElementById("drop-q");q.oninput=e=>{dropQuery=e.target.value;const pos=q.selectionStart;render();const next=document.getElementById("drop-q");next.focus();next.setSelectionRange(pos,pos)};
+  document.querySelectorAll(".dropcontrols button[data-c]").forEach(b=>b.onclick=()=>{dropClass=b.dataset.c;render()});
+  document.getElementById("drop-high").onclick=()=>{DROP_SHOW_HIGH=!DROP_SHOW_HIGH;if(!DROP_SHOW_HIGH&&selectedDrop){const it=allDropItems().find(x=>x.cls+":"+x.col===selectedDrop);if(it&&!trackedItem(it))selectedDrop=null;}render()};
+  document.querySelectorAll(".dropcard").forEach(b=>b.onclick=()=>{selectedDrop=b.dataset.drop;render()});
+  async function copyText(value,status){
+    try{await navigator.clipboard.writeText(value)}catch(e){
+      const box=document.createElement("textarea");box.value=value;document.body.appendChild(box);box.select();
+      try{document.execCommand("copy")}catch(_){}box.remove();
+    }
+    document.getElementById("copy-status").textContent=status;
+  }
+  const copy=document.getElementById("copy-wheel");
+  if(copy)copy.onclick=()=>copyText(document.getElementById("wheel-command").textContent,"Wheel list copied");
+  const discord=document.getElementById("copy-discord");
+  if(discord)discord.onclick=()=>copyText(document.getElementById("discord-message").textContent,"Discord message copied");
+  const newTitle=document.getElementById("new-title");
+  if(newTitle)newTitle.onclick=()=>{wheelTitleIndex=(wheelTitleIndex+1+Math.floor(Math.random()*(WHEEL_TITLES.length-1)))%WHEEL_TITLES.length;render()};
+
+}
+
+function needs(cls){
+  const items=DATA.classes[cls].items;
+  const byName=Object.fromEntries(DATA.classes[cls].players.map(p=>[p.name,p]));
+  let html="";
+  for(const [scope,title] of [["armor","Armor & shields"],["weapons","Weapons"]]){
+    const scoped=items.filter(it=>itemScope(it)===scope);
+    if(!scoped.length)continue;
+    const grades=[...new Set(scoped.map(it=>it.grade))].sort((a,b)=>a-b);
+    html+=`<div class="grade-scope"><div class="grade-scope-title">${title}</div><div class="gradebtns">${grades.map(g=>`<button class="${gradeIsOff(cls,scope,g)?"off":""}" data-c="${esc(cls)}" data-scope="${scope}" data-g="${g}">G${g}</button>`).join("")}</div></div>`;
+    let group=null;
+    for(const it of scoped.filter(it=>!hiddenItem(it,cls) && !gradeIsOff(cls,scope,it.grade) && (it.needers.some(name=>eligibleForDrops(byName[name])) || (!trackedItem(it,cls) && it.grade!==60)))){
+    if(it.group!==group){ if(group!==null) html+="</div>"; group=it.group; html+=`<div class="group">${esc(group)}</div><div class="grid">`; }
+    const needers=it.needers.filter(name=>eligibleForDrops(byName[name]));
+    const n=needers.length;
+    html+=`<div class="card ${n?"":"empty"}">
+      <div class="top" title="${esc(it.name)}"><img src="${esc(it.icon)}" alt="${esc(it.name)}" loading="lazy">
+        <div class="lbl">${esc(it.label)}</div>
+        ${n?`<span class="cnt">${n}</span>`:""}</div>
+      <div class="names">${needers.map(x=>{const p=byName[x];return isOff(p)
+        ?`<span class="off">${esc(x)}<small>${esc(seenText(p))}</small></span>`:`<span>${esc(x)}</span>`}).join("")}</div></div>`;
+    }
+    if(group!==null)html+="</div>";
+  }
+  return html+"<p class='note'>A player is only listed for grades higher than what they already have in that slot.</p>";
+}
+
+function roster(){
+  const btns=["All",...ORDER].map(c=>`<button class="${c===rosterClass?"on":""}" data-c="${c}">${c}</button>`).join("");
+  return `<div class="filters"><input id="q" type="search" placeholder="Search name…" value="${esc(rosterQuery)}">
+    <div class="classbtns">${btns}</div></div>
+    <div class="count" id="count"></div>
+    <table><thead id="head"></thead>
+    <tbody id="rows"></tbody></table><div id="modal-root"></div>`;
+}
+
+function rosterRows(){
+  const q=rosterQuery.trim().toLowerCase();
+  const list=[];
+  for(const c of ORDER){
+    if(rosterClass!=="All"&&c!==rosterClass) continue;
+    const grade=Object.fromEntries(DATA.classes[c].items.map(it=>[it.col,it.grade]));
+    for(const p of DATA.classes[c].players)
+      if(!q||p.name.toLowerCase().includes(q)) list.push({p,c,missing:p.needs.filter(col=>{const it=DATA.classes[c].items.find(x=>x.col===col);return it&&trackedItem(it,c)}).length});
+  }
+  const [key,d]=sortState(), dir=+d;
+  const prog=x=>x.p.progress??-1;
+  const byLevel=(a,b)=>(a.p.level==null)-(b.p.level==null)||(b.p.level??0)-(a.p.level??0)||prog(b)-prog(a);   // unknown level always last
+  const cmp={class:(a,b)=>ORDER.indexOf(a.c)-ORDER.indexOf(b.c),
+             specialty:(a,b)=>(!a.p.specialty)-(!b.p.specialty)||String(a.p.specialty||"").localeCompare(String(b.p.specialty||"")),
+             level:(a,b)=>(a.p.level==null)-(b.p.level==null)||(a.p.level??0)-(b.p.level??0)||prog(a)-prog(b),
+             missing:(a,b)=>a.missing-b.missing}[key];
+  const empty={specialty:a=>!a.p.specialty,level:a=>a.p.level==null}[key];
+  list.sort((a,b)=>isOff(a.p)-isOff(b.p)||(empty?empty(a)-empty(b):0)||dir*cmp(a,b)||byLevel(a,b)||a.p.name.localeCompare(b.p.name));
+  const rows=list.map(({p,c,missing})=>`<tr class="${isOff(p)?"off":""}"><td><button class="playerlink" data-player="${esc(p.name)}" data-class="${esc(c)}">${esc(p.name)}</button>${isOff(p)?`<div class="seen">${esc(seenText(p))}</div>`:""}</td><td>${c}</td><td>${esc(p.specialty||"")}</td><td>${lvCell(p)}</td>
+        <td><button class="missinglink" data-player="${esc(p.name)}" data-class="${esc(c)}" title="Show ${missing} missing items">${missing}</button></td><td><span class="src ${p.source}">${p.source==="game"?"from game":"waiting for game data"}</span></td></tr>`).join("");
+  return {html:rows||`<tr><td colspan="6" class="note">No players match.</td></tr>`,shown:list.length};
+}
+
+const SORTS=[["class","Class",1],["specialty","Specialty",1],["level","Lv",-1],["missing","Missing items",-1]];   // [key,label,first-click direction]
+function sortState(){
+  const [k,d]=rosterSort.split(":");
+  return SORTS.some(s=>s[0]===k)&&(d==="1"||d==="-1")?[k,d]:["class","1"];
+}
+
+// "Lv 64 · 37.2%" with a thin EXP bar under it
+function lvCell(p){
+  if(p.level==null) return "";
+  if(p.progress==null) return `Lv ${p.level}`;
+  const pct=Math.max(0,Math.min(100,+p.progress));
+  return `Lv ${p.level} · ${pct.toFixed(2)}%<div class="xp" title="EXP ${pct.toFixed(2)}% of level ${p.level}"><i style="width:${pct}%"></i></div>`;
+}
+
+function refreshRoster(){
+  const [key,dir]=sortState();
+  const th=([k,l])=>`<th><button class="sortbtn ${k===key?"on":""}" data-s="${k}">${l}${k===key?(dir==="1"?" ▲":" ▼"):""}</button></th>`;
+  document.getElementById("head").innerHTML=`<tr><th>Player</th>${SORTS.map(th).join("")}<th>Gear data</th></tr>`;
+  document.querySelectorAll(".sortbtn").forEach(b=>b.onclick=()=>{
+    const k=b.dataset.s, first=SORTS.find(s=>s[0]===k)[2];
+    rosterSort=k+":"+(k===key?-dir:first);localStorageSet("rosterSort",rosterSort);refreshRoster()});
+  const total=ORDER.reduce((n,c)=>n+DATA.classes[c].players.length,0);
+  const {html,shown}=rosterRows();
+  document.getElementById("rows").innerHTML=html;
+  document.querySelectorAll(".playerlink,.missinglink").forEach(b=>b.onclick=()=>showPlayerNeeds(b.dataset.class,b.dataset.player));
+  const off=ORDER.reduce((n,c)=>n+DATA.classes[c].players.filter(isOff).length,0);
+  document.getElementById("count").textContent=(shown===total?`${total} members`:`Showing ${shown} of ${total} members`)+(off?` · ${off} not on the ranking`:"");
+}
+
+function showPlayerNeeds(cls,name){
+  const player=DATA.classes[cls].players.find(p=>p.name===name);
+  if(!player)return;
+  const items=DATA.classes[cls].items.filter(it=>player.needs.includes(it.col)&&trackedItem(it,cls));
+  const body=player.source==="waiting"?`<p class="note">Waiting for game data; this player's needs are not known yet.</p>`:
+    items.length?`<div class="grid">${items.map(it=>`<div class="card"><div class="top"><img src="${esc(it.icon)}" alt="" loading="lazy"><div><div class="lbl">${esc(it.name)}</div><div class="full">G${it.grade} · ${esc(it.label)}</div></div></div></div>`).join("")}</div>`:
+    `<p class="note">No visible tracked items needed.</p>`;
+  const root=document.getElementById("modal-root");
+  root.innerHTML=`<div class="modal-backdrop" id="needs-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="needs-title">
+    <div class="modalhead"><h2 id="needs-title">${esc(name)} · Items needed</h2><button id="close-needs" aria-label="Close">Close</button></div>${body}</section></div>`;
+  document.getElementById("close-needs").onclick=closePlayerNeeds;
+  document.getElementById("needs-backdrop").onclick=e=>{if(e.target===e.currentTarget)closePlayerNeeds()};
+  document.onkeydown=e=>{if(e.key==="Escape")closePlayerNeeds()};
+}
+function closePlayerNeeds(){document.getElementById("modal-root").innerHTML="";document.onkeydown=null}
+
+function wireRoster(){
+  document.getElementById("q").oninput=e=>{rosterQuery=e.target.value;refreshRoster()};
+  document.querySelectorAll(".classbtns button").forEach(b=>b.onclick=()=>{
+    rosterClass=b.dataset.c;localStorageSet("rosterClass",rosterClass);
+    document.querySelectorAll(".classbtns button").forEach(x=>x.classList.toggle("on",x===b));
+    refreshRoster();
+  });
+  refreshRoster();
+}
+</script>
 </body>
 </html>
