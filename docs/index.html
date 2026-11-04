@@ -164,7 +164,8 @@ function hiddenItem(it,cls=it.cls){return HIDDEN_ITEMS.has(cls+":"+it.col)}
 function gradeKey(cls,scope,g){return cls+":"+scope+":"+g}
 function gradeIsOff(cls,scope,g){
   const key=gradeKey(cls,scope,g);
-  if(HIDDEN.has(g))return true;
+  // G70 armor stays globally hidden, while G70 weapons are now active drop items.
+  if(HIDDEN.has(g)&&!(g===70&&scope==="weapons"))return true;
   if(Object.prototype.hasOwnProperty.call(GRADE_PREFS,key))return GRADE_PREFS[key]===false;
   if(ON.has(cls+":"+g))return false;
   return OFF.has(g)||AUTO_OFF.has(key);
