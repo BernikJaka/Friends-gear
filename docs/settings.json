@@ -2,14 +2,5 @@
   "hiddenGrades": [
     70
   ],
-  "hiddenItems": [
-    "Archer:W",
-    "Archer:Y",
-    "Mage:W",
-    "Mage:Y",
-    "Knight:AF",
-    "Knight:AH",
-    "Thief:W",
-    "Thief:Y"
-  ]
+  "hiddenItems": []
 }
